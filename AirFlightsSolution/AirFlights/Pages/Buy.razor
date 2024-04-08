@@ -1,0 +1,18 @@
+﻿@page "/pdf"
+@inject IJSRuntime JS
+<PageTitle>Create PDF</PageTitle>
+<h1>Create PDF</h1>
+<div class="form-outline">
+    <textarea class="form-control w-50" id="htmltopdf" rows="8" cols="16" @bind="HtmlString"></textarea>
+    <button class="btn btn-primary mt-4" @onclick="CreatePDF">Create PDF</button>
+</div>
+@code {
+    private string HtmlString { get; set; } = default!;
+    private async Task CreatePDF()
+    {
+        var render = new IronPdf.ChromePdfRenderer();
+        var doc = render.RenderHtmlAsPdf(HtmlString);
+        using var Content = new DotNetStreamReference(stream: doc.Stream);
+        await JS.InvokeVoidAsync("SubmitHTML", "ironpdf.pdf", Content);
+    }
+}
