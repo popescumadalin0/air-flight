@@ -14,4 +14,8 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataBaseLayout\DataBaseLayout.csproj" />
+  </ItemGroup>
+
 </Project>
