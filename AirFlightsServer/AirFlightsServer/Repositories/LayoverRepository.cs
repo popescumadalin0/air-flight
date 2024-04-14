@@ -21,14 +21,14 @@ namespace AirFlightsServer.Repositories
 
         }
 
-        public async Task AddLayover(Layover model)
+        public async Task AddLayoverAsync(Layover model)
         {
             await _context.Layovers.AddAsync(model);
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteLayover(Guid id)
+        public async Task DeleteLayoverAsync(Guid id)
         {
             var layover = await _context.Layovers.SingleAsync(scp => scp.Id == id);
             _context.Layovers.Remove(layover);

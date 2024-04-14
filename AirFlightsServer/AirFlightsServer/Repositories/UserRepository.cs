@@ -21,7 +21,7 @@ namespace AirFlightsServer.Repositories
 
         }
 
-        public async Task AddUsers(User model)
+        public async Task AddUserAsync(User model)
         {
             await _context.Users.AddAsync(model);
 
@@ -29,7 +29,7 @@ namespace AirFlightsServer.Repositories
 
         }
 
-        public async Task DeleteUsers(string CNP)
+        public async Task DeleteUserAsync(string CNP)
         {
             var user = await _context.Users.SingleAsync(scp => scp.CNP == CNP);
             _context.Users.Remove(user);

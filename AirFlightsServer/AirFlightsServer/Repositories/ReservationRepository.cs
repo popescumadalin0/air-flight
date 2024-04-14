@@ -20,7 +20,7 @@ namespace AirFlightsServer.Repositories
             return reservation;
         }
 
-        public async Task AddReservations(Reservation model)
+        public async Task AddReservationAsync(Reservation model)
         {
             await _context.Reservations.AddAsync(model);
 
@@ -28,7 +28,7 @@ namespace AirFlightsServer.Repositories
 
         }
 
-        public async Task DeleteReservations(Guid id)
+        public async Task DeleteReservationAsync(Guid id)
         {
             var reservation = await _context.Reservations.SingleAsync(scp => scp.Id == id);
             _context.Reservations.Remove(reservation);

@@ -5,7 +5,7 @@ namespace AirFlightsServer.Repositories.Interfaces
     public interface ILayoverRepository
     {
         Task<List<Layover>> GetLayoversAsync();
-        Task AddLayover(Layover model);
-        Task DeleteLayover(Guid id);
+        Task AddLayoverAsync(Layover model);
+        Task DeleteLayoverAsync(Guid id);
     }
 }

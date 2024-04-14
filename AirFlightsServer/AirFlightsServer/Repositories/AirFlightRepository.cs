@@ -13,14 +13,14 @@ namespace AirFlightsServer.Repositories
         {
             _context = context;
         }
-        public async Task<List<AirFlight>> GetAirFlightAsync()
+        public async Task<List<AirFlight>> GetAirFlightsAsync()
         {
             var airFlight = await _context.AirFlights.ToListAsync();
             return airFlight;
 
         }
 
-        public async Task AddAirFlight(AirFlight model)
+        public async Task AddAirFlightAsync(AirFlight model)
         {
             await _context.AirFlights.AddAsync(model);
 

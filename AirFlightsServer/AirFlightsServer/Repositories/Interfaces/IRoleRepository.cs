@@ -5,7 +5,7 @@ namespace AirFlightsServer.Repositories.Interfaces
     public interface IRoleRepository
     {
         Task<List<Role>> GetRolesAsync();
-        Task CreateRole(Role model);
-        Task DeleteRole(string name);
+        Task CreateRoleAsync(Role model);
+        Task DeleteRoleAsync(string name);
     }
 }

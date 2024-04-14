@@ -21,14 +21,14 @@ namespace AirFlightsServer.Repositories
 
         }
 
-        public async Task AddCompanies(Company model)
+        public async Task AddCompanyAsync(Company model)
         {
             await _context.Companies.AddAsync(model);
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteCompanies(Guid id)
+        public async Task DeleteCompanyAsync(Guid id)
         {
             var company = await _context.Companies.SingleAsync(scp => scp.Id == id);
             _context.Companies.Remove(company);

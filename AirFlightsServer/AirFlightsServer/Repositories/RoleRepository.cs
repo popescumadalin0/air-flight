@@ -20,14 +20,14 @@ namespace AirFlightsServer.Repositories
             return role;
         }
 
-        public async Task CreateRole(Role model)
+        public async Task CreateRoleAsync(Role model)
         {
             await _context.Roles.AddAsync(model);
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteRole(string name)
+        public async Task DeleteRoleAsync(string name)
         {
             var role = await _context.Roles.SingleAsync(scp => scp.Name == name);
             _context.Roles.Remove(role);

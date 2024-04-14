@@ -5,7 +5,7 @@ namespace AirFlightsServer.Repositories.Interfaces
     public interface IUserRepository
     {
         Task<List<User>> GetUsersAsync();
-        Task AddUsers(User model);
-        Task DeleteUsers(string CNP);
+        Task AddUserAsync(User model);
+        Task DeleteUserAsync(string CNP);
     }
 }

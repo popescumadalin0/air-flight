@@ -21,14 +21,14 @@ namespace AirFlightsServer.Repositories
 
         }
 
-        public async Task AddPlaneFacilities(PlaneFacility model)
+        public async Task AddPlaneFacilityAsync(PlaneFacility model)
         {
             await _context.PlaneFacilities.AddAsync(model);
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeletePlaneFacilities(Guid id)
+        public async Task DeletePlaneFacilityAsync(Guid id)
         {
             var planeFacility = await _context.PlaneFacilities.SingleAsync(scp => scp.Id == id);
             _context.PlaneFacilities.Remove(planeFacility);
