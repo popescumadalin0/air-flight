@@ -1,7 +1,7 @@
 ﻿using AirFlightsServer.Repositories.Interfaces;
 using DataBaseLayout.Models;
-using DataBaseLayout;
 using Microsoft.EntityFrameworkCore;
+using DataBaseLayout.Context;
 
 namespace AirFlightsServer.Repositories
 {
