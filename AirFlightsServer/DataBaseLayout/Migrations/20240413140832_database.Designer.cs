@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataBaseLayout.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(Context.Context))]
     [Migration("20240413140832_database")]
     partial class database
     {

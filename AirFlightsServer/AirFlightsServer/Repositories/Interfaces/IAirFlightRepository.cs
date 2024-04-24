@@ -1,4 +1,5 @@
-﻿using DataBaseLayout.Models;
+﻿
+using DataBaseLayout.Models;
 
 namespace AirFlightsServer.Repositories.Interfaces
 {

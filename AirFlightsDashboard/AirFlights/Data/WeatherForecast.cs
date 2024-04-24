@@ -1,3 +1,5 @@
+using System;
+
 namespace AirFlightsClient.Data
 {
     public class WeatherForecast

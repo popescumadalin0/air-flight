@@ -1,4 +1,7 @@
-﻿using AirFlightsServer.Repositories.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using AirFlightsServer.Repositories.Interfaces;
 using DataBaseLayout.Context;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;

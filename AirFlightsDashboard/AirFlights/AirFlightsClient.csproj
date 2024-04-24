@@ -1,10 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\HomePage\Home.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Pages\HomePage\Home.razor.css" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Blazorise" Version="1.5.1" />
