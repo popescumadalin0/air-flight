@@ -1,11 +1,13 @@
-﻿using DataBaseLayout.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DataBaseLayout.Models;
 
-namespace AirFlightsServer.Repositories.Interfaces
+namespace AirFlightsServer.Repositories.Interfaces;
+
+public interface IPlaneSeatRepository
 {
-    public interface IPlaneSeatRepository
-    {
-        Task<List<PlaneSeat>> GetPlaneSeatsAsync();
-        Task AddPlaneSeatAsync(PlaneSeat model);
-        Task DeletePlaneSeatAsync(Guid id);
-    }
+    Task<List<PlaneSeat>> GetPlaneSeatsAsync();
+    Task AddPlaneSeatAsync(PlaneSeat model);
+    Task DeletePlaneSeatAsync(Guid id);
 }

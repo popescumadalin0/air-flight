@@ -5,14 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Pages\HomePage\Home.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Pages\HomePage\Home.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Blazorise" Version="1.5.1" />
     <PackageReference Include="Blazorise.Bootstrap" Version="1.5.1" />
     <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.1" />
