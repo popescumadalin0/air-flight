@@ -1,9 +1,22 @@
+<<<<<<< Updated upstream:AirFlightsServer/AirFlightsServer/Repositories/ReservationRepository.cs
 ﻿using AirFlightsServer.Repositories.Interfaces;
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using AirFlightsServer.Server.Repositories.Interfaces;
+>>>>>>> Stashed changes:AirFlightsServer/AirFlightsServer/Server/Repositories/ReservationRepository.cs
 using DataBaseLayout.Context;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;
 
+<<<<<<< Updated upstream:AirFlightsServer/AirFlightsServer/Repositories/ReservationRepository.cs
 namespace AirFlightsServer.Repositories
+=======
+namespace AirFlightsServer.Server.Repositories;
+
+public class ReservationRepository : IReservationRepository
+>>>>>>> Stashed changes:AirFlightsServer/AirFlightsServer/Server/Repositories/ReservationRepository.cs
 {
     public class ReservationRepository: IReservationRepository
     {

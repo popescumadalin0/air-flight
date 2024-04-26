@@ -1,13 +1,13 @@
 ﻿using DataBaseLayout.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.PlaneFacilityuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DataBaseLayout;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddDataLayout(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDataLayout(this IServiceCollection services, IPlaneFacilityuration configuration)
     {
         services.AddScoped<IContext, Context.Context>();
 

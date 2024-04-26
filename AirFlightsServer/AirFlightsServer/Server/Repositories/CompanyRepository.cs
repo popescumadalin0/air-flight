@@ -1,9 +1,22 @@
+<<<<<<< Updated upstream:AirFlightsServer/AirFlightsServer/Repositories/CompanyRepository.cs
 ﻿using AirFlightsServer.Repositories.Interfaces;
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using AirFlightsServer.Server.Repositories.Interfaces;
+>>>>>>> Stashed changes:AirFlightsServer/AirFlightsServer/Server/Repositories/CompanyRepository.cs
 using DataBaseLayout.Context;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;
 
+<<<<<<< Updated upstream:AirFlightsServer/AirFlightsServer/Repositories/CompanyRepository.cs
 namespace AirFlightsServer.Repositories
+=======
+namespace AirFlightsServer.Server.Repositories;
+
+public class CompanyRepository : ICompanyRepository
+>>>>>>> Stashed changes:AirFlightsServer/AirFlightsServer/Server/Repositories/CompanyRepository.cs
 {
     public class CompanyRepository: ICompanyRepository
     {

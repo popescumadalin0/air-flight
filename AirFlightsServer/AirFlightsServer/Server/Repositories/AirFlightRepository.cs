@@ -1,9 +1,22 @@
+<<<<<<< Updated upstream:AirFlightsServer/AirFlightsServer/Repositories/AirFlightRepository.cs
 ﻿using AirFlightsServer.Repositories.Interfaces;
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using AirFlightsServer.Server.Repositories.Interfaces;
+>>>>>>> Stashed changes:AirFlightsServer/AirFlightsServer/Server/Repositories/AirFlightRepository.cs
 using DataBaseLayout.Context;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;
 
+<<<<<<< Updated upstream:AirFlightsServer/AirFlightsServer/Repositories/AirFlightRepository.cs
 namespace AirFlightsServer.Repositories
+=======
+namespace AirFlightsServer.Server.Repositories;
+
+public class AirFlightRepository : IAirFlightRepository
+>>>>>>> Stashed changes:AirFlightsServer/AirFlightsServer/Server/Repositories/AirFlightRepository.cs
 {
     public class AirFlightRepository: IAirFlightRepository
     {
