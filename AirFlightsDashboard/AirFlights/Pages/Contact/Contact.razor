@@ -2,11 +2,10 @@
 
 <PageTitle>Contact</PageTitle>
 <section id="works" class="works">
-    <div class="container">
-    <div class="welcome-hero">
-        <div class="section-header">
-            <h2>CONTACT</h2>
-        </div>
+    <Div Margin="Margin.IsAuto.OnX" Padding="Padding.Is5.OnX" Width="Width.Is75" class="welcome-hero">
+        <Heading Size="HeadingSize.Is2" Margin="Margin.Is3.FromBottom" TextAlignment="TextAlignment.Center" TextColor="TextColor.Danger">
+            Contact us
+        </Heading>
         <div class="works-content">
             <div class="row">
                 <div class="col-md-4 col-sm-6">
@@ -53,7 +52,52 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-
+        <Paragraph Margin="Margin.Is5.FromBottom" TextAlignment="TextAlignment.Center" TextColor="TextColor.Danger" TextSize="TextSize.Heading1">
+            Talk to us
+        </Paragraph>
+        <Form >
+            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                <FieldLabel>
+                    <i class="fa fa-user"></i>
+                    Name
+                </FieldLabel>
+                <FieldBody>
+                    <TextEdit Placeholder="Blazories" />
+                </FieldBody>
+            </Field>
+            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                <FieldLabel>
+                    <i class="fa fa-envelope"></i>
+                    Email
+                </FieldLabel>
+                <FieldBody>
+                    <TextEdit Placeholder="name@blazorise.com" />
+                </FieldBody>
+            </Field>
+            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                <FieldLabel>
+                    <i class="fa fa-phone"></i>
+                    Phone
+                </FieldLabel>
+                <FieldBody>
+                    <TextEdit Placeholder="Phone" />
+                </FieldBody>
+            </Field>
+            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                <FieldLabel>
+                    <i class="fa fa-message"></i>
+                    Message
+                </FieldLabel>
+                <FieldBody>
+                    <MemoEdit Placeholder="Leave a message..." Rows="4" />
+                </FieldBody>
+            </Field>
+            <Field>
+                <Button Color="Color.Danger">
+                    Submit Now
+                    <i class="fa fa-paper-plane"></i>
+                </Button>
+            </Field>
+        </Form>
+    </Div>
 </section>
