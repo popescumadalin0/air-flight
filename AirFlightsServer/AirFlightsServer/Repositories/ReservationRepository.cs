@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AirFlightsServer.Repositories;
 
-public class ReservationRepository: IReservationRepository
+public class ReservationRepository : IReservationRepository
 {
     private readonly IContext _context;
 

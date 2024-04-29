@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataBaseLayout.Models;
@@ -11,5 +10,4 @@ public interface IAirFlightRepository
     Task<List<AirFlight>> GetAirFlightsAsync();
     Task AddAirFlightAsync(AirFlight model);
     Task DeleteAirFlightAsync(Guid id);
-
 }

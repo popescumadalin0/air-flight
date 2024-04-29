@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AirFlightsServer.Repositories;
 
-public class UserRepository:IUserRepository
+public class UserRepository : IUserRepository
 {
     private readonly IContext _context;
 

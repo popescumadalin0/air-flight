@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AirFlightsServer.Repositories;
 
-public class PlaneSeatRepository: IPlaneSeatRepository
+public class PlaneSeatRepository : IPlaneSeatRepository
 {
     private readonly IContext _context;
     public PlaneSeatRepository(IContext context)

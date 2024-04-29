@@ -1,17 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Blazorise" Version="1.5.1" />
-    <PackageReference Include="Blazorise.Bootstrap" Version="1.5.1" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.1" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Blazorise" Version="1.5.1" />
+		<PackageReference Include="Blazorise.Bootstrap" Version="1.5.1" />
+		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.1" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\AirFlightsServer\SDK\SDK.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -6,9 +6,10 @@ using DataBaseLayout.Context;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace AirFlightsServer.Repositories;
 
-public class CompanyRepository: ICompanyRepository
+public class CompanyRepository : ICompanyRepository
 {
     private readonly IContext _context;
 
