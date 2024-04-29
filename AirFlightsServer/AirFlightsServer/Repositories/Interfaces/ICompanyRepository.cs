@@ -1,11 +1,14 @@
-﻿using DataBaseLayout.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DataBaseLayout.Models;
 
-namespace AirFlightsServer.Repositories.Interfaces
+
+namespace AirFlightsServer.Repositories.Interfaces;
+
+public interface ICompanyRepository
 {
-    public interface ICompanyRepository
-    {
-        Task<List<Company>> GetCompaniesAsync();
-        Task AddCompanyAsync(Company model);
-        Task DeleteCompanyAsync(Guid  id);
-    }
+    Task<List<Company>> GetCompaniesAsync();
+    Task AddCompanyAsync(Company model);
+    Task DeleteCompanyAsync(Guid id);
 }

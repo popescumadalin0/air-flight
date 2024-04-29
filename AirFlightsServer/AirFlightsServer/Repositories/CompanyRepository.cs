@@ -1,39 +1,42 @@
-﻿using AirFlightsServer.Repositories.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using AirFlightsServer.Repositories.Interfaces;
 using DataBaseLayout.Context;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AirFlightsServer.Repositories
+
+namespace AirFlightsServer.Repositories;
+
+public class CompanyRepository : ICompanyRepository
 {
-    public class CompanyRepository: ICompanyRepository
+    private readonly IContext _context;
+
+    public CompanyRepository(IContext context)
     {
-        private readonly IContext _context;
+        _context = context;
+    }
 
-        public CompanyRepository(IContext context)
-        {
-            _context = context;
-        }
+    public async Task<List<Company>> GetCompaniesAsync()
+    {
+        var company = await _context.Companies.ToListAsync();
+        return company;
 
-        public async Task<List<Company>> GetCompaniesAsync()
-        {
-            var company = await _context.Companies.ToListAsync();
-            return company;
+    }
 
-        }
+    public async Task AddCompanyAsync(Company model)
+    {
+        await _context.Companies.AddAsync(model);
 
-        public async Task AddCompanyAsync(Company model)
-        {
-            await _context.Companies.AddAsync(model);
+        await _context.SaveChangesAsync();
+    }
 
-            await _context.SaveChangesAsync();
-        }
+    public async Task DeleteCompanyAsync(Guid id)
+    {
+        var company = await _context.Companies.SingleAsync(scp => scp.Id == id);
+        _context.Companies.Remove(company);
 
-        public async Task DeleteCompanyAsync(Guid id)
-        {
-            var company = await _context.Companies.SingleAsync(scp => scp.Id == id);
-            _context.Companies.Remove(company);
-
-            await _context.SaveChangesAsync();
-        }
+        await _context.SaveChangesAsync();
     }
 }

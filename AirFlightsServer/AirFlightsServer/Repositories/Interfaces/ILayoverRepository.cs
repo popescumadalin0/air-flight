@@ -1,11 +1,13 @@
-﻿using DataBaseLayout.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DataBaseLayout.Models;
 
-namespace AirFlightsServer.Repositories.Interfaces
+namespace AirFlightsServer.Repositories.Interfaces;
+
+public interface ILayoverRepository
 {
-    public interface ILayoverRepository
-    {
-        Task<List<Layover>> GetLayoversAsync();
-        Task AddLayoverAsync(Layover model);
-        Task DeleteLayoverAsync(Guid id);
-    }
+    Task<List<Layover>> GetLayoversAsync();
+    Task AddLayoverAsync(Layover model);
+    Task DeleteLayoverAsync(Guid id);
 }
