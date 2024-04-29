@@ -1,14 +1,17 @@
-using AirFlightsClient.Data;
+using System;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using SDK;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services
     .AddBlazorise(options =>
@@ -17,6 +20,9 @@ builder.Services
     })
     .AddBootstrapProviders()
     .AddFontAwesomeIcons();
+
+var apiUrl = new Uri(builder.Configuration.GetSection("Api:BaseUrl").Value);
+builder.Services.AddAirFlightsApiClient(apiUrl);
 
 var app = builder.Build();
 
