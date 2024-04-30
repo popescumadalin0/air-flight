@@ -9,7 +9,7 @@ public class Context : DbContext, IContext
         : base(options) { }
     public DbSet<User> Users { get; set; }
     public DbSet<Role> Roles { get; set; }
-    public DbSet<Reservation> Reservations { get; set; }
+    public DbSet<Booking> Booking { get; set; }
     public DbSet<PlaneSeat> PlaneSeats { get; set; }
     public DbSet<PlaneFacility> PlaneFacilities { get; set; }
     public DbSet<Layover> Layovers { get; set; }

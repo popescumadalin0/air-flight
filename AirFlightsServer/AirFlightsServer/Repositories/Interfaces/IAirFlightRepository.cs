@@ -7,7 +7,10 @@ namespace AirFlightsServer.Repositories.Interfaces;
 
 public interface IAirFlightRepository
 {
-    Task<List<AirFlight>> GetAirFlightsAsync();
+    Task<IList<AirFlight>> GetAirFlightsAsync();
+
+    Task<AirFlight> GetAirFlightAsync(Guid id);
+
     Task AddAirFlightAsync(AirFlight model);
     Task DeleteAirFlightAsync(Guid id);
 }

@@ -17,7 +17,7 @@ public class PlaneFacilityRepository : IPlaneFacilityRepository
         _context = context;
     }
 
-    public async Task<List<PlaneFacility>> GetPlaneFacilitiesAsync()
+    public async Task<IList<PlaneFacility>> GetPlaneFacilitiesAsync()
     {
         var planeFacility = await _context.PlaneFacilities.ToListAsync();
         return planeFacility;

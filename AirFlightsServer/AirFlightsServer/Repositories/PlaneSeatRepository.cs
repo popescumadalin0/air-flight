@@ -15,7 +15,7 @@ public class PlaneSeatRepository : IPlaneSeatRepository
     {
         _context = context;
     }
-    public async Task<List<PlaneSeat>> GetPlaneSeatsAsync()
+    public async Task<IList<PlaneSeat>> GetPlaneSeatsAsync()
     {
         var planeSeat = await _context.PlaneSeats.ToListAsync();
         return planeSeat;

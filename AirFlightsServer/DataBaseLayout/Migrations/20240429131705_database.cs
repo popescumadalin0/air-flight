@@ -162,7 +162,7 @@ namespace DataBaseLayout.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Reservations",
+                name: "Booking",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -198,7 +198,7 @@ namespace DataBaseLayout.Migrations
                     table.ForeignKey(
                         name: "FK_PlaneSeatReservation_Reservations_ReservationId",
                         column: x => x.ReservationId,
-                        principalTable: "Reservations",
+                        principalTable: "Booking",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -230,7 +230,7 @@ namespace DataBaseLayout.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_UserCNP",
-                table: "Reservations",
+                table: "Booking",
                 column: "UserCNP");
 
             migrationBuilder.CreateIndex(
@@ -255,7 +255,7 @@ namespace DataBaseLayout.Migrations
                 name: "PlaneSeats");
 
             migrationBuilder.DropTable(
-                name: "Reservations");
+                name: "Booking");
 
             migrationBuilder.DropTable(
                 name: "Layovers");

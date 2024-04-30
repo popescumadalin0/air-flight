@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace DataBaseLayout.Models;
 [PrimaryKey(nameof(Id))]
 
-public class Reservation
+public class Booking
 {
     public Guid Id { get; set; }
 

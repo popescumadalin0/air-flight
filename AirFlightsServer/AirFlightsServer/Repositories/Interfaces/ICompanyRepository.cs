@@ -8,7 +8,7 @@ namespace AirFlightsServer.Repositories.Interfaces;
 
 public interface ICompanyRepository
 {
-    Task<List<Company>> GetCompaniesAsync();
+    Task<IList<Company>> GetCompaniesAsync();
     Task AddCompanyAsync(Company model);
     Task DeleteCompanyAsync(Guid id);
 }

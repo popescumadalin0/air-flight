@@ -143,7 +143,7 @@ namespace DataBaseLayout.Migrations
                     b.ToTable("PlaneSeats");
                 });
 
-            modelBuilder.Entity("DataBaseLayout.Models.Reservation", b =>
+            modelBuilder.Entity("DataBaseLayout.Models.Booking", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -157,7 +157,7 @@ namespace DataBaseLayout.Migrations
 
                     b.HasIndex("UserCNP");
 
-                    b.ToTable("Reservations");
+                    b.ToTable("Booking");
                 });
 
             modelBuilder.Entity("DataBaseLayout.Models.Role", b =>
@@ -274,10 +274,10 @@ namespace DataBaseLayout.Migrations
                     b.Navigation("Layover");
                 });
 
-            modelBuilder.Entity("DataBaseLayout.Models.Reservation", b =>
+            modelBuilder.Entity("DataBaseLayout.Models.Booking", b =>
                 {
                     b.HasOne("DataBaseLayout.Models.User", "User")
-                        .WithMany("Reservations")
+                        .WithMany("Booking")
                         .HasForeignKey("UserCNP")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -319,7 +319,7 @@ namespace DataBaseLayout.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DataBaseLayout.Models.Reservation", null)
+                    b.HasOne("DataBaseLayout.Models.Booking", null)
                         .WithMany()
                         .HasForeignKey("ReservationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -348,7 +348,7 @@ namespace DataBaseLayout.Migrations
 
             modelBuilder.Entity("DataBaseLayout.Models.User", b =>
                 {
-                    b.Navigation("Reservations");
+                    b.Navigation("Booking");
                 });
 #pragma warning restore 612, 618
         }

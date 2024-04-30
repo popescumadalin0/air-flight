@@ -17,7 +17,7 @@ public class LayoverRepository : ILayoverRepository
         _context = context;
     }
 
-    public async Task<List<Layover>> GetLayoversAsync()
+    public async Task<IList<Layover>> GetLayoversAsync()
     {
         var layover = await _context.Layovers.ToListAsync();
         return layover;

@@ -5,9 +5,9 @@ using DataBaseLayout.Models;
 
 namespace AirFlightsServer.Repositories.Interfaces;
 
-public interface ILayoverRepository
+public interface IBookingRepository
 {
-    Task<IList<Layover>> GetLayoversAsync();
-    Task AddLayoverAsync(Layover model);
-    Task DeleteLayoverAsync(Guid id);
+    Task<IList<Booking>> GetBookingsAsync();
+    Task AddBookingAsync(Booking model);
+    Task DeleteBookingAsync(Guid id);
 }

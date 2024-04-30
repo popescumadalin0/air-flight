@@ -7,7 +7,7 @@ public interface IContext
 {
     DbSet<User> Users { get; set; }
     DbSet<Role> Roles { get; set; }
-    DbSet<Reservation> Reservations { get; set; }
+    DbSet<Booking> Booking { get; set; }
     DbSet<PlaneSeat> PlaneSeats { get; set; }
     DbSet<PlaneFacility> PlaneFacilities { get; set; }
     DbSet<Layover> Layovers { get; set; }

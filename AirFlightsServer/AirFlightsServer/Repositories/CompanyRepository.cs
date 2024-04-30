@@ -18,7 +18,7 @@ public class CompanyRepository : ICompanyRepository
         _context = context;
     }
 
-    public async Task<List<Company>> GetCompaniesAsync()
+    public async Task<IList<Company>> GetCompaniesAsync()
     {
         var company = await _context.Companies.ToListAsync();
         return company;
