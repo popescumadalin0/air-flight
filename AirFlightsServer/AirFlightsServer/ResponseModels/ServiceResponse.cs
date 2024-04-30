@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AirFlightsServer.Models;
+namespace AirFlightsServer.ResponseModels;
 
 public class ServiceResponse<T>
     where T : new()

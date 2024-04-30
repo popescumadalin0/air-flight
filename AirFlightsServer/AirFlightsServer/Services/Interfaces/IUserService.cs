@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataBaseLayout.Models;
 
-namespace AirFlightsServer.Repositories.Interfaces;
+namespace AirFlightsServer.Services.Interfaces;
 
-public interface IUserRepository
+public interface IUserService
 {
     Task<IList<User>> GetUsersAsync();
     Task<User> GetUserAsync(string CNP);

@@ -18,9 +18,14 @@ public static class DependencyInjectionExt
 
         services.AddScoped<IAirFlightRepository, AirFlightRepository>();
         services.AddScoped<IBookingRepository, BookingRepository>();
+        services.AddScoped<ICompanyRepository, CompanyRepository>();
+        services.AddScoped<ILayoverRepository, LayoverRepository>();
         //todo: continui tu
 
         services.AddScoped<IAirFlightService, AirFlightService>();
+        services.AddScoped<IBookingService, BookingService>();
+        services.AddScoped<ICompanyService, CompanyService>();
+        services.AddScoped<ILayoverService, LayoverService>();
         //todo: continui tu
 
         return services;

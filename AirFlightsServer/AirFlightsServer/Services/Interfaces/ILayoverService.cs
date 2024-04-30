@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Models;
 using System.Collections.Generic;
+using System;
 using System.Threading.Tasks;
-using DataBaseLayout.Models;
 
-namespace AirFlightsServer.Repositories.Interfaces;
+namespace AirFlightsServer.Services.Interfaces;
 
-public interface ILayoverRepository
+public interface ILayoverService
 {
     Task<IList<Layover>> GetLayoversAsync();
     Task<Layover> GetLayoverAsync(Guid id);

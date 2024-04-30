@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories.Interfaces;
+using AirFlightsServer.Services.Interfaces;
 using DataBaseLayout.Context;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AirFlightsServer.Repositories;
 
-public class CompanyRepository : ICompanyService
+public class CompanyRepository : ICompanyRepository
 {
     private readonly IContext _context;
 

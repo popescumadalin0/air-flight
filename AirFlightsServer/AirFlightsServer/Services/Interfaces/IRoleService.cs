@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataBaseLayout.Models;
 
-namespace AirFlightsServer.Repositories.Interfaces;
+namespace AirFlightsServer.Services.Interfaces;
 
-public interface IRoleRepository
+public interface IRoleService
 {
     Task<IList<Role>> GetRolesAsync();
     Task<Role> GetRoleAsync(string name);

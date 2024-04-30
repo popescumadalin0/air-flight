@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Models;
 using System.Collections.Generic;
+using System;
 using System.Threading.Tasks;
-using DataBaseLayout.Models;
 
+namespace AirFlightsServer.Services.Interfaces;
 
-namespace AirFlightsServer.Repositories.Interfaces;
-
-public interface ICompanyRepository
+public interface ICompanyService
 {
     Task<IList<Company>> GetCompaniesAsync();
     Task<Company> GetCompanyAsync(Guid id);

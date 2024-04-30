@@ -14,5 +14,6 @@ public interface IAirFlightService
     Task CreateAirFlightAsync(AirFlightTicket airFlight);
 
     Task UpdateAirFlightAsync(AirFlightTicket  airFlight);
+
     Task DeleteAirFlightAsync(Guid id);
 }

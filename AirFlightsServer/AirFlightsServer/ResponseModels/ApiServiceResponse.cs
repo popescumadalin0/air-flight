@@ -2,7 +2,7 @@
 using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AirFlightsServer.Models;
+namespace AirFlightsServer.ResponseModels;
 
 public static class ApiServiceResponse
 {
