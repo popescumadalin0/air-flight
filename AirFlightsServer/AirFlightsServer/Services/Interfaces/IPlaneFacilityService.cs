@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DataBaseLayout.Models;
+using Models;
 
 namespace AirFlightsServer.Services.Interfaces;
 

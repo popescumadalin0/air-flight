@@ -20,13 +20,20 @@ public static class DependencyInjectionExt
         services.AddScoped<IBookingRepository, BookingRepository>();
         services.AddScoped<ICompanyRepository, CompanyRepository>();
         services.AddScoped<ILayoverRepository, LayoverRepository>();
-        //todo: continui tu
+        services.AddScoped<IPlaneFacilityRepository, PlaneFacilityRepository>();
+        services.AddScoped<IPlaneSeatRepository, PlaneSeatRepository>();
+        services.AddScoped<IRoleRepository, RoleRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        
 
         services.AddScoped<IAirFlightService, AirFlightService>();
         services.AddScoped<IBookingService, BookingService>();
         services.AddScoped<ICompanyService, CompanyService>();
         services.AddScoped<ILayoverService, LayoverService>();
-        //todo: continui tu
+        services.AddScoped<IPlaneFacilityService, PlaneFacilityService>();
+        services.AddScoped<IPlaneSeatService, PlaneSeatService>();
+        services.AddScoped<IRoleService, RoleService>();
+        services.AddScoped<IUserService, UserService>();
 
         return services;
     }
