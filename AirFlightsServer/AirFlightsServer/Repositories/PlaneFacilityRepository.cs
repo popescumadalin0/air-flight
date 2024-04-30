@@ -24,10 +24,23 @@ public class PlaneFacilityRepository : IPlaneFacilityRepository
 
     }
 
+    public async Task<PlaneFacility> GetPlaneFacilityAsync(Guid id)
+    {
+        var planeFacility = await _context.PlaneFacilities.FindAsync(id);
+
+        return planeFacility;
+    }
+
     public async Task AddPlaneFacilityAsync(PlaneFacility model)
     {
         await _context.PlaneFacilities.AddAsync(model);
 
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdatePlaneFacilityAsync(PlaneFacility model)
+    {
+        await _context.PlaneFacilities.FindAsync(model);
         await _context.SaveChangesAsync();
     }
 

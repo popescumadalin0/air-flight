@@ -18,23 +18,36 @@ public class BookingRepository : IBookingRepository
     }
     public async Task<IList<Booking>> GetBookingsAsync()
     {
-        var bookings = await _context.Booking.ToListAsync();
+        var bookings = await _context.Bookings.ToListAsync();
 
         return bookings;
     }
 
+    public async Task<Booking> GetBookingAsync(Guid id)
+    {
+        var booking = await _context.Bookings.FindAsync(id);
+
+        return booking;
+    }
+
     public async Task AddBookingAsync(Booking model)
     {
-        await _context.Booking.AddAsync(model);
+        await _context.Bookings.AddAsync(model);
 
         await _context.SaveChangesAsync();
 
     }
 
+    public async Task UpdateBookingAsync(Booking model)//todo:modified
+    {
+        await _context.Bookings.FindAsync(model);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task DeleteBookingAsync(Guid id)
     {
-        var reservation = await _context.Booking.SingleAsync(scp => scp.Id == id);
-        _context.Booking.Remove(reservation);
+        var reservation = await _context.Bookings.SingleAsync(scp => scp.Id == id);
+        _context.Bookings.Remove(reservation);
 
         await _context.SaveChangesAsync();
 

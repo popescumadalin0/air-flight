@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Microsoft.Extensions.Logging;
 using Models;
 using SDK.Interfaces;
@@ -470,6 +472,156 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         catch (Exception e)
         {
             _logger.LogError(e, $"Error executing {nameof(DeletePlaneSeatAsync)}");
+            throw;
+        }
+    }
+
+    public async Task<ApiResponseMessage<List<Role>>> GetRolesAsync()
+    {
+        try
+        {
+            var task = _apiClient.GetRolesAsync();
+            var result = await Execute(task);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Error executing {nameof(GetRolesAsync)}");
+            throw;
+        }
+    }
+
+    public async Task<ApiResponseMessage<Role>> GetRoleAsync(string name)
+    {
+        try
+        {
+            var task = _apiClient.GetRoleAsync(name);
+            var result = await Execute(task);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Error executing {nameof(GetRoleAsync)}");
+            throw;
+        }
+    }
+
+    public async Task<ApiResponseMessage> CreateRoleAsync(Role role)
+    {
+        try
+        {
+            var task = _apiClient.CreateRoleAsync(role);
+            var result = await Execute(task);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Error executing {nameof(CreateRoleAsync)}");
+            throw;
+        }
+    }
+
+    public async Task<ApiResponseMessage> UpdateRoleAsync(Role role)
+    {
+        try
+        {
+            var task = _apiClient.UpdateRoleAsync(role);
+            var result = await Execute(task);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Error executing {nameof(UpdateRoleAsync)}");
+            throw;
+        }
+    }
+
+    public async Task<ApiResponseMessage> DeleteRoleAsync(string name)
+    {
+        try
+        {
+            var task = _apiClient.DeleteRoleAsync(name);
+            var result = await Execute(task);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Error executing {nameof(DeleteRoleAsync)}");
+            throw;
+        }
+    }
+
+    public async Task<ApiResponseMessage<List<Booking>>> GetBookingsAsync()
+    {
+        try
+        {
+            var task = _apiClient.GetBookingsAsync();
+            var result = await Execute(task);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Error executing {nameof(GetBookingsAsync)}");
+            throw;
+        }
+    }
+
+    public async Task<ApiResponseMessage<Booking>> GetBookingAsync(Guid id)
+    {
+        try
+        {
+            var task = _apiClient.GetBookingAsync(id);
+            var result = await Execute(task);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Error executing {nameof(GetBookingAsync)}");
+            throw;
+        }
+    }
+
+    public async Task<ApiResponseMessage> CreateBookingAsync(Booking booking)
+    {
+        try
+        {
+            var task = _apiClient.CreateBookingAsync(booking);
+            var result = await Execute(task);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Error executing {nameof(CreateBookingAsync)}");
+            throw;
+        }
+    }
+
+    public async Task<ApiResponseMessage> UpdateBookingAsync(Booking booking)
+    {
+        try
+        {
+            var task = _apiClient.UpdateBookingAsync(booking);
+            var result = await Execute(task);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Error executing {nameof(UpdateBookingAsync)}");
+            throw;
+        }
+    }
+
+    public async Task<ApiResponseMessage> DeleteBookingAsync(Guid id)
+    {
+        try
+        {
+            var task = _apiClient.DeleteBookingAsync(id);
+            var result = await Execute(task);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Error executing {nameof(DeleteBookingAsync)}");
             throw;
         }
     }

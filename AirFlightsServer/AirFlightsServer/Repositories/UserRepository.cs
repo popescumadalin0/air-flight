@@ -15,12 +15,17 @@ public class UserRepository : IUserRepository
     {
         _context = context;
     }
-    public async Task<List<User>> GetUsersAsync()
+    public async Task<IList<User>> GetUsersAsync()
     {
         var user = await _context.Users.ToListAsync();
 
         return user;
 
+    }
+
+    public async Task<User> GetUserAsync(string CNP)
+    {
+        throw new System.NotImplementedException();
     }
 
     public async Task AddUserAsync(User model)
@@ -29,6 +34,12 @@ public class UserRepository : IUserRepository
 
         await _context.SaveChangesAsync();
 
+    }
+
+    public async Task UpdateUserAsync(User model)
+    {
+        await _context.Users.FindAsync(model);
+        await _context.SaveChangesAsync();
     }
 
     public async Task DeleteUserAsync(string CNP)

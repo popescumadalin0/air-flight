@@ -194,4 +194,64 @@ public interface IAirFlightsApiClient
     /// </summary>
     /// <returns></returns>
     Task<ApiResponseMessage> DeletePlaneSeatAsync(Guid id);
+
+    /// <summary>
+    /// Get all role.
+    /// </summary>
+    /// <returns></returns>
+    Task<ApiResponseMessage<List<Role>>> GetRolesAsync();
+
+    /// <summary>
+    /// Get role by name.
+    /// </summary>
+    /// <returns></returns>
+    Task<ApiResponseMessage<Role>> GetRoleAsync(string name);
+
+    /// <summary>
+    /// Create role.
+    /// </summary>
+    /// <returns></returns>
+    Task<ApiResponseMessage> CreateRoleAsync(Role role);
+
+    /// <summary>
+    /// Update role.
+    /// </summary>
+    /// <returns></returns>
+    Task<ApiResponseMessage> UpdateRoleAsync(Role role);
+
+    /// <summary>
+    /// Delete role.
+    /// </summary>
+    /// <returns></returns>
+    Task<ApiResponseMessage> DeleteRoleAsync(string name);
+
+    /// <summary>
+    /// Get all bookings.
+    /// </summary>
+    /// <returns></returns>
+    Task<ApiResponseMessage<List<Booking>>> GetBookingsAsync();
+
+    /// <summary>
+    /// Get booking by ID.
+    /// </summary>
+    /// <returns></returns>
+    Task<ApiResponseMessage<Booking>> GetBookingAsync(Guid id);
+
+    /// <summary>
+    /// Create booking.
+    /// </summary>
+    /// <returns></returns>
+    Task<ApiResponseMessage> CreateBookingAsync(Booking booking);
+
+    /// <summary>
+    /// Update booking.
+    /// </summary>
+    /// <returns></returns>
+    Task<ApiResponseMessage> UpdateBookingAsync(Booking booking);
+
+    /// <summary>
+    /// Delete booking.
+    /// </summary>
+    /// <returns></returns>
+    Task<ApiResponseMessage> DeleteBookingAsync(Guid id);
 }

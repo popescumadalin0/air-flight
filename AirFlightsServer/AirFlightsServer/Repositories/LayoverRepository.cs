@@ -24,10 +24,23 @@ public class LayoverRepository : ILayoverRepository
 
     }
 
+    public async Task<Layover> GetLayoverAsync(Guid id)
+    {
+        var layover = await _context.Layovers.FindAsync(id);
+
+        return layover;
+    }
+
     public async Task AddLayoverAsync(Layover model)
     {
         await _context.Layovers.AddAsync(model);
 
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateLayoverAsync(Layover model)//todo:modifier
+    {
+        await _context.Layovers.FindAsync(model);
         await _context.SaveChangesAsync();
     }
 

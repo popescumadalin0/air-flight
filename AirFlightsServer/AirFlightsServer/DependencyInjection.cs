@@ -7,22 +7,22 @@ using AirFlightsServer.Services.Interfaces;
 using DataBaseLayout;
 using Microsoft.Extensions.Configuration;
 
-namespace AirFlightsServer
+namespace AirFlightsServer;
+
+public static class DependencyInjectionExt
 {
-    public static class DependencyInjectionExt
+    /// <summary />
+    public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration config)
     {
-        /// <summary />
-        public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration config)
-        {
-            services.AddDataLayout(config);
+        services.AddDataLayout(config);
 
-            services.AddScoped<IAirFlightRepository, AirFlightRepository>();
-            //todo: continui tu
+        services.AddScoped<IAirFlightRepository, AirFlightRepository>();
+        services.AddScoped<IBookingRepository, BookingRepository>();
+        //todo: continui tu
 
-            services.AddScoped<IAirFlightService, AirFlightService>();
-            //todo: continui tu
+        services.AddScoped<IAirFlightService, AirFlightService>();
+        //todo: continui tu
 
-            return services;
-        }
+        return services;
     }
 }

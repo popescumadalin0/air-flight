@@ -25,10 +25,23 @@ public class CompanyRepository : ICompanyRepository
 
     }
 
+    public async Task<Company> GetCompanyAsync(Guid id)
+    {
+        var company = await _context.Companies.FindAsync(id);
+
+        return company;
+    }
+
     public async Task AddCompanyAsync(Company model)
     {
         await _context.Companies.AddAsync(model);
 
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateCompanyAsync(Company model)
+    {
+        await _context.Companies.FindAsync(model);
         await _context.SaveChangesAsync();
     }
 

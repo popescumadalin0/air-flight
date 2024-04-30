@@ -38,6 +38,12 @@ public class AirFlightRepository : IAirFlightRepository
 
     }
 
+    public async Task UpdateAirFlightAsync(AirFlight airFlight)//todo: modificat
+    {
+        await _context.AirFlights.FindAsync(airFlight);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task DeleteAirFlightAsync(Guid id)
     {
         var airFlighty = await _context.AirFlights.SingleAsync(scp => scp.Id == id);

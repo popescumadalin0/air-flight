@@ -2,7 +2,7 @@
 
 namespace Models;
 
-public class Reservation
+public class Booking
 {
     public Guid Id { get; set; }
 }

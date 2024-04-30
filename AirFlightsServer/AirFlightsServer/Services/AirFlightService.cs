@@ -46,7 +46,7 @@ public class AirFlightService : IAirFlightService
         return response;
     }
 
-    public async Task AddAirFlightAsync(AirFlightTicket model)
+    public async Task CreateAirFlightAsync(AirFlightTicket model)
     {
         var entity = new AirFlight()
         {
@@ -57,6 +57,19 @@ public class AirFlightService : IAirFlightService
             //Layovers = 
         };
         await _airFlightRepository.AddAirFlightAsync(entity);
+    }
+
+    public async Task UpdateAirFlightAsync(AirFlightTicket airFlight)//janina
+    {
+        var entity = new AirFlight()
+        {
+            Currency = airFlight.Currency,
+            Id = airFlight.Id,
+            Price = airFlight.Price,
+            //todo: sa vedem daca le adaugam de aici
+            //Layovers = 
+        };
+        await _airFlightRepository.UpdateAirFlightAsync(entity);
     }
 
     public async Task DeleteAirFlightAsync(Guid id)

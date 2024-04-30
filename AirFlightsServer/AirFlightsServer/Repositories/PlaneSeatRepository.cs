@@ -21,10 +21,23 @@ public class PlaneSeatRepository : IPlaneSeatRepository
         return planeSeat;
     }
 
+    public async Task<PlaneSeat> GetPlaneSeatAsync(Guid id)
+    {
+        var planeSeat = await _context.PlaneSeats.FindAsync(id);
+
+        return planeSeat;
+    }
+
     public async Task AddPlaneSeatAsync(PlaneSeat model)
     {
         await _context.PlaneSeats.AddAsync(model);
 
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdatePlaneSeatAsync(PlaneSeat model)
+    {
+        await _context.PlaneSeats.FindAsync(model);
         await _context.SaveChangesAsync();
     }
 
