@@ -6,7 +6,7 @@ using DataBaseLayout.Models;
 
 namespace AirFlightsServer.Repositories.Interfaces;
 
-public interface ICompanyService
+public interface ICompanyRepository
 {
     Task<IList<Company>> GetCompaniesAsync();
     Task<Company> GetCompanyAsync(Guid id);

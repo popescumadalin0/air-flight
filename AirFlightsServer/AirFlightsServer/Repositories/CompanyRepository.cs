@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AirFlightsServer.Repositories;
 
-public class CompanyRepository : ICompanyRepository
+public class CompanyRepository : ICompanyService
 {
     private readonly IContext _context;
 

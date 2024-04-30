@@ -8,9 +8,8 @@ namespace AirFlightsServer.Services.Interfaces;
 public interface IBookingService
 {
     Task<IList<Booking>> GetBookingsAsync();
-
     Task<Booking> GetBookingAsync(Guid id);
-
     Task AddBookingAsync(Booking model);
+    Task UpdateBookingAsync(Booking model);
     Task DeleteBookingAsync(Guid id);
 }
