@@ -9,6 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDK", "..\AirFlightsServer\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "..\AirFlightsServer\Models\Models.csproj", "{342F55B3-5C20-4805-90FA-08F8AAA9FD20}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solutionItems", "_solutionItems", "{8E4002D5-7DAA-4628-9784-858165AF646A}"
+	ProjectSection(SolutionItems) = preProject
+		_solutionItems\codecoverage.README.md = _solutionItems\codecoverage.README.md
+		_solutionItems\codecoverage.runsettings = _solutionItems\codecoverage.runsettings
+		_solutionItems\resharper.csproj.DotSettings = _solutionItems\resharper.csproj.DotSettings
+		_solutionItems\resharper.sln.DotSettings = _solutionItems\resharper.sln.DotSettings
+		_solutionItems\StyleCop.Adapter.ruleset = _solutionItems\StyleCop.Adapter.ruleset
+		_solutionItems\StyleCop.ruleset = _solutionItems\StyleCop.ruleset
+		_solutionItems\StyleCop.Tests.ruleset = _solutionItems\StyleCop.Tests.ruleset
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

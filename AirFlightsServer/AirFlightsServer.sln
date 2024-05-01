@@ -11,6 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDK", "SDK\SDK.csproj", "{D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{9A681916-008E-496C-882C-A354B435F01E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solutionItems", "_solutionItems", "{38927A5C-B749-4CCC-804C-67AC0DFFF3F5}"
+	ProjectSection(SolutionItems) = preProject
+		_solutionItems\codecoverage.README.md = _solutionItems\codecoverage.README.md
+		_solutionItems\codecoverage.runsettings = _solutionItems\codecoverage.runsettings
+		_solutionItems\resharper.csproj.DotSettings = _solutionItems\resharper.csproj.DotSettings
+		_solutionItems\resharper.sln.DotSettings = _solutionItems\resharper.sln.DotSettings
+		_solutionItems\StyleCop.Adapter.ruleset = _solutionItems\StyleCop.Adapter.ruleset
+		_solutionItems\StyleCop.ruleset = _solutionItems\StyleCop.ruleset
+		_solutionItems\StyleCop.Tests.ruleset = _solutionItems\StyleCop.Tests.ruleset
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
