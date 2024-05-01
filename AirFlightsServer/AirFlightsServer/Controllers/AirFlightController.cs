@@ -79,7 +79,7 @@ public class AirFlightController : BaseController
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteAirFlight(string id)
+    public async Task<IActionResult> DeleteAirFlightAsync(string id)
     {
         try
         { 

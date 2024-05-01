@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AirFlightsServer.ResponseModels;
+using AirFlightsServer.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Models;
+
+namespace AirFlightsServer.Controllers;
+
+public class PlaneFacilityController:BaseController
+{
+    private readonly IPlaneFacilityService _planeFacilityService;
+
+    public PlaneFacilityController(IPlaneFacilityService planeFacilityService)
+    {
+        _planeFacilityService = planeFacilityService;
+    }
+    [HttpGet]
+    public async Task<IActionResult> GetPlaneFacilitiesAsync()
+    {
+        try
+        {
+            var result = await _planeFacilityService.GetPlaneFacilitiesAsync();
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<List<PlaneFacility>>(result.ToList()));
+
+        }
+        catch (Exception ex)
+        {
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<List<PlaneFacility>>(ex));
+        }
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetPlaneFacilityAsync(string id)
+    {
+        try
+        {
+            var result = await _planeFacilityService.GetPlaneFacilityAsync(Guid.Parse(id));
+
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<PlaneFacility>(result));
+
+        }
+        catch (Exception ex)
+        {
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<PlaneFacility>(ex));
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreatePlaneFacilityAsync(PlaneFacility planeFacility)
+    {
+        try
+        {
+            await _planeFacilityService.AddPlaneFacilityAsync(planeFacility);
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse());
+        }
+        catch (Exception ex)
+        {
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse(ex));
+        }
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdatePlaneFacilityAsync(PlaneFacility planeFacility)
+    {
+        try
+        {
+            await _planeFacilityService.AddPlaneFacilityAsync(planeFacility);
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse());
+        }
+        catch (Exception ex)
+        {
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse(ex));
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeletePlaneFacilityAsync(string id)
+    {
+        try
+        {
+            await _planeFacilityService.DeletePlaneFacilityAsync(Guid.Parse(id));
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse());
+        }
+        catch (Exception ex)
+        {
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse(ex));
+        }
+    }
+}
