@@ -26,7 +26,6 @@ public interface IAirFlightsApi
     [Put("/api/User")]
     Task UpdateUserAsync(User user);
 
-
     [Get("/api/AirFlight")]
     Task<List<AirFlightTicket>> GetAirFlightsAsync();
 
@@ -41,7 +40,6 @@ public interface IAirFlightsApi
 
     [Delete("/api/AirFlight/{id}")]
     Task DeleteAirFlightAsync(Guid id);
-
 
     [Get("/api/Company")]
     Task<List<Company>> GetCompaniesAsync();
@@ -58,7 +56,6 @@ public interface IAirFlightsApi
     [Delete("/api/Company/{id}")]
     Task DeleteCompanyAsync(Guid id);
 
-
     [Get("/api/Layover")]
     Task<List<Layover>> GetLayoversAsync();
 
@@ -73,7 +70,6 @@ public interface IAirFlightsApi
 
     [Delete("/api/Layover/{id}")]
     Task DeleteLayoverAsync(Guid id);
-
 
     [Get("/api/PlaneFacility")]
     Task<List<PlaneFacility>> GetPlaneFacilitiesAsync();
@@ -105,5 +101,34 @@ public interface IAirFlightsApi
     [Delete("/api/PlaneSeat/{id}")]
     Task DeletePlaneSeatAsync(Guid id);
 
+    [Get("/api/Role")]
+    Task<List<Role>> GetRolesAsync();
+
+    [Get("/api/Role/{name}")]
+    Task<Role> GetRoleAsync(string name);
+
+    [Post("/api/Role")]
+    Task CreateRoleAsync(Role role);
+
+    [Put("/api/Role")]
+    Task UpdateRoleAsync(Role role);
+
+    [Delete("/api/Role/{name}")]
+    Task DeleteRoleAsync(string name);
+
+    [Get("/api/Booking")]
+    Task<List<Booking>> GetBookingsAsync();
+
+    [Get("/api/Booking/{id}")]
+    Task<Booking> GetBookingAsync(Guid id);
+
+    [Post("/api/Booking")]
+    Task CreateBookingAsync(Booking booking);
+
+    [Put("/api/Booking")]
+    Task UpdateBookingAsync(Booking booking);
+
+    [Delete("/api/Booking/{id}")]
+    Task DeleteBookingAsync(Guid id);
 }
 

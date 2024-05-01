@@ -16,11 +16,18 @@ public class AirFlightRepository : IAirFlightRepository
     {
         _context = context;
     }
-    public async Task<List<AirFlight>> GetAirFlightsAsync()
+    public async Task<IList<AirFlight>> GetAirFlightsAsync()
     {
-        var airFlight = await _context.AirFlights.ToListAsync();
-        return airFlight;
+        var airFlights = await _context.AirFlights.ToListAsync();
+        return airFlights;
 
+    }
+
+    public async Task<AirFlight> GetAirFlightAsync(Guid id)
+    {
+        var airFlight = await _context.AirFlights.FindAsync(id);
+
+        return airFlight;
     }
 
     public async Task AddAirFlightAsync(AirFlight model)
@@ -29,6 +36,12 @@ public class AirFlightRepository : IAirFlightRepository
 
         await _context.SaveChangesAsync();
 
+    }
+
+    public async Task UpdateAirFlightAsync(AirFlight airFlight)//todo: modificat
+    {
+        await _context.AirFlights.FindAsync(airFlight);
+        await _context.SaveChangesAsync();
     }
 
     public async Task DeleteAirFlightAsync(Guid id)

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DataBaseLayout.Models;
+using Models;
 
-namespace AirFlightsServer.Repositories.Interfaces;
+namespace AirFlightsServer.Services.Interfaces;
 
-public interface IPlaneSeatRepository
+public interface IPlaneSeatService
 {
     Task<IList<PlaneSeat>> GetPlaneSeatsAsync();
     Task<PlaneSeat> GetPlaneSeatAsync(Guid id);

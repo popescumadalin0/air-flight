@@ -15,9 +15,16 @@ public class PlaneSeatRepository : IPlaneSeatRepository
     {
         _context = context;
     }
-    public async Task<List<PlaneSeat>> GetPlaneSeatsAsync()
+    public async Task<IList<PlaneSeat>> GetPlaneSeatsAsync()
     {
         var planeSeat = await _context.PlaneSeats.ToListAsync();
+        return planeSeat;
+    }
+
+    public async Task<PlaneSeat> GetPlaneSeatAsync(Guid id)
+    {
+        var planeSeat = await _context.PlaneSeats.FindAsync(id);
+
         return planeSeat;
     }
 
@@ -25,6 +32,12 @@ public class PlaneSeatRepository : IPlaneSeatRepository
     {
         await _context.PlaneSeats.AddAsync(model);
 
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdatePlaneSeatAsync(PlaneSeat model)
+    {
+        await _context.PlaneSeats.FindAsync(model);
         await _context.SaveChangesAsync();
     }
 

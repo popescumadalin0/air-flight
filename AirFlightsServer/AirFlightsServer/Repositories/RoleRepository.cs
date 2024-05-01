@@ -15,9 +15,16 @@ public class RoleRepository : IRoleRepository
     {
         _context = context;
     }
-    public async Task<List<Role>> GetRolesAsync()
+    public async Task<IList<Role>> GetRolesAsync()
     {
         var role = await _context.Roles.ToListAsync();
+
+        return role;
+    }
+
+    public async Task<Role> GetRoleAsync(string name)
+    {
+        var role = await _context.Roles.FindAsync(name);
 
         return role;
     }
@@ -26,6 +33,12 @@ public class RoleRepository : IRoleRepository
     {
         await _context.Roles.AddAsync(model);
 
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateRoleAsync(Role model)
+    {
+        await _context.Roles.FindAsync(model);
         await _context.SaveChangesAsync();
     }
 

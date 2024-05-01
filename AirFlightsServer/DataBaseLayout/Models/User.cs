@@ -16,6 +16,6 @@ public class User
     public string Email { get; set; }
     [Required]
     public Role Role { get; set; }
-    public ICollection<Reservation> Reservations { get; set; }
+    public ICollection<Booking> Reservations { get; set; }
 
 }
