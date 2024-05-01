@@ -1,11 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace DataBaseLayout.Models;
 [PrimaryKey(nameof(Id))]
 public class Layover
-{ public Guid Id { get; set; }
+{ 
+    public Guid Id { get; set; }
     public string StartPointCountry { get; set; }
     public string StartPointAirport { get; set; }
     public string DestinationAirport { get; set; }
