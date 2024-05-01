@@ -1,5 +1,5 @@
 ﻿<footer id="footer" class="footer">
-    <section id="contact"  class="subscription">
+    <section id="contact" class="subscription">
         <div class="container">
             <div class="subscribe-title text-center">
                 <h2>
@@ -12,35 +12,37 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="subscription-input-group">
+
+                        @*todo: save the email*@
                         <form action="#">
                             <input type="email" class="subscription-input-form" placeholder="Enter email">
-                            <button class="appsLand-btn subscribe-btn" onclick="window.location.href='#'">
+                            <button class="appsLand-btn subscribe-btn" onclick="window.location.href = '#'">
                                 Subscribe Us
                                 <i class="fa fa-plane"></i>
                             </button>
                         </form>
+
                     </div>
-                </div>	
+                </div>
             </div>
         </div>
-    </section><!--/subscription-->
+    </section>
     <div class="container">
         <div class="footer-menu">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="index.html">Air<span>Flights</span></a>
-                    </div><!--/.navbar-header-->
+                        <a class="navbar-brand" href="/">Air<span>Flights</span></a>
+                    </div>
                 </div>
                 <div class="col-sm-9">
                     <ul class="footer-menu-item">
-                        <li class="scroll"><a href="#works">how it works</a></li>
-                        <li class="scroll"><a href="#explore">explore</a></li>
-                        <li class="scroll"><a href="#reviews">review</a></li>
-                        <li class="scroll"><a href="#blog">blog</a></li>
-                        <li class="scroll"><a href="#contact">contact</a></li>
-                        <li class=" scroll"><a href="#contact">my account</a></li>
-                    </ul><!--/.nav -->
+                        <li class="scroll"><a href="/works">how it works</a></li>
+                        <li class="scroll"><a href="/explore">explore</a></li>
+                        <li class="scroll"><a href="/contact">contact</a></li>
+                        @*todo: put the name here*@
+                        <li class=" scroll"><a href="/account">my account</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -49,27 +51,23 @@
                 <div class="col-sm-5">
                     <p>
                         AirFlights was founded in 1991 by a group of safety-focused professionals who created The Wingman Standard for rigorously vetting air charter operators.
-                    </p><!--/p-->
+                    </p>
                 </div>
                 <div class="col-sm-7">
                     <div class="footer-social">
                         <span><i class="fa fa-phone"> +40 756 653 221</i></span>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <a href="/"><i class="fa fa-facebook"></i></a>
+                        <a href="/"><i class="fa fa-twitter"></i></a>
+                        <a href="/"><i class="fa fa-linkedin"></i></a>
+                        <a href="/"><i class="fa fa-google-plus"></i></a>
                     </div>
                 </div>
             </div>
-
-        </div><!--/.hm-footer-copyright-->
-
-    </div><!--/.container-->
+        </div>
+    </div>
     <div id="scroll-Top">
         <div class="return-to-top">
             <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
         </div>
-
-    </div><!--/.scroll-Top-->
-
-</footer><!--/.footer-->
+    </div>
+</footer>
