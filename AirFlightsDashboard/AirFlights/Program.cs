@@ -21,8 +21,8 @@ builder.Services
     .AddBootstrapProviders()
     .AddFontAwesomeIcons();
 
-/*var apiUrl = new Uri(builder.Configuration.GetSection("Api:BaseUrl").Value);
-builder.Services.AddAirFlightsApiClient(apiUrl);*/
+var apiUrl = new Uri(builder.Configuration.GetSection("Api:BaseUrl").Value);
+builder.Services.AddAirFlightsApiClient(apiUrl);
 
 var app = builder.Build();
 
