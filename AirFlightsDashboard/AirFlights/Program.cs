@@ -1,11 +1,11 @@
-using System;
+using AirFlightsClient;
 using Blazorise;
 using Blazorise.Bootstrap;
+using Blazorise.Bootstrap5;
 using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SDK;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +19,12 @@ builder.Services
         options.Immediate = true;
     })
     .AddBootstrapProviders()
+    .AddBootstrap5Providers()
+    .AddBootstrap5Components()
+    .AddBootstrapComponents()
     .AddFontAwesomeIcons();
 
-var apiUrl = new Uri(builder.Configuration.GetSection("Api:BaseUrl").Value);
-builder.Services.AddAirFlightsApiClient(apiUrl);
+builder.Services.AddServices(builder.Configuration);
 
 var app = builder.Build();
 
