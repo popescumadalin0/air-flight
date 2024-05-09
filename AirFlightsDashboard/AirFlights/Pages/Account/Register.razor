@@ -1,12 +1,12 @@
-﻿@page "/login"
+﻿@page "/register"
 @inherits ComponentBase
 @implements IDisposable
 
-<PageTitle>Login</PageTitle>
+<PageTitle>Register</PageTitle>
 
 <Div Margin="Margin.IsAuto.OnX" Width="Width.Is25" class="container">
     <Heading Size="HeadingSize.Is2" Margin="Margin.Is3.FromBottom" TextAlignment="TextAlignment.Center">
-        Sign into your account
+        Sign up your account
     </Heading>
 
     <Card Shadow="Shadow.Default">
@@ -17,7 +17,7 @@
                         Email/Username
                     </FieldLabel>
                     <FieldBody>
-                        <TextEdit Placeholder="example@example.ro, example" Role="TextRole.Email" @bind-Text="_loginModel.Username" />
+                        <TextEdit Placeholder="example@example.ro, example" Role="TextRole.Email" @bind-Text="_registerModel.Username" />
                     </FieldBody>
                 </Field>
                 <Field>
@@ -25,11 +25,11 @@
                         Password
                     </FieldLabel>
                     <FieldBody>
-                        <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_loginModel.Password" autocomplete="new-password" />
+                        <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.Password" autocomplete="new-password" />
                     </FieldBody>
                 </Field>
                 <Field Flex="Flex.Wrap.JustifyContent.Between">
-                    <Check TValue="bool" @bind-Checked="_loginModel.RememberMe">
+                    <Check TValue="bool">
                         Remember me
                     </Check>
                     <Anchor To="/forgot-password" TextColor="TextColor.Primary">
@@ -37,12 +37,12 @@
                     </Anchor>
                 </Field>
                 <Field>
-                    <Button Color="Color.Primary" Block Clicked="@SignInAsync">
+                    <Button Color="Color.Primary" Block Clicked="@RegisterAsync">
                         Sign in
                     </Button>
                 </Field>
                 <Field>
-                    Don’t have an account yet? <Anchor To="/register" TextColor="TextColor.Primary">Sign up</Anchor>
+                    Do you have already an account? <Anchor To="/login" TextColor="TextColor.Primary">Sign in</Anchor>
                 </Field>
             </Form>
         </CardBody>

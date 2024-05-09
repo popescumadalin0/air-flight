@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace AirFlightsClient.Pages.Account;
 
-public partial class Login : ComponentBase, IDisposable
+public partial class Register : ComponentBase, IDisposable
 {
     [Inject]
     private SnackbarState SnackbarState { get; set; }
@@ -14,7 +14,7 @@ public partial class Login : ComponentBase, IDisposable
     [Inject]
     private LoadingState LoadingState { get; set; }
 
-    private LoginModel _loginModel = new LoginModel();
+    private RegisterModel _registerModel = new RegisterModel();
 
     public void Dispose()
     {
@@ -28,7 +28,7 @@ public partial class Login : ComponentBase, IDisposable
         LoadingState.OnStateChange += StateHasChanged;
     }
 
-    private Task SignInAsync()
+    private Task RegisterAsync()
     {
         //todo: call database
         return Task.CompletedTask;

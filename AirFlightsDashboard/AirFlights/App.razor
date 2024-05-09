@@ -3,7 +3,6 @@
 <SnackbarStack @ref="@SnackbarState.Snackbar"></SnackbarStack>
 <LoadingIndicator @ref="@LoadingState.Loading"></LoadingIndicator>
 
-
 <Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
