@@ -4,47 +4,75 @@
 
 <PageTitle>Register</PageTitle>
 
+
 <Div Margin="Margin.IsAuto.OnX" Width="Width.Is25" class="container">
     <Heading Size="HeadingSize.Is2" Margin="Margin.Is3.FromBottom" TextAlignment="TextAlignment.Center">
-        Sign up your account
+        Sign up to your account
     </Heading>
+    <Div class="row">
+        <Div class="col-sm-6">
+            <Card Shadow="Shadow.Default">
+                <CardBody>
+                    <Form>
+                        <Field>
+                            <FieldLabel>
+                                FirstName
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.FirstName" />
+                            </FieldBody>
+                        </Field>
+                        <Field>
+                            <FieldLabel>
+                                LastName
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit Placeholder="Enter the last name" Role="TextRole.Text" @bind-Text="_registerModel.LastName" />
+                            </FieldBody>
+                        </Field>
+                        <Field>
+                            <FieldLabel>
+                                Email
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit Placeholder="Enter your e-mail" Role="TextRole.Email" @bind-Text="_registerModel.Email" />
+                            </FieldBody>
+                        </Field>
+                        <Field>
+                            <FieldLabel>
+                                Phone
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit Placeholder="Enter your phone number" Role="TextRole.Telephone" @bind-Text="_registerModel.PhoneNumber" />
+                            </FieldBody>
+                        </Field>
+                        <FieldLabel>
+                            Password
+                        </FieldLabel>
+                        <FieldBody>
+                            <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.Password" autocomplete="new-password" />
+                        </FieldBody>
+                        <FieldLabel>
+                            Confirm Password
+                        </FieldLabel>
+                        <FieldBody>
+                            <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.ConfirmPassword" autocomplete="confirm-password" />
+                        </FieldBody>
 
-    <Card Shadow="Shadow.Default">
-        <CardBody>
-            <Form>
-                <Field>
-                    <FieldLabel>
-                        Email/Username
-                    </FieldLabel>
-                    <FieldBody>
-                        <TextEdit Placeholder="example@example.ro, example" Role="TextRole.Email" @bind-Text="_registerModel.Username" />
-                    </FieldBody>
-                </Field>
-                <Field>
-                    <FieldLabel>
-                        Password
-                    </FieldLabel>
-                    <FieldBody>
-                        <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.Password" autocomplete="new-password" />
-                    </FieldBody>
-                </Field>
-                <Field Flex="Flex.Wrap.JustifyContent.Between">
-                    <Check TValue="bool">
-                        Remember me
-                    </Check>
-                    <Anchor To="/forgot-password" TextColor="TextColor.Primary">
-                        Forgot your password?
-                    </Anchor>
-                </Field>
-                <Field>
-                    <Button Color="Color.Primary" Block Clicked="@RegisterAsync">
-                        Sign in
-                    </Button>
-                </Field>
-                <Field>
-                    Do you have already an account? <Anchor To="/login" TextColor="TextColor.Primary">Sign in</Anchor>
-                </Field>
-            </Form>
-        </CardBody>
-    </Card>
-</Div>
+                        <Field>
+                            <Button Color="Color.Primary" Block Clicked="@RegisterAsync">
+                                Sign up
+                            </Button>
+                        </Field>
+                        <Field>
+                            Do you have already an account? <Anchor To="/login" TextColor="TextColor.Primary">Sign in</Anchor>
+                        </Field>
+                    </Form>
+                </CardBody>
+            </Card>
+        </Div>
+        <Div class="col-sm-6">
+             <Image src="../images/welcome-hero/register.jpg" alt="placeholder"></Image>
+        </Div>
+     </Div>
+ </Div>
