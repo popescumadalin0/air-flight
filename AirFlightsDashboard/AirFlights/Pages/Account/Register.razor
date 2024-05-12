@@ -46,19 +46,22 @@
                                 <TextEdit Placeholder="Enter your phone number" Role="TextRole.Telephone" @bind-Text="_registerModel.PhoneNumber" />
                             </FieldBody>
                         </Field>
-                        <FieldLabel>
-                            Password
-                        </FieldLabel>
-                        <FieldBody>
-                            <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.Password" autocomplete="new-password" />
-                        </FieldBody>
-                        <FieldLabel>
-                            Confirm Password
-                        </FieldLabel>
-                        <FieldBody>
-                            <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.ConfirmPassword" autocomplete="confirm-password" />
-                        </FieldBody>
-
+                        <Field>
+                            <FieldLabel>
+                                Password
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.Password" autocomplete="new-password" />
+                            </FieldBody>
+                        </Field>
+                        <Field>
+                            <FieldLabel>
+                                Confirm Password
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.ConfirmPassword" autocomplete="confirm-password" />
+                            </FieldBody>
+                        </Field>
                         <Field>
                             <Button Color="Color.Primary" Block Clicked="@RegisterAsync">
                                 Sign up
