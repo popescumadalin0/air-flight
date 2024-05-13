@@ -1,4 +1,4 @@
-﻿namespace AirFlightsClient.Shared
+namespace AirFlightsDashboard.Shared
 {
     public partial class NavMenu
     {

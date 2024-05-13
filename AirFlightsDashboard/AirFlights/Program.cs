@@ -1,4 +1,4 @@
-using AirFlightsClient;
+using AirFlightsDashboard;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Bootstrap5;

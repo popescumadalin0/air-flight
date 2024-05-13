@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
-using AirFlightsClient.Models;
-using AirFlightsClient.States;
+using AirFlightsDashboard.Models;
+using AirFlightsDashboard.States;
 using Microsoft.AspNetCore.Components;
 
-namespace AirFlightsClient.Pages.Account;
+namespace AirFlightsDashboard.Pages.Account;
 
 public partial class Register : ComponentBase, IDisposable
 {

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories;
@@ -8,7 +8,7 @@ using Models;
 
 namespace AirFlightsServer.Services;
 
-public class RoleService:IRoleService
+public class RoleService : IRoleService
 { 
     private readonly IRoleRepository _roleRepository;
 

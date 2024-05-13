@@ -1,22 +1,25 @@
-﻿using System.Security.Cryptography;
+using System;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using DataBaseLayout.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataBaseLayout.Context;
 
-public class Context : DbContext, IContext
+public class Context : IdentityDbContext<User, Role, string>, IContext
 {
-    public Context(DbContextOptions options)
-        : base(options) { }
-    public DbSet<User> Users { get; set; }
-    public DbSet<Role> Roles { get; set; }
     public DbSet<Booking> Bookings { get; set; }
     public DbSet<PlaneSeat> PlaneSeats { get; set; }
     public DbSet<PlaneFacility> PlaneFacilities { get; set; }
     public DbSet<Layover> Layovers { get; set; }
     public DbSet<Company> Companies { get; set; }
     public DbSet<AirFlight> AirFlights { get; set; }
+
+    public Context(DbContextOptions<Context> options)
+        : base(options) { }
+
     public async Task<int> SaveChangesAsync()
     {
 
@@ -25,6 +28,37 @@ public class Context : DbContext, IContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.ToTable(name: "Users");
+        });
+        modelBuilder.Entity<Role>(entity =>
+        {
+            entity.ToTable(name: "Roles");
+        });
+        modelBuilder.Entity<IdentityUserClaim<string>>(entity =>
+        {
+            entity.ToTable(name: "UserClaims");
+        });
+        modelBuilder.Entity<IdentityUserRole<string>>(entity =>
+        {
+            entity.ToTable(name: "UserRoles");
+        });
+        modelBuilder.Entity<IdentityRoleClaim<string>>(entity =>
+        {
+            entity.ToTable(name: "RoleClaims");
+        });
+        modelBuilder.Entity<IdentityUserToken<string>>(entity =>
+        {
+            entity.ToTable(name: "UserTokens");
+        });
+        modelBuilder.Entity<IdentityUserLogin<string>>(entity =>
+        {
+            entity.ToTable(name: "UserLogins");
+        });
+
         // modelBuilder.Entity<AirFlight>()
         //     .Navigation(a => a.Layovers)
         //     .AutoInclude();

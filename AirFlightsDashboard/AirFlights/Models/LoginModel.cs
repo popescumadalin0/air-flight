@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
-namespace AirFlightsClient.Models;
+namespace AirFlightsDashboard.Models;
 
 public class LoginModel
 {

@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using AirFlightsServer.Repositories;
 using AirFlightsServer.Repositories.Interfaces;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace AirFlightsServer;
 
-public static class DependencyInjectionExt
+public static class DependencyInjection
 {
     /// <summary />
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration config)
@@ -22,9 +22,6 @@ public static class DependencyInjectionExt
         services.AddScoped<ILayoverRepository, LayoverRepository>();
         services.AddScoped<IPlaneFacilityRepository, PlaneFacilityRepository>();
         services.AddScoped<IPlaneSeatRepository, PlaneSeatRepository>();
-        services.AddScoped<IRoleRepository, RoleRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
-        
 
         services.AddScoped<IAirFlightService, AirFlightService>();
         services.AddScoped<IBookingService, BookingService>();

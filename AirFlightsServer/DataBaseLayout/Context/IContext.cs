@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,8 +6,6 @@ namespace DataBaseLayout.Context;
 
 public interface IContext
 {
-    DbSet<User> Users { get; set; }
-    DbSet<Role> Roles { get; set; }
     DbSet<Booking> Bookings { get; set; }
     DbSet<PlaneSeat> PlaneSeats { get; set; }
     DbSet<PlaneFacility> PlaneFacilities { get; set; }

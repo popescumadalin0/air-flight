@@ -1,70 +1,100 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories;
 using AirFlightsServer.Repositories.Interfaces;
 using AirFlightsServer.Services.Interfaces;
-using Models;
+using DataBaseLayout.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace AirFlightsServer.Services;
 
-public class UserService:IUserService
-{ 
-    private readonly IUserRepository _userRepository;
+public class UserService : IUserService
+{
+    private readonly SignInManager<User> _signinManager;
+    private readonly UserManager<User> _userManager;
 
-    public UserService(IUserRepository userRepository)
+    public UserService(SignInManager<User> signinManager, UserManager<User> userManager)
     {
-        _userRepository = userRepository;
+        _signinManager = signinManager;
+        _userManager = userManager;
     }
-    public async Task<IList<User>> GetUsersAsync()
+
+    public async Task<bool> SignInAsync(string userName, string password, bool rememberMe)
     {
-        var user = await _userRepository.GetUsersAsync();
-        var response = user.Select(u => new User()
+        var isLogged = await _signinManager.PasswordSignInAsync(userName, password, rememberMe, false);
+        return isLogged.Succeeded;
+    }
+
+    public async Task SignOutAsync()
+    {
+        await _signinManager.SignOutAsync();
+    }
+
+
+    public async Task<IList<Models.User>> GetUsersAsync()
+    {
+        var users = await _userManager.Users.ToListAsync();
+        var response = users.Select(u => new Models.User()
         {
             CNP = u.CNP,
             Document = u.Document,
             Email = u.Email,
             FirstName = u.FirstName,
             LastName = u.LastName,
-            Password = u.Password,
             PhoneNumber = u.PhoneNumber,
-            ProfileImage = u.ProfileImage
+            ProfileImage = u.ProfileImage,
+            ProfileImageFileName = u.ProfileImageFileName,
+            Id = u.Id,
+            ProfileImageName = u.ProfileImageName,
+            UserName = u.UserName
         }).ToList();
         return response;
     }
 
-    public async Task<User> GetUserAsync(string CNP)
+    public async Task<Models.User> GetUserByCNPAsync(string CNP)
     {
-        var user = await _userRepository.GetUserAsync(CNP);
-        var response = new User()
+        var user = await _userManager.Users.FirstAsync(s => s.Id == CNP && s.CNP == CNP);
+        var response = new Models.User()
         {
             CNP = user.CNP,
             Document = user.Document,
             Email = user.Email,
             FirstName = user.FirstName,
             LastName = user.LastName,
-            Password = user.Password,
             PhoneNumber = user.PhoneNumber,
-            ProfileImage = user.ProfileImage
+            ProfileImage = user.ProfileImage,
+            ProfileImageFileName = user.ProfileImageFileName,
+            Id = user.Id,
+            ProfileImageName = user.ProfileImageName,
+            UserName = user.UserName
         };
         return response;
     }
 
-    public async Task AddUserAsync(User model)
+    public async Task<IdentityResult> RegisterUserAsync(User model, string password)
     {
 
-        var entity = new DataBaseLayout.Models.User()
+        var entity = new User()
         {
-            CNP = model.CNP,
+            Id = model.CNP,
             Document = model.Document,
-            Email =model.Email,
+            Email = model.Email,
             FirstName = model.FirstName,
             LastName = model.LastName,
-            Password = model.Password,
             PhoneNumber = model.PhoneNumber,
-            ProfileImage = model.ProfileImage
+            ProfileImage = model.ProfileImage,
+            ProfileImageFileName = model.ProfileImageFileName,
+            ProfileImageName = model.ProfileImageName,
+            EmailConfirmed = false,
+            PhoneNumberConfirmed = false,
+            TwoFactorEnabled = false,
+            UserName = model.UserName,
         };
-        await _userRepository.AddUserAsync(entity);
+        var result = await _userManager.CreateAsync(entity, password);
+
+        return result;
     }
 
     public async Task UpdateUserAsync(User model)

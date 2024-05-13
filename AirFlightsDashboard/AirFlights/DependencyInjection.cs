@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using System;
-using AirFlightsClient.States;
+using AirFlightsDashboard.States;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using SDK;
 
-namespace AirFlightsClient;
+namespace AirFlightsDashboard;
 
 /// <summary />
 public static class DependencyInjection

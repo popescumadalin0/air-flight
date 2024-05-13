@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using Blazorise;
 using Microsoft.AspNetCore.Components;
 
-namespace AirFlightsClient.Pages.Booking
+namespace AirFlightsDashboard.Pages.Booking
 {
     public partial class Booking : BaseComponent
     {

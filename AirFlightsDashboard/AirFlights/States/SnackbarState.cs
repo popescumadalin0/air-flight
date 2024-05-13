@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Blazorise.Snackbar;
 
-namespace AirFlightsClient.States;
+namespace AirFlightsDashboard.States;
 
 public class SnackbarState
 {

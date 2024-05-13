@@ -1,8 +1,8 @@
-﻿using AirFlightsClient.States;
-using Microsoft.AspNetCore.Components;
 using System;
+using AirFlightsDashboard.States;
+using Microsoft.AspNetCore.Components;
 
-namespace AirFlightsClient;
+namespace AirFlightsDashboard;
 
 public partial class App : IDisposable
 {
