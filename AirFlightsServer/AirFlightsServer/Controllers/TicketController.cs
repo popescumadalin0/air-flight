@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,13 +9,13 @@ using Models;
 
 namespace AirFlightsServer.Controllers;
 
-public class AirFlightController : BaseController
+public class TicketController : BaseController
 {
-    private readonly IAirFlightService _airFlightService;
+    private readonly ITicketService _ticketService;
 
-    public AirFlightController(IAirFlightService airFlightService)
+    public TicketController(ITicketService ticketService)
     {
-        _airFlightService = airFlightService;
+        _ticketService = ticketService;
     }
 
     [HttpGet]
@@ -24,13 +23,13 @@ public class AirFlightController : BaseController
     {
         try
         {
-            var result = await _airFlightService.GetAirFlightsAsync();
-            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<List<AirFlightTicket>>(result.ToList()));
+            var result = await _ticketService.GetTicketsAsync();
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<List<Ticket>>(result.ToList()));
 
         }
         catch (Exception ex)
         {
-            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<List<AirFlightTicket>>(ex));
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<List<Ticket>>(ex));
         }
     }
 
@@ -39,23 +38,23 @@ public class AirFlightController : BaseController
     {
         try
         {
-            var result = await _airFlightService.GetAirFlightAsync(Guid.Parse(id));
+            var result = await _ticketService.GetTicketAsync(Guid.Parse(id));
 
-            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<AirFlightTicket>(result));
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<Ticket>(result));
 
         }
         catch (Exception ex)
         {
-            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<AirFlightTicket>(ex));
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<Ticket>(ex));
         }
     }
 
-    [HttpPost]//janina
-    public async Task<IActionResult> CreateAirFlightAsync(AirFlightTicket airFlightTicket)
+    [HttpPost]
+    public async Task<IActionResult> CreateAirFlightAsync(Ticket ticket)
     {
         try
         {
-            await _airFlightService.CreateAirFlightAsync(airFlightTicket);
+            await _ticketService.CreateTicketAsync(ticket);
             return ApiServiceResponse.ApiServiceResult(new ServiceResponse());
         }
         catch (Exception ex)
@@ -65,11 +64,11 @@ public class AirFlightController : BaseController
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateAirFlightAsync(AirFlightTicket airFlightTicket)
+    public async Task<IActionResult> UpdateAirFlightAsync(Ticket ticket)
     {
         try
         {
-            await _airFlightService.UpdateAirFlightAsync(airFlightTicket);
+            await _ticketService.UpdateTicketAsync(ticket);
             return ApiServiceResponse.ApiServiceResult(new ServiceResponse());
         }
         catch (Exception ex)
@@ -83,7 +82,7 @@ public class AirFlightController : BaseController
     {
         try
         { 
-            await _airFlightService.DeleteAirFlightAsync(Guid.Parse(id));
+            await _ticketService.DeleteTicketAsync(Guid.Parse(id));
             return ApiServiceResponse.ApiServiceResult(new ServiceResponse());
         }
         catch (Exception ex)

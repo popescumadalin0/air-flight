@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories.Interfaces;
@@ -8,29 +8,33 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AirFlightsServer.Repositories;
 
-public class AirFlightRepository : IAirFlightRepository
+public class TicketRepository : ITicketRepository
 {
     private readonly IContext _context;
 
-    public AirFlightRepository(IContext context)
+    public TicketRepository(IContext context)
     {
         _context = context;
     }
-    public async Task<IList<AirFlight>> GetAirFlightsAsync()
+
+    /// <inheritdoc />
+    public async Task<IList<Ticket>> GetTicketsAsync()
     {
         var airFlights = await _context.AirFlights.ToListAsync();
         return airFlights;
 
     }
 
-    public async Task<AirFlight> GetAirFlightAsync(Guid id)
+    /// <inheritdoc />
+    public async Task<Ticket> GetTicketAsync(Guid id)
     {
         var airFlight = await _context.AirFlights.FindAsync(id);
 
         return airFlight;
     }
 
-    public async Task AddAirFlightAsync(AirFlight model)
+    /// <inheritdoc />
+    public async Task AddTicketAsync(Ticket model)
     {
         await _context.AirFlights.AddAsync(model);
 
@@ -38,18 +42,19 @@ public class AirFlightRepository : IAirFlightRepository
 
     }
 
-    public async Task UpdateAirFlightAsync(AirFlight airFlight)//todo: modificat
+    /// <inheritdoc />
+    public async Task UpdateTicketAsync(Ticket ticket)//todo: modificat
     {
-        await _context.AirFlights.FindAsync(airFlight);
+        await _context.AirFlights.FindAsync(ticket);
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteAirFlightAsync(Guid id)
+    /// <inheritdoc />
+    public async Task DeleteTicketAsync(Guid id)
     {
         var airFlighty = await _context.AirFlights.SingleAsync(scp => scp.Id == id);
         _context.AirFlights.Remove(airFlighty);
 
         await _context.SaveChangesAsync();
     }
-
 }

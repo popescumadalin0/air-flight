@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
@@ -9,16 +9,29 @@ namespace DataBaseLayout.Models;
 public class Layover
 { 
     public Guid Id { get; set; }
+
     public string StartPointCountry { get; set; }
+
     public string StartPointAirport { get; set; }
+
     public string DestinationAirport { get; set; }
+
     public DateTime DepartureTime { get; set; }
+
     public DateTime FlightDuration { get; set; }
+
     public string DestinationCity { get; set; }
+
     public string DestinationCountry { get; set; }
+
     public string StartPointCity { get; set; }
+
+    public Guid AirFlightId { get; set; }
+
     [Required]
-    public AirFlight AirFlight { get; set; }
+    public Ticket Ticket { get; set; }
+
+    public Guid CompanyId { get; set; }
 
     [Required]
     public Company Company { get; set; }

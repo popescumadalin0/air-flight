@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using AirFlightsServer.Repositories;
 using AirFlightsServer.Repositories.Interfaces;
 using AirFlightsServer.Services;
@@ -16,14 +15,14 @@ public static class DependencyInjection
     {
         services.AddDataLayout(config);
 
-        services.AddScoped<IAirFlightRepository, AirFlightRepository>();
+        services.AddScoped<ITicketRepository, TicketRepository>();
         services.AddScoped<IBookingRepository, BookingRepository>();
         services.AddScoped<ICompanyRepository, CompanyRepository>();
         services.AddScoped<ILayoverRepository, LayoverRepository>();
         services.AddScoped<IPlaneFacilityRepository, PlaneFacilityRepository>();
         services.AddScoped<IPlaneSeatRepository, PlaneSeatRepository>();
 
-        services.AddScoped<IAirFlightService, AirFlightService>();
+        services.AddScoped<ITicketService, TicketService>();
         services.AddScoped<IBookingService, BookingService>();
         services.AddScoped<ICompanyService, CompanyService>();
         services.AddScoped<ILayoverService, LayoverService>();

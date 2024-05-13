@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer.ResponseModels;
-using AirFlightsServer.Services;
 using AirFlightsServer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Models;

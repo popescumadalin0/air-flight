@@ -1,5 +1,3 @@
-using System;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using DataBaseLayout.Models;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +13,7 @@ public class Context : IdentityDbContext<User, Role, string>, IContext
     public DbSet<PlaneFacility> PlaneFacilities { get; set; }
     public DbSet<Layover> Layovers { get; set; }
     public DbSet<Company> Companies { get; set; }
-    public DbSet<AirFlight> AirFlights { get; set; }
+    public DbSet<Ticket> AirFlights { get; set; }
 
     public Context(DbContextOptions<Context> options)
         : base(options) { }
@@ -59,7 +57,7 @@ public class Context : IdentityDbContext<User, Role, string>, IContext
             entity.ToTable(name: "UserLogins");
         });
 
-        // modelBuilder.Entity<AirFlight>()
+        // modelBuilder.Entity<Ticket>()
         //     .Navigation(a => a.Layovers)
         //     .AutoInclude();
         //

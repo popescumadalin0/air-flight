@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories.Interfaces;
@@ -16,6 +16,8 @@ public class BookingRepository : IBookingRepository
     {
         _context = context;
     }
+
+    /// <inheritdoc />
     public async Task<IList<Booking>> GetBookingsAsync()
     {
         var bookings = await _context.Bookings.ToListAsync();
@@ -23,6 +25,7 @@ public class BookingRepository : IBookingRepository
         return bookings;
     }
 
+    /// <inheritdoc />
     public async Task<Booking> GetBookingAsync(Guid id)
     {
         var booking = await _context.Bookings.FindAsync(id);
@@ -30,26 +33,27 @@ public class BookingRepository : IBookingRepository
         return booking;
     }
 
+    /// <inheritdoc />
     public async Task AddBookingAsync(Booking model)
     {
         await _context.Bookings.AddAsync(model);
 
         await _context.SaveChangesAsync();
-
     }
 
+    /// <inheritdoc />
     public async Task UpdateBookingAsync(Booking model)//todo:modified
     {
         await _context.Bookings.FindAsync(model);
         await _context.SaveChangesAsync();
     }
 
+    /// <inheritdoc />
     public async Task DeleteBookingAsync(Guid id)
     {
         var reservation = await _context.Bookings.SingleAsync(scp => scp.Id == id);
         _context.Bookings.Remove(reservation);
 
         await _context.SaveChangesAsync();
-
     }
 }

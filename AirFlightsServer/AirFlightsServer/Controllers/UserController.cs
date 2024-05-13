@@ -1,4 +1,4 @@
-﻿using AirFlightsServer.ResponseModels;
+using AirFlightsServer.ResponseModels;
 using AirFlightsServer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -37,7 +37,7 @@ public class UserController:BaseController
     {
         try
         {
-            var result = await _userService.GetUserAsync(CNP);
+            var result = await _userService.GetUserByCNPAsync(CNP);
 
             return ApiServiceResponse.ApiServiceResult(new ServiceResponse<User>(result));
 
@@ -45,20 +45,6 @@ public class UserController:BaseController
         catch (Exception ex)
         {
             return ApiServiceResponse.ApiServiceResult(new ServiceResponse<User>(ex));
-        }
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> CreateUserAsync(User user)
-    {
-        try
-        {
-            await _userService.AddUserAsync(user);
-            return ApiServiceResponse.ApiServiceResult(new ServiceResponse());
-        }
-        catch (Exception ex)
-        {
-            return ApiServiceResponse.ApiServiceResult(new ServiceResponse(ex));
         }
     }
 

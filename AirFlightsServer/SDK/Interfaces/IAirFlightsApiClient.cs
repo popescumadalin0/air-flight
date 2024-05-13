@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Models;
@@ -21,13 +21,13 @@ public interface IAirFlightsApiClient
     /// Get user by CNP.
     /// </summary>
     /// <returns></returns>
-    Task<ApiResponseMessage<User>> GetUserAsync(String CNP);
+    Task<ApiResponseMessage<User>> GetUserAsync(string CNP);
 
     /// <summary>
     /// Delete user.
     /// </summary>
     /// <returns></returns>
-    Task<ApiResponseMessage> DeleteUserAsync(String CNP);
+    Task<ApiResponseMessage> DeleteUserAsync(string CNP);
 
     /// <summary>
     /// Create user.
@@ -46,31 +46,31 @@ public interface IAirFlightsApiClient
     /// Get all air flights.
     /// </summary>
     /// <returns></returns>
-    Task<ApiResponseMessage<List<AirFlightTicket>>> GetAirFlightsAsync();
+    Task<ApiResponseMessage<List<Ticket>>> GetTicketsAsync();
 
     /// <summary>
     /// Get air flight by ID.
     /// </summary>
     /// <returns></returns>
-    Task<ApiResponseMessage<AirFlightTicket>> GetAirFlightAsync(Guid id);
+    Task<ApiResponseMessage<Ticket>> GetTicketAsync(Guid id);
 
     /// <summary>
     /// Create ir flight.
     /// </summary>
     /// <returns></returns>
-    Task<ApiResponseMessage> CreateAirFlightAsync(AirFlightTicket airFlight);
+    Task<ApiResponseMessage> CreateTicketAsync(Ticket ticket);
 
     /// <summary>
     /// Update air flight.
     /// </summary>
     /// <returns></returns>
-    Task<ApiResponseMessage> UpdateAirFlightAsync(AirFlightTicket airFlight);
+    Task<ApiResponseMessage> UpdateTicketAsync(Ticket ticket);
 
     /// <summary>
     /// Delete air flight.
     /// </summary>
     /// <returns></returns>
-    Task<ApiResponseMessage> DeleteAirFlightAsync(Guid id);
+    Task<ApiResponseMessage> DeleteTicketAsync(Guid id);
 
 
     /// <summary>

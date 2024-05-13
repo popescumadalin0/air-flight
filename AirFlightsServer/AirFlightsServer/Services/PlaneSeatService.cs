@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AirFlightsServer.Repositories;
 using AirFlightsServer.Repositories.Interfaces;
 using AirFlightsServer.Services.Interfaces;
 using Models;
@@ -17,6 +16,8 @@ public class PlaneSeatService:IPlaneSeatService
     {
         _planeSeatRepository = planeSeatRepository;
     }
+
+    /// <inheritdoc />
     public async Task<IList<PlaneSeat>> GetPlaneSeatsAsync()
     {
         var planeSeat = await _planeSeatRepository.GetPlaneSeatsAsync();
@@ -28,6 +29,7 @@ public class PlaneSeatService:IPlaneSeatService
         return response;
     }
 
+    /// <inheritdoc />
     public async Task<PlaneSeat> GetPlaneSeatAsync(Guid id)
     {
         var planeSeat = await _planeSeatRepository.GetPlaneSeatAsync(id);
@@ -39,6 +41,7 @@ public class PlaneSeatService:IPlaneSeatService
         return response;
     }
 
+    /// <inheritdoc />
     public async Task AddPlaneSeatAsync(PlaneSeat model)
     {
         var entity = new DataBaseLayout.Models.PlaneSeat()
@@ -49,6 +52,7 @@ public class PlaneSeatService:IPlaneSeatService
         await _planeSeatRepository.AddPlaneSeatAsync(entity);
     }
 
+    /// <inheritdoc />
     public async Task UpdatePlaneSeatAsync(PlaneSeat model)
     {
         var entity = new DataBaseLayout.Models.PlaneSeat()
@@ -59,6 +63,7 @@ public class PlaneSeatService:IPlaneSeatService
         await _planeSeatRepository.UpdatePlaneSeatAsync(entity);
     }
 
+    /// <inheritdoc />
     public async Task DeletePlaneSeatAsync(Guid id)
     {
         await _planeSeatRepository.DeletePlaneSeatAsync(id);

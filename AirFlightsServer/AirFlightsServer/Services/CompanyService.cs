@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,6 +18,7 @@ public class CompanyService : ICompanyService
         _companyRepository = companyRepository;
     }
 
+    /// <inheritdoc />
     public async Task<IList<Company>> GetCompaniesAsync()
     {
         var company = await _companyRepository.GetCompaniesAsync();
@@ -32,6 +33,7 @@ public class CompanyService : ICompanyService
         return response;
     }
 
+    /// <inheritdoc />
     public async Task<Company> GetCompanyAsync(Guid id)
     {
         var company = await _companyRepository.GetCompanyAsync(id);
@@ -46,6 +48,7 @@ public class CompanyService : ICompanyService
         return response;
     }
 
+    /// <inheritdoc />
     public async Task AddCompanyAsync(Company model)
     {
         var entity = new DataBaseLayout.Models.Company()
@@ -57,6 +60,7 @@ public class CompanyService : ICompanyService
         await _companyRepository.AddCompanyAsync(entity);
     }
 
+    /// <inheritdoc />
     public async Task UpdateCompanyAsync(Company model)
     {
         var entity = new DataBaseLayout.Models.Company()
@@ -70,6 +74,7 @@ public class CompanyService : ICompanyService
         await _companyRepository.UpdateCompanyAsync(entity);
     }
 
+    /// <inheritdoc />
     public async Task DeleteCompanyAsync(Guid id)
     {
         await _companyRepository.DeleteCompanyAsync(id);

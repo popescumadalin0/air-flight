@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +17,7 @@ public class BookingService: IBookingService
         _bookingRepository = bookingRepository;
     }
 
+    /// <inheritdoc />
     public async Task<IList<Models.Booking>> GetBookingsAsync()
     {
         var booking = await _bookingRepository.GetBookingsAsync();
@@ -29,6 +30,7 @@ public class BookingService: IBookingService
         return response;
     }
 
+    /// <inheritdoc />
     public async Task<Models.Booking> GetBookingAsync(Guid id)
     {
         var booking = await _bookingRepository.GetBookingAsync(id);
@@ -41,15 +43,17 @@ public class BookingService: IBookingService
         return response;
     }
 
+    /// <inheritdoc />
     public async Task AddBookingAsync(Models.Booking model)
     {
-        var entity = new DataBaseLayout.Models.Booking()
+        var entity = new Booking()
         {
             Id = model.Id
         };
         await _bookingRepository.AddBookingAsync(entity);
     }
 
+    /// <inheritdoc />
     public async Task UpdateBookingAsync(Models.Booking model)
     {
         var entity = new Booking()
@@ -61,6 +65,7 @@ public class BookingService: IBookingService
         await _bookingRepository.UpdateBookingAsync(entity);
     }
 
+    /// <inheritdoc />
     public async Task DeleteBookingAsync(Guid id)
     {
         await _bookingRepository.DeleteBookingAsync(id);

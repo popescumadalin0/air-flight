@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,6 +10,8 @@ namespace DataBaseLayout.Models;
 public class Booking
 {
     public Guid Id { get; set; }
+
+    public string UserId { get; set; }
 
     [Required]
     public User User { get; set; }

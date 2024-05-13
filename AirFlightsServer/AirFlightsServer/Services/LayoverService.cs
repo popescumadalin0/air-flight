@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AirFlightsServer.Repositories;
 using AirFlightsServer.Repositories.Interfaces;
 using AirFlightsServer.Services.Interfaces;
 using Layover = Models.Layover;
@@ -18,6 +17,7 @@ public class LayoverService:ILayoverService
         _layoverRepository = layoverRepository;
     }
 
+    /// <inheritdoc />
     public async Task<IList<Layover>> GetLayoversAsync()
     {
         var layover = await _layoverRepository.GetLayoversAsync();
@@ -38,6 +38,7 @@ public class LayoverService:ILayoverService
         return response;
     }
 
+    /// <inheritdoc />
     public async Task<Layover> GetLayoverAsync(Guid id)
     {
         var layover = await _layoverRepository.GetLayoverAsync(id);
@@ -58,6 +59,7 @@ public class LayoverService:ILayoverService
         return response;
     }
 
+    /// <inheritdoc />
     public async Task AddLayoverAsync(Layover model)
     {
 
@@ -77,6 +79,7 @@ public class LayoverService:ILayoverService
         await _layoverRepository.AddLayoverAsync(entity);
     }
 
+    /// <inheritdoc />
     public async Task UpdateLayoverAsync(Layover model)
     {
         var entity = new DataBaseLayout.Models.Layover()
@@ -95,6 +98,7 @@ public class LayoverService:ILayoverService
         await _layoverRepository.AddLayoverAsync(entity);
     }
 
+    /// <inheritdoc />
     public async Task DeleteLayoverAsync(Guid id)
     {
         await _layoverRepository.DeleteLayoverAsync(id);

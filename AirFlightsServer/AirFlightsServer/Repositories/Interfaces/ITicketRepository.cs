@@ -5,20 +5,20 @@ using DataBaseLayout.Models;
 
 namespace AirFlightsServer.Repositories.Interfaces;
 
-public interface ILayoverRepository
+public interface ITicketRepository
 {
     /// <summary/>
-    Task<IList<Layover>> GetLayoversAsync();
+    Task<IList<Ticket>> GetTicketsAsync();
 
     /// <summary/>
-    Task<Layover> GetLayoverAsync(Guid id);
+    Task<Ticket> GetTicketAsync(Guid id);
 
     /// <summary/>
-    Task AddLayoverAsync(Layover model);
+    Task AddTicketAsync(Ticket model);
 
     /// <summary/>
-    Task UpdateLayoverAsync(Layover model);
+    Task UpdateTicketAsync(Ticket  ticket);
 
     /// <summary/>
-    Task DeleteLayoverAsync(Guid id);
+    Task DeleteTicketAsync(Guid id);
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -98,77 +98,77 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         }
     }
 
-    public async Task<ApiResponseMessage<List<AirFlightTicket>>> GetAirFlightsAsync()
+    public async Task<ApiResponseMessage<List<Ticket>>> GetTicketsAsync()
     {
         try
         {
-            var task = _apiClient.GetAirFlightsAsync();
+            var task = _apiClient.GetTicketsAsync();
             var result = await Execute(task);
             return result;
         }
         catch (Exception e)
         {
-            _logger.LogError(e, $"Error executing {nameof(GetAirFlightsAsync)}");
+            _logger.LogError(e, $"Error executing {nameof(GetTicketsAsync)}");
             throw;
         }
     }
 
-    public async Task<ApiResponseMessage<AirFlightTicket>> GetAirFlightAsync(Guid id)
+    public async Task<ApiResponseMessage<Ticket>> GetTicketAsync(Guid id)
     {
         try
         {
-            var task = _apiClient.GetAirFlightAsync(id);
+            var task = _apiClient.GetTicketAsync(id);
             var result = await Execute(task);
             return result;
         }
         catch (Exception e)
         {
-            _logger.LogError(e, $"Error executing {nameof(GetAirFlightAsync)}");
+            _logger.LogError(e, $"Error executing {nameof(GetTicketAsync)}");
             throw;
         }
     }
 
-    public async Task<ApiResponseMessage> CreateAirFlightAsync(AirFlightTicket airFlight)
+    public async Task<ApiResponseMessage> CreateTicketAsync(Ticket ticket)
     {
         try
         {
-            var task = _apiClient.CreateAirFlightAsync(airFlight);
+            var task = _apiClient.CreateTicketAsync(ticket);
             var result = await Execute(task);
             return result;
         }
         catch (Exception e)
         {
-            _logger.LogError(e, $"Error executing {nameof(CreateAirFlightAsync)}");
+            _logger.LogError(e, $"Error executing {nameof(CreateTicketAsync)}");
             throw;
         }
     }
 
-    public async Task<ApiResponseMessage> UpdateAirFlightAsync(AirFlightTicket airFlight)
+    public async Task<ApiResponseMessage> UpdateTicketAsync(Ticket ticket)
     {
         try
         {
-            var task = _apiClient.UpdateAirFlightAsync(airFlight);
+            var task = _apiClient.CreateTicketAsync(ticket);
             var result = await Execute(task);
             return result;
         }
         catch (Exception e)
         {
-            _logger.LogError(e, $"Error executing {nameof(UpdateAirFlightAsync)}");
+            _logger.LogError(e, $"Error executing {nameof(UpdateTicketAsync)}");
             throw;
         }
     }
 
-    public async Task<ApiResponseMessage> DeleteAirFlightAsync(Guid id)
+    public async Task<ApiResponseMessage> DeleteTicketAsync(Guid id)
     {
         try
         {
-            var task = _apiClient.DeleteAirFlightAsync(id);
+            var task = _apiClient.DeleteTicketAsync(id);
             var result = await Execute(task);
             return result;
         }
         catch (Exception e)
         {
-            _logger.LogError(e, $"Error executing {nameof(DeleteAirFlightAsync)}");
+            _logger.LogError(e, $"Error executing {nameof(DeleteTicketAsync)}");
             throw;
         }
     }

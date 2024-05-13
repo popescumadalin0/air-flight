@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories.Interfaces;
@@ -17,6 +17,7 @@ public class PlaneFacilityRepository : IPlaneFacilityRepository
         _context = context;
     }
 
+    /// <inheritdoc />
     public async Task<IList<PlaneFacility>> GetPlaneFacilitiesAsync()
     {
         var planeFacility = await _context.PlaneFacilities.ToListAsync();
@@ -24,6 +25,7 @@ public class PlaneFacilityRepository : IPlaneFacilityRepository
 
     }
 
+    /// <inheritdoc />
     public async Task<PlaneFacility> GetPlaneFacilityAsync(Guid id)
     {
         var planeFacility = await _context.PlaneFacilities.FindAsync(id);
@@ -31,6 +33,7 @@ public class PlaneFacilityRepository : IPlaneFacilityRepository
         return planeFacility;
     }
 
+    /// <inheritdoc />
     public async Task AddPlaneFacilityAsync(PlaneFacility model)
     {
         await _context.PlaneFacilities.AddAsync(model);
@@ -38,12 +41,14 @@ public class PlaneFacilityRepository : IPlaneFacilityRepository
         await _context.SaveChangesAsync();
     }
 
+    /// <inheritdoc />
     public async Task UpdatePlaneFacilityAsync(PlaneFacility model)
     {
         await _context.PlaneFacilities.FindAsync(model);
         await _context.SaveChangesAsync();
     }
 
+    /// <inheritdoc />
     public async Task DeletePlaneFacilityAsync(Guid id)
     {
         var planeFacility = await _context.PlaneFacilities.SingleAsync(scp => scp.Id == id);
@@ -51,5 +56,4 @@ public class PlaneFacilityRepository : IPlaneFacilityRepository
 
         await _context.SaveChangesAsync();
     }
-
 }

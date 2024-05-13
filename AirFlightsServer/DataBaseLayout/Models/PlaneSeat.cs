@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +8,11 @@ namespace DataBaseLayout.Models;
 public class PlaneSeat
 {
     public Guid Id { get; set; }
+
     public bool IsOcuppied { get; set; }
+
+    public Guid LayoverId { get; set; }
+
     [Required]
     public Layover Layover { get; set; }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Models;
@@ -26,20 +26,20 @@ public interface IAirFlightsApi
     [Put("/api/User")]
     Task UpdateUserAsync(User user);
 
-    [Get("/api/AirFlight")]
-    Task<List<AirFlightTicket>> GetAirFlightsAsync();
+    [Get("/api/Ticket")]
+    Task<List<Ticket>> GetTicketsAsync();
 
-    [Get("/api/AirFlight/{id}")]
-    Task<AirFlightTicket> GetAirFlightAsync(Guid id);
+    [Get("/api/Ticket/{id}")]
+    Task<Ticket> GetTicketAsync(Guid id);
 
-    [Post("/api/AirFlight")]
-    Task CreateAirFlightAsync(AirFlightTicket airFlight);
+    [Post("/api/Ticket")]
+    Task CreateTicketAsync(Ticket ticket);
 
-    [Put("/api/AirFlight")]
-    Task UpdateAirFlightAsync(AirFlightTicket airFlight);
+    [Put("/api/Ticket")]
+    Task UpdateTicketAsync(Ticket ticket);
 
-    [Delete("/api/AirFlight/{id}")]
-    Task DeleteAirFlightAsync(Guid id);
+    [Delete("/api/Ticket/{id}")]
+    Task DeleteTicketAsync(Guid id);
 
     [Get("/api/Company")]
     Task<List<Company>> GetCompaniesAsync();

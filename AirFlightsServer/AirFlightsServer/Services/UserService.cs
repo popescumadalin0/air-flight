@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AirFlightsServer.Repositories;
-using AirFlightsServer.Repositories.Interfaces;
 using AirFlightsServer.Services.Interfaces;
 using DataBaseLayout.Models;
 using Microsoft.AspNetCore.Identity;
@@ -21,61 +19,101 @@ public class UserService : IUserService
         _userManager = userManager;
     }
 
+    /// <inheritdoc />
     public async Task<bool> SignInAsync(string userName, string password, bool rememberMe)
     {
         var isLogged = await _signinManager.PasswordSignInAsync(userName, password, rememberMe, false);
         return isLogged.Succeeded;
     }
 
+    /// <inheritdoc />
     public async Task SignOutAsync()
     {
         await _signinManager.SignOutAsync();
     }
 
 
+    /// <inheritdoc />
     public async Task<IList<Models.User>> GetUsersAsync()
     {
         var users = await _userManager.Users.ToListAsync();
-        var response = users.Select(u => new Models.User()
-        {
-            CNP = u.CNP,
-            Document = u.Document,
-            Email = u.Email,
-            FirstName = u.FirstName,
-            LastName = u.LastName,
-            PhoneNumber = u.PhoneNumber,
-            ProfileImage = u.ProfileImage,
-            ProfileImageFileName = u.ProfileImageFileName,
-            Id = u.Id,
-            ProfileImageName = u.ProfileImageName,
-            UserName = u.UserName
-        }).ToList();
+        var response = users.Select(ModelToDto).ToList();
         return response;
     }
 
+    /// <inheritdoc />
     public async Task<Models.User> GetUserByCNPAsync(string CNP)
     {
         var user = await _userManager.Users.FirstAsync(s => s.Id == CNP && s.CNP == CNP);
-        var response = new Models.User()
-        {
-            CNP = user.CNP,
-            Document = user.Document,
-            Email = user.Email,
-            FirstName = user.FirstName,
-            LastName = user.LastName,
-            PhoneNumber = user.PhoneNumber,
-            ProfileImage = user.ProfileImage,
-            ProfileImageFileName = user.ProfileImageFileName,
-            Id = user.Id,
-            ProfileImageName = user.ProfileImageName,
-            UserName = user.UserName
-        };
-        return response;
+        
+        return ModelToDto(user);
     }
 
-    public async Task<IdentityResult> RegisterUserAsync(User model, string password)
+    public async Task<Models.User> GetUserByUserNameAsync(string userName)
     {
+        var user = await _userManager.Users.FirstAsync(s => s.UserName == userName);
 
+        return ModelToDto(user);
+    }
+
+    /// <inheritdoc />
+    public async Task<IdentityResult> RegisterUserAsync(Models.User model, string password)
+    {
+        var result = await _userManager.CreateAsync(DtoToModel(model), password);
+
+        return result;
+    }
+
+    /// <inheritdoc />
+    public async Task<IdentityResult> UpdateUserAsync(Models.User user)
+    {
+        var userModel = await _userManager.Users.FirstAsync(s => s.Id == user.CNP && s.CNP == user.CNP);
+
+        userModel.FirstName = user.FirstName;
+        userModel.LastName = user.LastName;
+        userModel.ProfileImage = user.ProfileImage;
+        userModel.ProfileImageName = user.ProfileImageName;
+        userModel.ProfileImageFileName = user.ProfileImageFileName;
+        userModel.Document = user.Document;
+
+        var result = await _userManager.UpdateAsync(userModel);
+
+        return result;
+    }
+
+    /// <inheritdoc />
+    public async Task<IdentityResult> UpdateUserEmailAsync(Models.User user, string newEmail, string token)
+    {
+        var userModel = await _userManager.Users.FirstAsync(s => s.Id == user.CNP && s.CNP == user.CNP);
+        var result = await _userManager.ChangeEmailAsync(userModel, newEmail, token);
+        return result;
+    }
+
+    /// <inheritdoc />
+    public async Task<IdentityResult> UpdateUserPasswordAsync(Models.User user, string oldPassword, string newPassword)
+    {
+        var result = await _userManager.ChangePasswordAsync(DtoToModel(user), oldPassword, newPassword);
+        return result;
+    }
+
+    /// <inheritdoc />
+    public async Task<IdentityResult> UpdateUserPhoneNumberAsync(Models.User user, string newPhoneNumber, string token)
+    {
+        var userModel = await _userManager.Users.FirstAsync(s => s.Id == user.CNP && s.CNP == user.CNP);
+        var result = await _userManager.ChangePhoneNumberAsync(userModel, newPhoneNumber, token);
+        return result;
+    }
+
+    /// <inheritdoc />
+    public async Task<IdentityResult> DeleteUserAsync(string CNP)
+    {
+        var user = await _userManager.Users.FirstAsync(s => s.Id == CNP && s.CNP == CNP);
+
+        return await _userManager.DeleteAsync(user);
+    }
+
+    private static User DtoToModel(Models.User model)
+    {
         var entity = new User()
         {
             Id = model.CNP,
@@ -92,29 +130,27 @@ public class UserService : IUserService
             TwoFactorEnabled = false,
             UserName = model.UserName,
         };
-        var result = await _userManager.CreateAsync(entity, password);
 
-        return result;
+        return entity;
     }
 
-    public async Task UpdateUserAsync(User model)
+    private static Models.User ModelToDto(User model)
     {
-        var entity = new DataBaseLayout.Models.User()
+        var dto = new Models.User()
         {
             CNP = model.CNP,
             Document = model.Document,
             Email = model.Email,
             FirstName = model.FirstName,
             LastName = model.LastName,
-            Password = model.Password,
             PhoneNumber = model.PhoneNumber,
-            ProfileImage = model.ProfileImage
+            ProfileImage = model.ProfileImage,
+            ProfileImageFileName = model.ProfileImageFileName,
+            Id = model.Id,
+            ProfileImageName = model.ProfileImageName,
+            UserName = model.UserName,
         };
-        await _userRepository.UpdateUserAsync(entity);
-    }
 
-    public async Task DeleteUserAsync(string CNP)
-    {
-        await _userRepository.DeleteUserAsync(CNP);
+        return dto;
     }
 }

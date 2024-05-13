@@ -1,22 +1,29 @@
 using AirFlightsServer;
-using DataBaseLayout;
+using DataBaseLayout.Context;
+using DataBaseLayout.Models;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddServices(builder.Configuration);
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAuthorization();
+
+builder.Services.AddIdentityApiEndpoints<User>()
+    .AddEntityFrameworkStores<Context>();
+
 var app = builder.Build();
 
-// PlaneFacilityure the HTTP request pipeline.
+app.MapIdentityApi<User>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

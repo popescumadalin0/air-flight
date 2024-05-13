@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories.Interfaces;
-using AirFlightsServer.Services.Interfaces;
 using DataBaseLayout.Context;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +18,7 @@ public class CompanyRepository : ICompanyRepository
         _context = context;
     }
 
+    /// <inheritdoc />
     public async Task<IList<Company>> GetCompaniesAsync()
     {
         var company = await _context.Companies.ToListAsync();
@@ -26,6 +26,7 @@ public class CompanyRepository : ICompanyRepository
 
     }
 
+    /// <inheritdoc />
     public async Task<Company> GetCompanyAsync(Guid id)
     {
         var company = await _context.Companies.FindAsync(id);
@@ -33,6 +34,7 @@ public class CompanyRepository : ICompanyRepository
         return company;
     }
 
+    /// <inheritdoc />
     public async Task AddCompanyAsync(Company model)
     {
         await _context.Companies.AddAsync(model);
@@ -40,12 +42,14 @@ public class CompanyRepository : ICompanyRepository
         await _context.SaveChangesAsync();
     }
 
+    /// <inheritdoc />
     public async Task UpdateCompanyAsync(Company model)
     {
         await _context.Companies.FindAsync(model);
         await _context.SaveChangesAsync();
     }
 
+    /// <inheritdoc />
     public async Task DeleteCompanyAsync(Guid id)
     {
         var company = await _context.Companies.SingleAsync(scp => scp.Id == id);

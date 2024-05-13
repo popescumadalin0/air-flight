@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 
 namespace Models;
 
-public class AirFlightTicket
+public class Ticket
 {
     public Guid Id { get; set; }
     public int Price { get; set; }

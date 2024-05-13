@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories.Interfaces;
@@ -17,13 +17,14 @@ public class LayoverRepository : ILayoverRepository
         _context = context;
     }
 
+    /// <inheritdoc />
     public async Task<IList<Layover>> GetLayoversAsync()
     {
         var layover = await _context.Layovers.ToListAsync();
         return layover;
-
     }
 
+    /// <inheritdoc />
     public async Task<Layover> GetLayoverAsync(Guid id)
     {
         var layover = await _context.Layovers.FindAsync(id);
@@ -31,6 +32,7 @@ public class LayoverRepository : ILayoverRepository
         return layover;
     }
 
+    /// <inheritdoc />
     public async Task AddLayoverAsync(Layover model)
     {
         await _context.Layovers.AddAsync(model);
@@ -38,12 +40,14 @@ public class LayoverRepository : ILayoverRepository
         await _context.SaveChangesAsync();
     }
 
+    /// <inheritdoc />
     public async Task UpdateLayoverAsync(Layover model)//todo:modifier
     {
         await _context.Layovers.FindAsync(model);
         await _context.SaveChangesAsync();
     }
 
+    /// <inheritdoc />
     public async Task DeleteLayoverAsync(Guid id)
     {
         var layover = await _context.Layovers.SingleAsync(scp => scp.Id == id);
