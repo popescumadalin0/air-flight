@@ -39,14 +39,14 @@ font-family: 'Roboto', sans-serif;
 	-ms-box-sizing:border-box;
 	box-sizing:border-box;
 }
-body{
-	font-family: 'Poppins', sans-serif;
-	font-size:14px;
-	color:#a09e9c;
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #343a3f;
     text-transform:initial;
-    max-width:1920px;
-    margin:0 auto;
-	overflow-x:hidden;
+    max-width: 1920px;
+    margin: 0 auto;
+    overflow-x: hidden;
 }
 
 a,a:hover,a:active,a:focus {
@@ -956,12 +956,19 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     100%  {bottom:7px;}
 }
 
-.welcome-register {
+/* Login nu mergeeeeee */
+
+.login {
     position: relative;
-    background: url(../images/welcome-hero/banner.jpg)no-repeat;
-    background-position: center;
-    background-size: cover;
-    text-align: center;
-    height: 800px;
+    background: #f8fafb;
+    height: 400px;
+    z-index: 1;
+    width: 790px;
+}
+
+    .register {
+    position: relative;
+    background: #f8fafb;
+    height: 500px;
     z-index: 1;
 }
