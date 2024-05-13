@@ -1030,14 +1030,15 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
         display: block !important;
     }
     
-    nav.navbar.bootsnav .navbar-nav {
+    nav.navbar.bootsnav .navbar-nav-custom {
         float: none !important;
         padding-left: 30px;
         padding-right: 30px;
         margin: 0px -15px;
+        display: block !important;
     }
     
-    nav.navbar.bootsnav .navbar-nav > li {
+    nav.navbar.bootsnav .navbar-nav-custom > li {
         float: none;
     }
     
@@ -1053,7 +1054,7 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
         content: "\f107";
     }
     
-    nav.navbar.bootsnav .navbar-nav > li > a{
+    nav.navbar.bootsnav .navbar-nav-custom > li > a{
         display: block;
         width: 100%;
         border-bottom: solid 1px #e0e0e0;
@@ -1062,11 +1063,11 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
         margin-bottom: -1px;
     }
     
-    nav.navbar.bootsnav .navbar-nav > li:first-child > a{
+    nav.navbar.bootsnav .navbar-nav-custom > li:first-child > a{
         border-top: none;
     }
     
-    nav.navbar.bootsnav ul.navbar-nav.navbar-left > li:last-child > ul.dropdown-menu{
+    nav.navbar.bootsnav ul.navbar-nav-custom.navbar-left > li:last-child > ul.dropdown-menu{
         border-bottom: solid 1px #e0e0e0;
     }
     
@@ -1378,7 +1379,7 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
         padding-right: 15px;
     }
     
-    nav.navbar.bootsnav .navbar-nav {
+    nav.navbar.bootsnav .navbar-nav-custom {
         padding-left: 15px;
         padding-right: 15px;
     }

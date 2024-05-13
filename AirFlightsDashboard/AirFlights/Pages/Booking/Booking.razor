@@ -1,151 +1,202 @@
-﻿@page "/booking"
+@page "/booking"
 
 
 @inherits BaseComponent
 
 <PageTitle>Booking</PageTitle>
 
-<Form TextAlignment="TextAlignment.Center">
-    <Accordion Class=" welcome-hero">
-        <AccordionItem @bind-Visible="@accordionItem1Visible">
-            <AccordionHeader>
-                <Heading Size="HeadingSize.Is5">
-                    <AccordionToggle Class="single-how-works">Personal Details</AccordionToggle>
-                </Heading>
-            </AccordionHeader>
-            <AccordionBody>
-                <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                    <FieldLabel>
-                        FirstName
-                    </FieldLabel>
-                    <FieldBody>
-                        <TextEdit Placeholder="Type your first name" />
-                    </FieldBody>
-                </Field>
+<Div Class="booking" Display="new FluentDisplay().Flex">
+    <Div Class="row">
+        <Div Class="col-md-6 col-sm-3">
+            <Form>
                 <Fields>
-                    <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                        <FieldLabel>
-                            LastName
-                        </FieldLabel>
-                        <FieldBody>
-                            <TextEdit Placeholder="Type your last name" />
-                        </FieldBody>
-                    </Field>
-                    <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                        <FieldLabel>
-                            Phone
-                        </FieldLabel>
-                        <FieldBody>
-                            <TextEdit Placeholder="Type your number phone" />
-                        </FieldBody>
-                    </Field>
-                    <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                        <FieldLabel>
-                            Email
-                        </FieldLabel>
-                        <FieldBody>
-                            <TextEdit Placeholder="Type your email" />
-                        </FieldBody>
-                    </Field>
-                </Fields>
-
-            </AccordionBody>
-        </AccordionItem>
-        <AccordionItem @bind-Visible="@accordionItem2Visible">
-            <AccordionHeader>
-                <Heading Size="HeadingSize.Is5">
-                    <AccordionToggle Class="single-how-works">Booking Details</AccordionToggle>
-                </Heading>
-            </AccordionHeader>
-            <AccordionBody>
-
-                <Fields>
-                    <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                        <FieldLabel>
-                            From
-                        </FieldLabel>
-                        <FieldBody>
-                            <Select TValue="string">
-                                <SelectItem>Sibiu</SelectItem>
-                                <SelectItem>Bucharest</SelectItem>
-                                <SelectItem>Brasov</SelectItem>
-                                <SelectItem>Craiova</SelectItem>
-                            </Select>
-                        </FieldBody>
-                    </Field>
-                    <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                        <FieldLabel>
-                            To
-                        </FieldLabel>
-                        <FieldBody>
-                            <Select TValue="string">
-                                <SelectItem>Sibiu</SelectItem>
-                                <SelectItem>Bucharest</SelectItem>
-                                <SelectItem>Brasov</SelectItem>
-                                <SelectItem>Craiova</SelectItem>
-                            </Select>
-                        </FieldBody>
-                    </Field>
-                    <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                        <FieldLabel>
-                            Preferred Airline
-                        </FieldLabel>
-                        <FieldBody>
-                            <Select TValue="string">
-                                <SelectItem>American Airline</SelectItem>
-                                <SelectItem>Delta Airline</SelectItem>
-                                <SelectItem>Frontier Airline</SelectItem>
-                                <SelectItem>Jet Blue</SelectItem>
-                                <SelectItem>Southwest Airlines</SelectItem>
-                            </Select>
-                        </FieldBody>
-                    </Field>
-                    <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                        <FieldLabel>
-                            Preferred Seating
-                        </FieldLabel>
-                        <FieldBody>
-                            <Select TValue="string">
-                                <SelectItem>Window</SelectItem>
-                                <SelectItem>Aisle</SelectItem>
-                                <SelectItem>Special (Request note below)</SelectItem>
-                            </Select>
-                        </FieldBody>
-                    </Field>
-                    <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                        <FieldLabel>
-                            Departure date
-                        </FieldLabel>
-                        <FieldBody>
-                            @*<Addons>
-                                <Addon AddonType="AddonType.Body">
-                                    <DatePicker @ref="@datePickerDestination" TValue="DateTime?" @bind-Date="@valueDestination" />
-                                </Addon>
-                                <Addon AddonType="AddonType.End">
-                                    <Button Color="Color.Light" Clicked="@(()=>datePickerDestination.ToggleAsync())">
-                                        <Icon Name="IconName.CalendarDay" />
-                                    </Button>
-                                </Addon>
-                            </Addons>*@
-                        </FieldBody>
-                    </Field>
-                    <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                        <FieldLabel>
-                            Return Date
-                        </FieldLabel>
-                        <FieldBody>
-                            @*<Addons>
-                                <Addon AddonType="AddonType.Body">
-                                    <DatePicker @ref="@datePickerReturn" TValue="DateTime?" @bind-Date="@valueReturn" />
-                                </Addon>
-                                <Addon AddonType="AddonType.End">
-                                    <Button Color="Color.Light" Clicked="@(()=>datePickerReturn.ToggleAsync())">
-                                        <Icon Name="IconName.CalendarDay" />
-                                    </Button>
-                                </Addon>
-                            </Addons>*@
-                        </FieldBody>
-                    </Field>
+                    <Card Class="booking-form">
+                        <CardHeader>
+                            <CardTitle Size="3">
+                                From
+                            </CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    Country
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>Romaina</SelectItem>
+                                        <SelectItem>Grace</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    City
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>Sibiu</SelectItem>
+                                        <SelectItem>Atena</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    Airport
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>Henry</SelectItem>
+                                        <SelectItem>Atena</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                        </CardBody>
+                    </Card>
+                    <Card Class="booking-form">
+                        <CardHeader>
+                            <CardTitle Size="3">
+                                To
+                            </CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    Country
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>Romaina</SelectItem>
+                                        <SelectItem>Grace</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    City
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>Sibiu</SelectItem>
+                                        <SelectItem>Atena</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    Airport
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>Henry</SelectItem>
+                                        <SelectItem>Atena</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                        </CardBody>
+                    </Card>
+                    <Card Class="booking-form">
+                        <CardHeader>
+                            <CardTitle Size="3">
+                                Preferred Airline
+                            </CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    Name
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>American Airline</SelectItem>
+                                        <SelectItem>Delta Airline</SelectItem>
+                                        <SelectItem>Frontier Airline</SelectItem>
+                                        <SelectItem>Jet Blue</SelectItem>
+                                        <SelectItem>Southwest Airlines</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    Route
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>American Airline</SelectItem>
+                                        <SelectItem>Delta Airline</SelectItem>
+                                        <SelectItem>Frontier Airline</SelectItem>
+                                        <SelectItem>Jet Blue</SelectItem>
+                                        <SelectItem>Southwest Airlines</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                        </CardBody>
+                    </Card>
+                    <Card Class="booking-form">
+                        <CardHeader>
+                            <CardTitle Size="3">
+                                Departure Data
+                            </CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    Departure date
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>12/03/2024</SelectItem>
+                                        <SelectItem>12/05/2024</SelectItem>
+                                        <SelectItem>20/07/2024</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    Hour
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>12:00</SelectItem>
+                                        <SelectItem>16:00</SelectItem>
+                                        <SelectItem>20:00</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                        </CardBody>
+                    </Card>
+                    <Card Class="booking-form">
+                        <CardHeader>
+                            <CardTitle Size="3">
+                                Return Data
+                            </CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    Return date
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>12/03/2024</SelectItem>
+                                        <SelectItem>12/05/2024</SelectItem>
+                                        <SelectItem>20/07/2024</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                            <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
+                                <FieldLabel>
+                                    Hour
+                                </FieldLabel>
+                                <FieldBody>
+                                    <Select TValue="string">
+                                        <SelectItem>12:00</SelectItem>
+                                        <SelectItem>16:00</SelectItem>
+                                        <SelectItem>20:00</SelectItem>
+                                    </Select>
+                                </FieldBody>
+                            </Field>
+                        </CardBody>
+                    </Card>
                     <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
                         <FieldLabel>
                             Adult(12+ yrs)
@@ -183,13 +234,19 @@
                         <MemoEdit Placeholder="Your message here" Rows="2" />
                     </FieldBody>
                 </Field>
+                <Field>
+                    <Button Class="booking-btn">
+                        Show flights
+                    </Button>
+                </Field>
 
-            </AccordionBody>
-        </AccordionItem>
-    </Accordion>
-    <Field>
-        <Button Color="Color.Danger">
-            Submit
-        </Button>
-    </Field>
-</Form>
+            </Form>
+        </Div>
+        <Div Class="col-md-6 col-sm-5">
+            <Div class="booking-txt" TextAlignment="TextAlignment.Center">
+                <h2>Planing <br /> Trip <br /> To <br />  Anywhere <br /> in <br /> The <br /> World?</h2>
+            </Div>
+        </Div>
+    </Div>
+</Div>
+
