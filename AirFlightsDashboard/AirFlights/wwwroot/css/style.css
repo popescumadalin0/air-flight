@@ -396,16 +396,16 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     -ms-transition:.3s linear; 
     -o-transition:.3s linear;
     transition: .3s linear;
-    color: white;
+    color: black;
     background-color: rgba(255,255,255,.4);
 }
 
 .single-how-works-icon {
     display: inline-block;
     color: black;
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
+    width: 60px;
+    height: 60px;
+    line-height: 70px;
     background: #eef2f6;
     border-radius: 50%;
 }
@@ -413,7 +413,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     font-size:  18px;
     margin: 35px 0 20px;
 }
-.single-how-works h2 a {text-transform:  lowercase; color: white}
+.single-how-works h2 a {text-transform:  lowercase; color: black}
 
 .single-how-works span {
     text-transform: lowercase;
@@ -436,7 +436,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     border-radius: 3px;
 }
 
-.single-how-works:hover h2 a,.single-how-works:hover p{color: #fff;}
+.single-how-works:hover h2 a,.single-how-works:hover p{color:black;}
 .single-how-works:hover .single-how-works-icon{background: #fff;}
 .single-how-works:hover .welcome-hero-btn.how-work-btn{background: #fff;color: #ff545a;}
 .single-how-works:hover{box-shadow: 0 0px 10px rgba(71,71,71,.4);background: #ff545a;}
@@ -969,6 +969,13 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     .register {
     position: relative;
     background: #f8fafb;
-    height: 500px;
+    height: 600px;
+    z-index: 1;
+}
+.contact {
+    position:relative;
+    background: #f8fafb;
+    height: 690px;
+    width: 1000px;
     z-index: 1;
 }
