@@ -12,6 +12,7 @@ namespace SDK.Interfaces;
 public interface IAirFlightsApi
 {
     [Get("/api/User")]
+    [Headers("Authorization: Bearer")]
     Task<List<User>> GetUsersAsync();
 
     [Get("/api/User/{CNP}")]

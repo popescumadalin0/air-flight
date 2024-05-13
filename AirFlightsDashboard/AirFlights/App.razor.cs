@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace AirFlightsDashboard;
 
-public partial class App : IDisposable
+public partial class App : ComponentBase, IDisposable
 {
     [Inject]
     private SnackbarState SnackbarState { get; set; }

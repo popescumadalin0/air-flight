@@ -22,7 +22,7 @@ public class BookingService: IBookingService
     {
         var booking = await _bookingRepository.GetBookingsAsync();
 
-        var response = booking.Select(b => new Models.Booking()
+        var response = booking.Select(b => new Models.Booking
         {
             Id = b.Id,
         }).ToList();
@@ -35,7 +35,7 @@ public class BookingService: IBookingService
     {
         var booking = await _bookingRepository.GetBookingAsync(id);
 
-        var response = new Models.Booking()
+        var response = new Models.Booking
         {
             Id = booking.Id
         };
@@ -46,7 +46,7 @@ public class BookingService: IBookingService
     /// <inheritdoc />
     public async Task AddBookingAsync(Models.Booking model)
     {
-        var entity = new Booking()
+        var entity = new Booking
         {
             Id = model.Id
         };
@@ -56,7 +56,7 @@ public class BookingService: IBookingService
     /// <inheritdoc />
     public async Task UpdateBookingAsync(Models.Booking model)
     {
-        var entity = new Booking()
+        var entity = new Booking
         {
             Id=model.Id
             //todo: sa vedem daca le adaugam de aici

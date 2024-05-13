@@ -4,7 +4,14 @@ using AirFlightsServer.Repositories.Interfaces;
 using AirFlightsServer.Services;
 using AirFlightsServer.Services.Interfaces;
 using DataBaseLayout;
+using DataBaseLayout.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
+using Humanizer.Configuration;
+using FluentEmail.Core.Interfaces;
+using FluentEmail.Smtp;
+using System.Net.Mail;
 
 namespace AirFlightsServer;
 
@@ -30,6 +37,17 @@ public static class DependencyInjection
         services.AddScoped<IPlaneSeatService, PlaneSeatService>();
         services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<IUserService, UserService>();
+
+        var emailSettings = config.GetSection("EmailSettings");
+        var defaultFromEmail = emailSettings["DefaultFromEmail"];
+        var host = emailSettings["Host"];
+        var port = emailSettings.GetValue<int>("Port");
+        services.AddFluentEmail(defaultFromEmail);
+        services.AddSingleton<ISender>(x => new SmtpSender(new SmtpClient(host, port)));
+
+        services.AddTransient<IEmailService, EmailService>();
+        services.AddTransient<IEmailSender, EmailSender>();
+        services.AddTransient<IEmailSender<User>, EmailSender>();
 
         return services;
     }

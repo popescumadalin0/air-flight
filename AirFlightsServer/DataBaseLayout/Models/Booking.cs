@@ -16,5 +16,5 @@ public class Booking
     [Required]
     public User User { get; set; }
 
-    public virtual ICollection<PlaneSeat> PlaneSeat { get; set; }
+    public virtual ICollection<PlaneSeat> PlaneSeats { get; set; }
 }

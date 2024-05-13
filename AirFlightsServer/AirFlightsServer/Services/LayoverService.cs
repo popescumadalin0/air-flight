@@ -22,7 +22,7 @@ public class LayoverService:ILayoverService
     {
         var layover = await _layoverRepository.GetLayoversAsync();
 
-        var response = layover.Select(l => new Layover()
+        var response = layover.Select(l => new Layover
         {
             Id = l.Id,
             DepartureTime = l.DepartureTime,
@@ -43,7 +43,7 @@ public class LayoverService:ILayoverService
     {
         var layover = await _layoverRepository.GetLayoverAsync(id);
 
-        var response = new Layover()
+        var response = new Layover
         {
             Id = layover.Id,
             DepartureTime = layover.DepartureTime,
@@ -63,7 +63,7 @@ public class LayoverService:ILayoverService
     public async Task AddLayoverAsync(Layover model)
     {
 
-        var entity = new DataBaseLayout.Models.Layover()
+        var entity = new DataBaseLayout.Models.Layover
         {
             Id = model.Id,
             DepartureTime = model.DepartureTime,
@@ -82,7 +82,7 @@ public class LayoverService:ILayoverService
     /// <inheritdoc />
     public async Task UpdateLayoverAsync(Layover model)
     {
-        var entity = new DataBaseLayout.Models.Layover()
+        var entity = new DataBaseLayout.Models.Layover
         {
             Id = model.Id,
             DepartureTime = model.DepartureTime,

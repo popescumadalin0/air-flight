@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AirFlightsDashboard.Models;
 using AirFlightsDashboard.States;
 using Microsoft.AspNetCore.Components;
+using SDK.Interfaces;
 
 namespace AirFlightsDashboard.Pages.Account;
 
@@ -13,6 +14,9 @@ public partial class Login : ComponentBase, IDisposable
 
     [Inject]
     private LoadingState LoadingState { get; set; }
+
+    [Inject]
+    private IAirFlightsApiClient AirFlightsApiClient { get; set; }
 
     private LoginModel _loginModel = new LoginModel();
 
@@ -28,9 +32,15 @@ public partial class Login : ComponentBase, IDisposable
         LoadingState.OnStateChange += StateHasChanged;
     }
 
-    private Task SignInAsync()
+    private async Task SignInAsync()
     {
+        await AirFlightsApiClient.GetUsersAsync();
         //todo: call database
-        return Task.CompletedTask;
+        //return Task.CompletedTask;
+    }
+
+    private async Task LoginAsync()
+    {
+
     }
 }

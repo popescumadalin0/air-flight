@@ -21,7 +21,7 @@ public class PlaneSeatService:IPlaneSeatService
     public async Task<IList<PlaneSeat>> GetPlaneSeatsAsync()
     {
         var planeSeat = await _planeSeatRepository.GetPlaneSeatsAsync();
-        var response = planeSeat.Select(ps => new PlaneSeat()
+        var response = planeSeat.Select(ps => new PlaneSeat
         {
             Id = ps.Id,
             IsOcuppied = ps.IsOcuppied
@@ -33,7 +33,7 @@ public class PlaneSeatService:IPlaneSeatService
     public async Task<PlaneSeat> GetPlaneSeatAsync(Guid id)
     {
         var planeSeat = await _planeSeatRepository.GetPlaneSeatAsync(id);
-        var response = new PlaneSeat()
+        var response = new PlaneSeat
         {
             Id = planeSeat.Id,
             IsOcuppied = planeSeat.IsOcuppied
@@ -44,7 +44,7 @@ public class PlaneSeatService:IPlaneSeatService
     /// <inheritdoc />
     public async Task AddPlaneSeatAsync(PlaneSeat model)
     {
-        var entity = new DataBaseLayout.Models.PlaneSeat()
+        var entity = new DataBaseLayout.Models.PlaneSeat
         {
             Id = model.Id,
             IsOcuppied = model.IsOcuppied
@@ -55,7 +55,7 @@ public class PlaneSeatService:IPlaneSeatService
     /// <inheritdoc />
     public async Task UpdatePlaneSeatAsync(PlaneSeat model)
     {
-        var entity = new DataBaseLayout.Models.PlaneSeat()
+        var entity = new DataBaseLayout.Models.PlaneSeat
         {
             Id = model.Id,
             IsOcuppied = model.IsOcuppied

@@ -16,5 +16,5 @@ public class PlaneSeat
     [Required]
     public Layover Layover { get; set; }
 
-    public virtual ICollection<Booking> Reservation { get; set; }
+    public virtual ICollection<Booking> Bookings { get; set; }
 }

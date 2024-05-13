@@ -35,7 +35,7 @@ public class PlaneFacilityService: IPlaneFacilityService
     {
         var planeFacility = await _planeFacilityRepository.GetPlaneFacilityAsync(id);
 
-        var response = new PlaneFacility()
+        var response = new PlaneFacility
         {
             Id = planeFacility.Id,
             Name = planeFacility.Name
@@ -47,7 +47,7 @@ public class PlaneFacilityService: IPlaneFacilityService
     /// <inheritdoc />
     public async Task AddPlaneFacilityAsync(PlaneFacility model)
     {
-        var entity = new DataBaseLayout.Models.PlaneFacility()
+        var entity = new DataBaseLayout.Models.PlaneFacility
         {
             Id = model.Id,
             Name = model.Name
@@ -58,7 +58,7 @@ public class PlaneFacilityService: IPlaneFacilityService
     /// <inheritdoc />
     public async Task UpdatePlaneFacilityAsync(PlaneFacility model)
     {
-        var entity = new DataBaseLayout.Models.PlaneFacility()
+        var entity = new DataBaseLayout.Models.PlaneFacility
         {
             Id = model.Id,
             Name = model.Name

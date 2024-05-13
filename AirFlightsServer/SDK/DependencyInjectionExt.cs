@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using System.Threading.Tasks;
+using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using SDK.Clients;
@@ -12,7 +14,11 @@ public static class DependencyInjectionExt
     /// <summary />
     public static IServiceCollection AddAirFlightsApiClient(this IServiceCollection services, Uri url)
     {
-        services.AddRefitClient<IAirFlightsApi>()
+        RefitSettings refitSettings = new()
+        {
+            AuthorizationHeaderValueGetter = (_, cancellationToken) => AuthBearerTokenFactory.GetBearerTokenAsync(cancellationToken)
+        };
+        services.AddRefitClient<IAirFlightsApi>(refitSettings)
             .ConfigureHttpClient(c => c.BaseAddress = url);
 
         services.AddSingleton<IAirFlightsApiClient, AirFlightsApiClient>();

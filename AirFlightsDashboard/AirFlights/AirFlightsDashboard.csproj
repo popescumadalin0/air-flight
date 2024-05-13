@@ -5,6 +5,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
 		<PackageReference Include="Blazorise" Version="1.5.2" />
 		<PackageReference Include="Blazorise.Bootstrap" Version="1.5.2" />
 		<PackageReference Include="Blazorise.Bootstrap5" Version="1.5.2" />

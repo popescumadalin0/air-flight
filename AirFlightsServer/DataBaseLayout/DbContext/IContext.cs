@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataBaseLayout.Context;
+namespace DataBaseLayout.DbContext;
 
 public interface IContext
 {

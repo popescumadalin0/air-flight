@@ -22,7 +22,7 @@ public class TicketService : ITicketService
     {
         var airFlight = await _ticketRepository.GetTicketsAsync();
 
-        var response = airFlight.Select(af => new Models.Ticket()
+        var response = airFlight.Select(af => new Models.Ticket
         {
             Currency = af.Currency,
             Id = af.Id,
@@ -38,7 +38,7 @@ public class TicketService : ITicketService
     {
         var airFlight = await _ticketRepository.GetTicketAsync(id);
 
-        var response = new Models.Ticket()
+        var response = new Models.Ticket
         {
             Currency = airFlight.Currency,
             Id = airFlight.Id,
@@ -51,7 +51,7 @@ public class TicketService : ITicketService
     /// <inheritdoc />
     public async Task CreateTicketAsync(Models.Ticket ticket)
     {
-        var entity = new DataBaseLayout.Models.Ticket()
+        var entity = new DataBaseLayout.Models.Ticket
         {
             Currency = ticket.Currency,
             Id = ticket.Id,
@@ -65,7 +65,7 @@ public class TicketService : ITicketService
     /// <inheritdoc />
     public async Task UpdateTicketAsync(Models.Ticket ticket)
     {
-        var entity = new DataBaseLayout.Models.Ticket()
+        var entity = new DataBaseLayout.Models.Ticket
         {
             Currency = ticket.Currency,
             Id = ticket.Id,

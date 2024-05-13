@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DataBaseLayout.Models;
 [PrimaryKey(nameof(Id))]
 public class Layover
-{ 
+{
     public Guid Id { get; set; }
 
     public string StartPointCountry { get; set; }
@@ -26,7 +26,7 @@ public class Layover
 
     public string StartPointCity { get; set; }
 
-    public Guid AirFlightId { get; set; }
+    public Guid TicketId { get; set; }
 
     [Required]
     public Ticket Ticket { get; set; }
@@ -36,8 +36,8 @@ public class Layover
     [Required]
     public Company Company { get; set; }
 
-    public ICollection<PlaneSeat> PlaneSeat { get; set; }
+    public ICollection<PlaneSeat> PlaneSeats { get; set; }
 
-    public virtual ICollection<PlaneFacility> PlaneFacility { get; set; }
+    public virtual ICollection<PlaneFacility> PlaneFacilities { get; set; }
 
 }

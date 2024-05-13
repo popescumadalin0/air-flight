@@ -23,7 +23,7 @@ public class CompanyService : ICompanyService
     {
         var company = await _companyRepository.GetCompaniesAsync();
 
-        var response = company.Select(c => new Company()
+        var response = company.Select(c => new Company
         {
             Id=c.Id,
             Name=c.Name,
@@ -38,7 +38,7 @@ public class CompanyService : ICompanyService
     {
         var company = await _companyRepository.GetCompanyAsync(id);
 
-        var response = new Company()
+        var response = new Company
         {
             Id = company.Id,
             Name=company.Name,
@@ -51,7 +51,7 @@ public class CompanyService : ICompanyService
     /// <inheritdoc />
     public async Task AddCompanyAsync(Company model)
     {
-        var entity = new DataBaseLayout.Models.Company()
+        var entity = new DataBaseLayout.Models.Company
         {
             Id = model.Id,
             Name = model.Name,
@@ -63,7 +63,7 @@ public class CompanyService : ICompanyService
     /// <inheritdoc />
     public async Task UpdateCompanyAsync(Company model)
     {
-        var entity = new DataBaseLayout.Models.Company()
+        var entity = new DataBaseLayout.Models.Company
         {
             Id = model.Id,
             Name = model.Name,

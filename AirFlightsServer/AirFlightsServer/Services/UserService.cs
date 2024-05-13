@@ -114,9 +114,10 @@ public class UserService : IUserService
 
     private static User DtoToModel(Models.User model)
     {
-        var entity = new User()
+        var entity = new User
         {
             Id = model.CNP,
+            CNP = model.CNP,
             Document = model.Document,
             Email = model.Email,
             FirstName = model.FirstName,
@@ -136,7 +137,7 @@ public class UserService : IUserService
 
     private static Models.User ModelToDto(User model)
     {
-        var dto = new Models.User()
+        var dto = new Models.User
         {
             CNP = model.CNP,
             Document = model.Document,

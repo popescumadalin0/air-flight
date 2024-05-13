@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories.Interfaces;
-using DataBaseLayout.Context;
+using DataBaseLayout.DbContext;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,8 +51,8 @@ public class BookingRepository : IBookingRepository
     /// <inheritdoc />
     public async Task DeleteBookingAsync(Guid id)
     {
-        var reservation = await _context.Bookings.SingleAsync(scp => scp.Id == id);
-        _context.Bookings.Remove(reservation);
+        var booking = await _context.Bookings.SingleAsync(scp => scp.Id == id);
+        _context.Bookings.Remove(booking);
 
         await _context.SaveChangesAsync();
     }

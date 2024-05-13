@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataBaseLayout.Context;
+namespace DataBaseLayout.DbContext;
 
 public class Context : IdentityDbContext<User, Role, string>, IContext
 {
@@ -56,6 +56,26 @@ public class Context : IdentityDbContext<User, Role, string>, IContext
         {
             entity.ToTable(name: "UserLogins");
         });
+
+        modelBuilder.Entity<Booking>().HasOne(x => x.User)
+            .WithMany(x => x.Bookings).OnDelete(DeleteBehavior.NoAction)
+            .HasForeignKey(x => x.UserId);
+
+        modelBuilder.Entity<Layover>().HasOne(x => x.Company)
+            .WithMany(x => x.Layovers).OnDelete(DeleteBehavior.NoAction)
+            .HasForeignKey(x => x.CompanyId);
+
+        modelBuilder.Entity<Layover>().HasOne(x => x.Ticket)
+            .WithMany(x => x.Layovers).OnDelete(DeleteBehavior.NoAction)
+            .HasForeignKey(x => x.TicketId);
+
+        modelBuilder.Entity<PlaneSeat>().HasOne(x => x.Layover)
+            .WithMany(x => x.PlaneSeats).OnDelete(DeleteBehavior.NoAction)
+            .HasForeignKey(x => x.LayoverId);
+
+        modelBuilder.Entity<PlaneSeat>().HasOne(x => x.Layover)
+            .WithMany(x => x.PlaneSeats).OnDelete(DeleteBehavior.NoAction)
+            .HasForeignKey(x => x.LayoverId);
 
         // modelBuilder.Entity<Ticket>()
         //     .Navigation(a => a.Layovers)

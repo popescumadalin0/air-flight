@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories.Interfaces;
-using DataBaseLayout.Context;
+using DataBaseLayout.DbContext;
 using DataBaseLayout.Models;
 using Microsoft.EntityFrameworkCore;
 
