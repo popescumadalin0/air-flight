@@ -1,0 +1,90 @@
+@page "/explore"
+
+<Image Source="../images/explore/London.jpg" Text="Keyboard image" Display="Display.Block" Width="Width.Is100" />
+
+
+<Div Margin="Margin.IsAuto.OnX" class="explore container">
+    <Heading Size="HeadingSize.Is2" Margin="Margin.Is3.FromBottom" TextAlignment="TextAlignment.Center">
+        Explore a new word!
+    </Heading>
+
+    <Div class="row">
+        <Div Class="col-md-4">
+            <Form>
+                <Field>
+                    <FieldLabel><h2>Where?</h2></FieldLabel>
+                    <FieldBody>
+                        <Paragraph> Leaving from</Paragraph>
+                        <Select @bind-SelectedValue="@selectedValueLeaving" Style="border-radius: 50px">
+                            <SelectItem Value="1">One</SelectItem>
+                            <SelectItem Value="2">Two</SelectItem>
+                            <SelectItem Value="3">Three</SelectItem>
+                            <SelectItem Value="4">Four</SelectItem>
+                        </Select>
+                        <Paragraph> Going to </Paragraph>
+                        <Select @bind-SelectedValue="@selectedValueGoing" Style="border-radius: 50px">
+                            <SelectItem Value="1">One</SelectItem>
+                            <SelectItem Value="2">Two</SelectItem>
+                            <SelectItem Value="3">Three</SelectItem>
+                            <SelectItem Value="4">Four</SelectItem>
+                        </Select>
+                    </FieldBody>
+                </Field>
+            </Form>
+        </Div>
+        <Div Class="col-md-4">
+            <Form>
+                <Field>
+                    <FieldLabel><h2>When?</h2></FieldLabel>
+                    <FieldBody>
+                        <Paragraph> Departing on</Paragraph>
+                        <Select @bind-SelectedValue="@selectedValueDeparting" Style="border-radius: 50px">
+                            <SelectItem Value="1">12/12/2022</SelectItem>
+                            <SelectItem Value="2">11/12/2022</SelectItem>
+                            <SelectItem Value="3">10/12/2022</SelectItem>
+                        </Select>
+                        <Paragraph> Arriving on </Paragraph>
+                        <Select @bind-SelectedValue="@selectedValueArriving" Style="border-radius: 50px">
+                            <SelectItem Value="1">12/12/2022</SelectItem>
+                            <SelectItem Value="2">11/12/2022</SelectItem>
+                            <SelectItem Value="3">10/12/2022</SelectItem>
+                        </Select>
+                    </FieldBody>
+                </Field>
+            </Form>
+        </Div>
+        <Div Class="col-md-4">
+            <Form>
+                <Field>
+                    <FieldLabel><h2>Who?</h2></FieldLabel>
+                    <FieldBody>
+                        <Paragraph>Adults</Paragraph>
+                        <Select @bind-SelectedValue="@selectedValueAdults" Style="border-radius: 50px">
+                            <SelectItem Value="1">0</SelectItem>
+                            <SelectItem Value="2">1</SelectItem>
+                            <SelectItem Value="3">2</SelectItem>
+                        </Select>
+                        <Paragraph> Children</Paragraph>
+                        <Select @bind-SelectedValue="@selectedValueChildren" Style="border-radius: 50px">
+                            <SelectItem Value="1">0</SelectItem>
+                            <SelectItem Value="2">1</SelectItem>
+                            <SelectItem Value="3">2</SelectItem>
+                        </Select>
+                    </FieldBody>
+                </Field>
+            </Form>
+        </Div>
+    </Div>
+</Div>
+
+@*todo: add cards with flights*@
+
+@code{
+    int selectedValueLeaving;
+    int selectedValueGoing;
+    int selectedValueDeparting;
+    int selectedValueArriving;
+    int selectedValueAdults;
+    int selectedValueChildren;
+
+}

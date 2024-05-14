@@ -198,14 +198,20 @@
                         </CardBody>
                     </Card>
                 </Fields>
-                <Field>
-                    <FieldLabel>
-                        <a class="btn btn-login" @onclick="RedirectPage">Do you want to buy another ticket?</a>
-                    </FieldLabel>
-                    <FieldBody>
-                        <PersonalDetails @ref="popupRef" />
-                    </FieldBody>
-                </Field>
+            <Field>
+                <FieldLabel>
+                    <Button Color="Color.Primary" Clicked="@personalDetails.ShowModal">Do you want another ticket?</Button>
+                </FieldLabel>
+                <FieldBody>
+                </FieldBody>
+            </Field>
+            <Field>
+                <FieldLabel>
+                    <Button Color="Color.Primary" Clicked="@personalDetails.ShowModal"> Choose Your Seat</Button>
+                </FieldLabel>
+                <FieldBody>
+                </FieldBody>
+            </Field>
                 <Field>
                     <Button Class="booking-btn">
                         Show flights
@@ -222,12 +228,4 @@
     </Div>
 </Div>
 
-@code {
-    private PersonalDetails popupRef;
-
-    private void RedirectPage()
-    {
-        // Shows the popup at the center of the screen
-        popupRef.Show("");
-    }
-}
+<PersonalDetails @ref="@personalDetails"></PersonalDetails>

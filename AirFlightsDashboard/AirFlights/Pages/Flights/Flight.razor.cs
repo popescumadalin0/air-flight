@@ -2,14 +2,13 @@ using System;
 using Blazorise;
 using Microsoft.AspNetCore.Components;
 
-namespace AirFlightsDashboard.Pages.Booking;
+namespace AirFlightsDashboard.Pages.Flights;
 
 public partial class Booking : BaseComponent
 {
     [Inject]
     private NavigationManager Nav1 { get; set; }
 
-    private PersonalDetails personalDetails;
 
     private int selectedValue { get; set; }
     bool accordionItem1Visible = true;
