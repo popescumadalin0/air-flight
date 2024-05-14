@@ -12,19 +12,6 @@ namespace DataBaseLayout.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AirFlights",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
-                    Currency = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AirFlights", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Companies",
                 columns: table => new
                 {
@@ -64,6 +51,19 @@ namespace DataBaseLayout.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tickets",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    Currency = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tickets", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -96,6 +96,27 @@ namespace DataBaseLayout.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RoleClaims_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Layovers",
                 columns: table => new
                 {
@@ -115,36 +136,15 @@ namespace DataBaseLayout.Migrations
                 {
                     table.PrimaryKey("PK_Layovers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Layovers_AirFlights_TicketId",
-                        column: x => x.TicketId,
-                        principalTable: "AirFlights",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_Layovers_Companies_CompanyId",
                         column: x => x.CompanyId,
                         principalTable: "Companies",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RoleClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RoleClaims_Roles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Roles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Layovers_Tickets_TicketId",
+                        column: x => x.TicketId,
+                        principalTable: "Tickets",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -428,10 +428,10 @@ namespace DataBaseLayout.Migrations
                 name: "Layovers");
 
             migrationBuilder.DropTable(
-                name: "AirFlights");
+                name: "Companies");
 
             migrationBuilder.DropTable(
-                name: "Companies");
+                name: "Tickets");
         }
     }
 }

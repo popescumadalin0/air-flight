@@ -1,4 +1,4 @@
-﻿@page "/register"
+@page "/register"
 @inherits ComponentBase
 @implements IDisposable
 
@@ -19,7 +19,7 @@
                                 FirstName
                             </FieldLabel>
                             <FieldBody>
-                                <TextEdit Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.FirstName" />
+                                <TextEdit Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.FirstName"/>
                             </FieldBody>
                         </Field>
                         <Field>
@@ -27,7 +27,23 @@
                                 LastName
                             </FieldLabel>
                             <FieldBody>
-                                <TextEdit Placeholder="Enter the last name" Role="TextRole.Text" @bind-Text="_registerModel.LastName" />
+                                <TextEdit Placeholder="Enter the last name" Role="TextRole.Text" @bind-Text="_registerModel.LastName"/>
+                            </FieldBody>
+                        </Field>
+                        <Field>
+                            <FieldLabel>
+                                CNP
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.CNP" />
+                            </FieldBody>
+                        </Field>
+                        <Field>
+                            <FieldLabel>
+                                Username
+                            </FieldLabel>
+                            <FieldBody>
+                                <TextEdit Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.UserName" />
                             </FieldBody>
                         </Field>
                         <Field>
@@ -35,7 +51,7 @@
                                 Email
                             </FieldLabel>
                             <FieldBody>
-                                <TextEdit Placeholder="Enter your e-mail" Role="TextRole.Email" @bind-Text="_registerModel.Email" />
+                                <TextEdit Placeholder="Enter your e-mail" Role="TextRole.Email" @bind-Text="_registerModel.Email"/>
                             </FieldBody>
                         </Field>
                         <Field>
@@ -43,7 +59,7 @@
                                 Phone
                             </FieldLabel>
                             <FieldBody>
-                                <TextEdit Placeholder="Enter your phone number" Role="TextRole.Telephone" @bind-Text="_registerModel.PhoneNumber" />
+                                <TextEdit Placeholder="Enter your phone number" Role="TextRole.Telephone" @bind-Text="_registerModel.PhoneNumber"/>
                             </FieldBody>
                         </Field>
                         <Field>
@@ -51,7 +67,7 @@
                                 Password
                             </FieldLabel>
                             <FieldBody>
-                                <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.Password" autocomplete="new-password" />
+                                <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.Password" autocomplete="new-password"/>
                             </FieldBody>
                         </Field>
                         <Field>
@@ -59,7 +75,7 @@
                                 Confirm Password
                             </FieldLabel>
                             <FieldBody>
-                                <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.ConfirmPassword" autocomplete="confirm-password" />
+                                <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.ConfirmPassword" autocomplete="confirm-password"/>
                             </FieldBody>
                         </Field>
                         <Field>

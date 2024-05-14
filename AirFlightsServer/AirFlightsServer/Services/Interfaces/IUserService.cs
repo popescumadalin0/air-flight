@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Models;
+using Models.Request;
 
 namespace AirFlightsServer.Services.Interfaces;
 
@@ -24,6 +25,9 @@ public interface IUserService
 
     /// <summary/>
     Task<IdentityResult> RegisterUserAsync(User model, string password);
+
+    /// <summary/>
+   // Task<IdentityResult> LoginUserAsync(string username, string password);
 
     /// <summary/>
     Task<IdentityResult> UpdateUserAsync(User user);

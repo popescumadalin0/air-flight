@@ -20,9 +20,9 @@ public class TicketService : ITicketService
     /// <inheritdoc />
     public async Task<IList<Models.Ticket>> GetTicketsAsync()
     {
-        var airFlight = await _ticketRepository.GetTicketsAsync();
+        var ticket = await _ticketRepository.GetTicketsAsync();
 
-        var response = airFlight.Select(af => new Models.Ticket
+        var response = ticket.Select(af => new Models.Ticket
         {
             Currency = af.Currency,
             Id = af.Id,
@@ -36,13 +36,13 @@ public class TicketService : ITicketService
     /// <inheritdoc />
     public async Task<Models.Ticket> GetTicketAsync(Guid id)
     {
-        var airFlight = await _ticketRepository.GetTicketAsync(id);
+        var ticket = await _ticketRepository.GetTicketAsync(id);
 
         var response = new Models.Ticket
         {
-            Currency = airFlight.Currency,
-            Id = airFlight.Id,
-            Price = airFlight.Price
+            Currency = ticket.Currency,
+            Id = ticket.Id,
+            Price = ticket.Price
         };
 
         return response;

@@ -5,12 +5,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Models;
+using Models.Constants;
+using Models.Request;
 
 namespace AirFlightsServer.Controllers;
 
-public class UserController:BaseController
+public class UserController : BaseController
 {
     private readonly IUserService _userService;
 
@@ -19,6 +22,7 @@ public class UserController:BaseController
         _userService = userService;
     }
     [HttpGet]
+    [Authorize(Roles.Admin)]
     public async Task<IActionResult> GetUsersAsync()
     {
         try
@@ -33,7 +37,8 @@ public class UserController:BaseController
         }
     }
 
-    [HttpGet("{CNP}")]
+    [HttpGet("/cnp/{CNP}")]
+    [Authorize(Roles.Admin)]
     public async Task<IActionResult> GetUserAsync(string CNP)
     {
         try
@@ -49,14 +54,30 @@ public class UserController:BaseController
         }
     }
 
-    [HttpPost]
-    public async Task<IActionResult> RegisterUserAsync(User user)
+    /*[HttpPost("login")]
+    public async Task<IActionResult> LoginUserAsync(UserLogin user)
     {
         try
         {
-            user.ProfileImage = new byte[7];
-            user.Document = new byte[7];
-            var result = await _userService.RegisterUserAsync(user, "Admin1234!");
+            var result = await _userService.LoginUserAsync(user.Email, user.Password);
+
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<IdentityResult>(result));
+
+        }
+        catch (Exception ex)
+        {
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse(ex));
+        }
+    }*/
+
+    [HttpPost("register")]
+    public async Task<IActionResult> RegisterUserAsync(UserRegister user)
+    {
+        try
+        {
+            user.User.ProfileImage = new byte[7];
+            user.User.Document = new byte[7];
+            var result = await _userService.RegisterUserAsync(user.User, user.Password);
 
             return ApiServiceResponse.ApiServiceResult(new ServiceResponse<IdentityResult>(result));
 
@@ -68,6 +89,7 @@ public class UserController:BaseController
     }
 
     [HttpPut]
+    [Authorize(Roles.User)]
     public async Task<IActionResult> UpdateUserAsync(User user)
     {
         try
@@ -81,7 +103,8 @@ public class UserController:BaseController
         }
     }
 
-    [HttpDelete("{CNP}")]
+    [HttpDelete("/cnp/{CNP}")]
+    [Authorize(Roles.User)]
     public async Task<IActionResult> DeleteUserAsync(string CNP)
     {
         try

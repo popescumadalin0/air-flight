@@ -20,23 +20,23 @@ public class TicketRepository : ITicketRepository
     /// <inheritdoc />
     public async Task<IList<Ticket>> GetTicketsAsync()
     {
-        var airFlights = await _context.AirFlights.ToListAsync();
-        return airFlights;
+        var tickets = await _context.Tickets.ToListAsync();
+        return tickets;
 
     }
 
     /// <inheritdoc />
     public async Task<Ticket> GetTicketAsync(Guid id)
     {
-        var airFlight = await _context.AirFlights.FindAsync(id);
+        var ticket = await _context.Tickets.FindAsync(id);
 
-        return airFlight;
+        return ticket;
     }
 
     /// <inheritdoc />
     public async Task AddTicketAsync(Ticket model)
     {
-        await _context.AirFlights.AddAsync(model);
+        await _context.Tickets.AddAsync(model);
 
         await _context.SaveChangesAsync();
 
@@ -45,15 +45,15 @@ public class TicketRepository : ITicketRepository
     /// <inheritdoc />
     public async Task UpdateTicketAsync(Ticket ticket)//todo: modificat
     {
-        await _context.AirFlights.FindAsync(ticket);
+        await _context.Tickets.FindAsync(ticket);
         await _context.SaveChangesAsync();
     }
 
     /// <inheritdoc />
     public async Task DeleteTicketAsync(Guid id)
     {
-        var airFlighty = await _context.AirFlights.SingleAsync(scp => scp.Id == id);
-        _context.AirFlights.Remove(airFlighty);
+        var airFlighty = await _context.Tickets.SingleAsync(scp => scp.Id == id);
+        _context.Tickets.Remove(airFlighty);
 
         await _context.SaveChangesAsync();
     }

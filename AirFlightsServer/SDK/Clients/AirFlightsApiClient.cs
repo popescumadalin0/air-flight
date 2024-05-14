@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Models;
+using Models.Request;
+using Models.Response;
 using SDK.Interfaces;
 using SDK.RefitModels;
 
@@ -58,7 +60,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.DeleteUserAsync(CNP);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -68,17 +70,32 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         }
     }
 
-    public async Task<ApiResponseMessage> CreateUserAsync(User user)
+    public async Task<ApiResponseMessage> RegisterUserAsync(UserRegister user)
     {
         try
         {
-            var task = _apiClient.CreateUserAsync(user);
+            var task = _apiClient.RegisterUserAsync(user);
+            var result = await ExecuteWithNoContentResponse(task);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"Error executing {nameof(RegisterUserAsync)}");
+            throw;
+        }
+    }
+
+    public async Task<ApiResponseMessage<UserLoginResponse>> LoginUserAsync(UserLogin user)
+    {
+        try
+        {
+            var task = _apiClient.LoginUserAsync(user);
             var result = await Execute(task);
             return result;
         }
         catch (Exception e)
         {
-            _logger.LogError(e, $"Error executing {nameof(CreateUserAsync)}");
+            _logger.LogError(e, $"Error executing {nameof(RegisterUserAsync)}");
             throw;
         }
     }
@@ -88,7 +105,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.UpdateUserAsync(user);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -133,7 +150,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.CreateTicketAsync(ticket);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -147,8 +164,8 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
     {
         try
         {
-            var task = _apiClient.CreateTicketAsync(ticket);
-            var result = await Execute(task);
+            var task = _apiClient.UpdateTicketAsync(ticket);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -163,7 +180,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.DeleteTicketAsync(id);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -208,7 +225,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.CreateCompanyAsync(company);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -223,7 +240,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.UpdateCompanyAsync(company);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -238,7 +255,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.DeleteCompanyAsync(id);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -283,7 +300,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.CreateLayoverAsync(layover);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -298,7 +315,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.UpdateLayoverAsync(layover);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -313,7 +330,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.DeleteLayoverAsync(id);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -358,7 +375,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.CreatePlaneFacilityAsync(planeFacility);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -373,7 +390,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.UpdatePlaneFacilityAsync(planeFacility);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -388,7 +405,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.DeletePlaneFacilityAsync(id);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -433,7 +450,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.CreatePlaneSeatAsync(planeSeat);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -449,7 +466,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.UpdatePlaneSeatAsync(planeSeat);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -464,87 +481,12 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.DeletePlaneSeatAsync(id);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
         {
             _logger.LogError(e, $"Error executing {nameof(DeletePlaneSeatAsync)}");
-            throw;
-        }
-    }
-
-    public async Task<ApiResponseMessage<List<Role>>> GetRolesAsync()
-    {
-        try
-        {
-            var task = _apiClient.GetRolesAsync();
-            var result = await Execute(task);
-            return result;
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, $"Error executing {nameof(GetRolesAsync)}");
-            throw;
-        }
-    }
-
-    public async Task<ApiResponseMessage<Role>> GetRoleAsync(string name)
-    {
-        try
-        {
-            var task = _apiClient.GetRoleAsync(name);
-            var result = await Execute(task);
-            return result;
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, $"Error executing {nameof(GetRoleAsync)}");
-            throw;
-        }
-    }
-
-    public async Task<ApiResponseMessage> CreateRoleAsync(Role role)
-    {
-        try
-        {
-            var task = _apiClient.CreateRoleAsync(role);
-            var result = await Execute(task);
-            return result;
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, $"Error executing {nameof(CreateRoleAsync)}");
-            throw;
-        }
-    }
-
-    public async Task<ApiResponseMessage> UpdateRoleAsync(Role role)
-    {
-        try
-        {
-            var task = _apiClient.UpdateRoleAsync(role);
-            var result = await Execute(task);
-            return result;
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, $"Error executing {nameof(UpdateRoleAsync)}");
-            throw;
-        }
-    }
-
-    public async Task<ApiResponseMessage> DeleteRoleAsync(string name)
-    {
-        try
-        {
-            var task = _apiClient.DeleteRoleAsync(name);
-            var result = await Execute(task);
-            return result;
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, $"Error executing {nameof(DeleteRoleAsync)}");
             throw;
         }
     }
@@ -584,7 +526,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.CreateBookingAsync(booking);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -599,7 +541,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.UpdateBookingAsync(booking);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)
@@ -614,7 +556,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         try
         {
             var task = _apiClient.DeleteBookingAsync(id);
-            var result = await Execute(task);
+            var result = await ExecuteWithNoContentResponse(task);
             return result;
         }
         catch (Exception e)

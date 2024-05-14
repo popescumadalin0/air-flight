@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Models;
+using Models.Request;
+using Models.Response;
 using SDK.RefitModels;
 
 namespace SDK.Interfaces;
@@ -33,7 +35,14 @@ public interface IAirFlightsApiClient
     /// Create user.
     /// </summary>
     /// <returns></returns>
-    Task<ApiResponseMessage> CreateUserAsync(User user);
+    Task<ApiResponseMessage> RegisterUserAsync(UserRegister user);
+
+    /// <summary>
+    /// Login user.
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    Task<ApiResponseMessage<UserLoginResponse>> LoginUserAsync(UserLogin user);
 
     /// <summary>
     /// Update user.
@@ -194,36 +203,6 @@ public interface IAirFlightsApiClient
     /// </summary>
     /// <returns></returns>
     Task<ApiResponseMessage> DeletePlaneSeatAsync(Guid id);
-
-    /// <summary>
-    /// Get all role.
-    /// </summary>
-    /// <returns></returns>
-    Task<ApiResponseMessage<List<Role>>> GetRolesAsync();
-
-    /// <summary>
-    /// Get role by name.
-    /// </summary>
-    /// <returns></returns>
-    Task<ApiResponseMessage<Role>> GetRoleAsync(string name);
-
-    /// <summary>
-    /// Create role.
-    /// </summary>
-    /// <returns></returns>
-    Task<ApiResponseMessage> CreateRoleAsync(Role role);
-
-    /// <summary>
-    /// Update role.
-    /// </summary>
-    /// <returns></returns>
-    Task<ApiResponseMessage> UpdateRoleAsync(Role role);
-
-    /// <summary>
-    /// Delete role.
-    /// </summary>
-    /// <returns></returns>
-    Task<ApiResponseMessage> DeleteRoleAsync(string name);
 
     /// <summary>
     /// Get all bookings.

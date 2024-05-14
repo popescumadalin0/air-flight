@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer.ResponseModels;
 using AirFlightsServer.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Models.Constants;
 
 
 namespace AirFlightsServer.Controllers;
@@ -20,6 +22,7 @@ public class BookingController:BaseController
     }
 
     [HttpGet]
+    [Authorize(Roles.User)]
     public async Task<IActionResult>GetBookingsAsync()
     {
         try
@@ -35,6 +38,7 @@ public class BookingController:BaseController
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles.User)]
     public async Task<IActionResult> GetBookingAsync(string id)
     {
         try
@@ -51,6 +55,7 @@ public class BookingController:BaseController
     }
 
     [HttpPost]
+    [Authorize(Roles.User)]
     public async Task<IActionResult> CreateBookingAsync(Booking booking)
     {
         try
@@ -65,6 +70,7 @@ public class BookingController:BaseController
     }
 
     [HttpPut]
+    [Authorize(Roles.Employee)]
     public async Task<IActionResult> UpdateBookingAsync(Booking booking)
     {
         try
@@ -78,6 +84,7 @@ public class BookingController:BaseController
         }
     }
     [HttpDelete("{id}")]
+    [Authorize(Roles.User)]
     public async Task<IActionResult> DeleteBookingAsync(string id)
     {
         try

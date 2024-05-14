@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Models;
+using Models.Request;
+using Models.Response;
 using Refit;
 
 namespace SDK.Interfaces;
@@ -16,15 +18,21 @@ public interface IAirFlightsApi
     Task<List<User>> GetUsersAsync();
 
     [Get("/api/User/{CNP}")]
+    [Headers("Authorization: Bearer")]
     Task<User> GetUserAsync(string CNP);
 
     [Delete("/api/User/{CNP}")]
+    [Headers("Authorization: Bearer")]
     Task DeleteUserAsync(string CNP);
 
-    [Post("/api/User")]
-    Task CreateUserAsync(User user);
+    [Post("/api/User/register")]
+    Task RegisterUserAsync(UserRegister user);
+
+    [Post("/login")]
+    Task<UserLoginResponse> LoginUserAsync(UserLogin user);
 
     [Put("/api/User")]
+    [Headers("Authorization: Bearer")]
     Task UpdateUserAsync(User user);
 
     [Get("/api/Ticket")]
@@ -34,9 +42,11 @@ public interface IAirFlightsApi
     Task<Ticket> GetTicketAsync(Guid id);
 
     [Post("/api/Ticket")]
+    [Headers("Authorization: Bearer")]
     Task CreateTicketAsync(Ticket ticket);
 
     [Put("/api/Ticket")]
+    [Headers("Authorization: Bearer")]
     Task UpdateTicketAsync(Ticket ticket);
 
     [Delete("/api/Ticket/{id}")]
@@ -49,12 +59,15 @@ public interface IAirFlightsApi
     Task<Company> GetCompanyAsync(Guid id);
 
     [Post("/api/Company")]
+    [Headers("Authorization: Bearer")]
     Task CreateCompanyAsync(Company company);
 
     [Put("/api/Company")]
+    [Headers("Authorization: Bearer")]
     Task UpdateCompanyAsync(Company company);
 
     [Delete("/api/Company/{id}")]
+    [Headers("Authorization: Bearer")]
     Task DeleteCompanyAsync(Guid id);
 
     [Get("/api/Layover")]
@@ -64,12 +77,15 @@ public interface IAirFlightsApi
     Task<Layover> GetLayoverAsync(Guid id);
 
     [Post("/api/Layover")]
+    [Headers("Authorization: Bearer")]
     Task CreateLayoverAsync(Layover layover);
 
     [Put("/api/Layover")]
+    [Headers("Authorization: Bearer")]
     Task UpdateLayoverAsync(Layover layover);
 
     [Delete("/api/Layover/{id}")]
+    [Headers("Authorization: Bearer")]
     Task DeleteLayoverAsync(Guid id);
 
     [Get("/api/PlaneFacility")]
@@ -79,12 +95,15 @@ public interface IAirFlightsApi
     Task<PlaneFacility> GetPlaneFacilityAsync(Guid id);
 
     [Post("/api/PlaneFacility")]
+    [Headers("Authorization: Bearer")]
     Task CreatePlaneFacilityAsync(PlaneFacility planeFacility);
 
     [Put("/api/PlaneFacility")]
+    [Headers("Authorization: Bearer")]
     Task UpdatePlaneFacilityAsync(PlaneFacility planeFacility);
 
     [Delete("/api/PlaneFacility/{id}")]
+    [Headers("Authorization: Bearer")]
     Task DeletePlaneFacilityAsync(Guid id);
 
     [Get("/api/PlaneSeat")]
@@ -94,42 +113,35 @@ public interface IAirFlightsApi
     Task<PlaneSeat> GetPlaneSeatAsync(Guid id);
 
     [Post("/api/PlaneSeat")]
+    [Headers("Authorization: Bearer")]
     Task CreatePlaneSeatAsync(PlaneSeat planeSeat);
 
     [Put("/api/PlaneSeat")]
+    [Headers("Authorization: Bearer")]
     Task UpdatePlaneSeatAsync(PlaneSeat planeSeat);
 
     [Delete("/api/PlaneSeat/{id}")]
+    [Headers("Authorization: Bearer")]
     Task DeletePlaneSeatAsync(Guid id);
 
-    [Get("/api/Role")]
-    Task<List<Role>> GetRolesAsync();
-
-    [Get("/api/Role/{name}")]
-    Task<Role> GetRoleAsync(string name);
-
-    [Post("/api/Role")]
-    Task CreateRoleAsync(Role role);
-
-    [Put("/api/Role")]
-    Task UpdateRoleAsync(Role role);
-
-    [Delete("/api/Role/{name}")]
-    Task DeleteRoleAsync(string name);
-
     [Get("/api/Booking")]
+    [Headers("Authorization: Bearer")]
     Task<List<Booking>> GetBookingsAsync();
 
     [Get("/api/Booking/{id}")]
+    [Headers("Authorization: Bearer")]
     Task<Booking> GetBookingAsync(Guid id);
 
     [Post("/api/Booking")]
+    [Headers("Authorization: Bearer")]
     Task CreateBookingAsync(Booking booking);
 
     [Put("/api/Booking")]
+    [Headers("Authorization: Bearer")]
     Task UpdateBookingAsync(Booking booking);
 
     [Delete("/api/Booking/{id}")]
+    [Headers("Authorization: Bearer")]
     Task DeleteBookingAsync(Guid id);
 }
 

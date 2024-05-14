@@ -18,8 +18,7 @@ public class RegisterModel
 
     public string PhoneNumber { get; set; }
 
-    public byte[] ProfileImage { get; set; } 
-    
+    public byte[] ProfileImage { get; set; }
 
     [Required]
 
@@ -32,4 +31,8 @@ public class RegisterModel
     [Required]
 
     public string Email { get; set; }
+
+    [Required]
+
+    public string UserName { get; set; }
 }

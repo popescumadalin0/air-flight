@@ -1,11 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer.ResponseModels;
 using AirFlightsServer.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Models.Constants;
 
 namespace AirFlightsServer.Controllers;
 
@@ -48,7 +50,8 @@ public class LayoverController:BaseController
         }
     }
 
-    [HttpPost]//janina
+    [HttpPost]
+    [Authorize(Roles.Employee)]
     public async Task<IActionResult> CreateLayoverAsync(Layover layover)
     {
         try
@@ -63,6 +66,7 @@ public class LayoverController:BaseController
     }
 
     [HttpPut]
+    [Authorize(Roles.Employee)]
     public async Task<IActionResult> UpdateLayoverAsync(Layover layover)
     {
         try
@@ -77,6 +81,7 @@ public class LayoverController:BaseController
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles.Employee)]
     public async Task<IActionResult> DeleteLayoverAsync(string id)
     {
         try

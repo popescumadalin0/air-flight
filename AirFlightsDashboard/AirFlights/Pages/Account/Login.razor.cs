@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using AirFlightsDashboard.Models;
 using AirFlightsDashboard.States;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Models.Request;
 using SDK.Interfaces;
 
 namespace AirFlightsDashboard.Pages.Account;
@@ -14,6 +16,12 @@ public partial class Login : ComponentBase, IDisposable
 
     [Inject]
     private LoadingState LoadingState { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
 
     [Inject]
     private IAirFlightsApiClient AirFlightsApiClient { get; set; }
@@ -34,13 +42,24 @@ public partial class Login : ComponentBase, IDisposable
 
     private async Task SignInAsync()
     {
-        await AirFlightsApiClient.GetUsersAsync();
-        //todo: call database
-        //return Task.CompletedTask;
-    }
+        await LoadingState.ShowAsync();
+        var result = await AirFlightsApiClient.LoginUserAsync(
+            new UserLogin
+            {
+                Password = _loginModel.Password,
+                Email = _loginModel.Username
+            });
 
-    private async Task LoginAsync()
-    {
+        await LoadingState.HideAsync();
 
+        await SnackbarState.PushAsync(
+            result.Success ? "User logged!" : result.ResponseMessage,
+            result.Success);
+
+        if (result.Success)
+        {
+            ((AirFLightsAuthenticationStateProvider)AuthenticationStateProvider).AuthenticateUser(result.Response.AccessToken, result.Response.RefreshToken);
+            NavigationManager.NavigateTo("/");
+        }
     }
 }

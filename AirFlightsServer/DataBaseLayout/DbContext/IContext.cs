@@ -11,6 +11,6 @@ public interface IContext
     DbSet<PlaneFacility> PlaneFacilities { get; set; }
     DbSet<Layover> Layovers { get; set; }
     DbSet<Company> Companies { get; set; }
-    DbSet<Ticket> AirFlights { get; set; }
+    DbSet<Ticket> Tickets { get; set; }
     Task<int> SaveChangesAsync();
 }

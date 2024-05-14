@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer.ResponseModels;
 using AirFlightsServer.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Models.Constants;
 
 namespace AirFlightsServer.Controllers;
 
@@ -19,7 +21,7 @@ public class TicketController : BaseController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAirFlightsAsync()
+    public async Task<IActionResult> GetTicketsAsync()
     {
         try
         {
@@ -34,7 +36,7 @@ public class TicketController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetAirFlightAsync(string id)
+    public async Task<IActionResult> GetTicketAsync(string id)
     {
         try
         {
@@ -50,7 +52,8 @@ public class TicketController : BaseController
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateAirFlightAsync(Ticket ticket)
+    [Authorize(Roles.Employee)]
+    public async Task<IActionResult> CreateTicketAsync(Ticket ticket)
     {
         try
         {
@@ -64,7 +67,8 @@ public class TicketController : BaseController
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateAirFlightAsync(Ticket ticket)
+    [Authorize(Roles.Employee)]
+    public async Task<IActionResult> UpdateTicketAsync(Ticket ticket)
     {
         try
         {
@@ -78,7 +82,8 @@ public class TicketController : BaseController
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteAirFlightAsync(string id)
+    [Authorize(Roles.Employee)]
+    public async Task<IActionResult> DeleteTicketAsync(string id)
     {
         try
         { 

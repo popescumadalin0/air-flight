@@ -13,7 +13,7 @@ public class Context : IdentityDbContext<User, Role, string>, IContext
     public DbSet<PlaneFacility> PlaneFacilities { get; set; }
     public DbSet<Layover> Layovers { get; set; }
     public DbSet<Company> Companies { get; set; }
-    public DbSet<Ticket> AirFlights { get; set; }
+    public DbSet<Ticket> Tickets { get; set; }
 
     public Context(DbContextOptions<Context> options)
         : base(options) { }

@@ -5,6 +5,7 @@ using AirFlightsServer.Services.Interfaces;
 using DataBaseLayout.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Models.Constants;
 
 namespace AirFlightsServer.Services;
 
@@ -45,7 +46,7 @@ public class UserService : IUserService
     public async Task<Models.User> GetUserByCNPAsync(string CNP)
     {
         var user = await _userManager.Users.FirstAsync(s => s.Id == CNP && s.CNP == CNP);
-        
+
         return ModelToDto(user);
     }
 
@@ -59,10 +60,24 @@ public class UserService : IUserService
     /// <inheritdoc />
     public async Task<IdentityResult> RegisterUserAsync(Models.User model, string password)
     {
-        var result = await _userManager.CreateAsync(DtoToModel(model), password);
+        var user = DtoToModel(model);
+        var result = await _userManager.CreateAsync(user, password);
+
+        if (!result.Succeeded)
+        {
+            return result;
+        }
+
+        result = await _userManager.AddToRoleAsync(user, Roles.User);
 
         return result;
     }
+
+    /*public Task<IdentityResult> LoginUserAsync(string username, string password)
+    {
+       // var result = await _signinManager.PasswordSignInAsync()
+    }
+    */
 
     /// <inheritdoc />
     public async Task<IdentityResult> UpdateUserAsync(Models.User user)

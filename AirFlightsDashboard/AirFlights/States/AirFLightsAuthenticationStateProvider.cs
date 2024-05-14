@@ -37,7 +37,7 @@ public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
         return token;
     }
 
-    public void AuthenticateUser(string token)
+    public void AuthenticateUser(string token, string refreshToken)
     {
         /*var identity = new ClaimsIdentity(JwtParser.ParseClaimsFromJwt(token), "jwt");*/
         var user = new ClaimsPrincipal();

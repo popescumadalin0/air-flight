@@ -1,11 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer.ResponseModels;
 using AirFlightsServer.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Models.Constants;
 
 namespace AirFlightsServer.Controllers;
 
@@ -49,6 +51,7 @@ public class PlaneFacilityController:BaseController
     }
 
     [HttpPost]
+    [Authorize(Roles.Employee)]
     public async Task<IActionResult> CreatePlaneFacilityAsync(PlaneFacility planeFacility)
     {
         try
@@ -63,6 +66,7 @@ public class PlaneFacilityController:BaseController
     }
 
     [HttpPut]
+    [Authorize(Roles.Employee)]
     public async Task<IActionResult> UpdatePlaneFacilityAsync(PlaneFacility planeFacility)
     {
         try
@@ -77,6 +81,7 @@ public class PlaneFacilityController:BaseController
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles.Employee)]
     public async Task<IActionResult> DeletePlaneFacilityAsync(string id)
     {
         try
