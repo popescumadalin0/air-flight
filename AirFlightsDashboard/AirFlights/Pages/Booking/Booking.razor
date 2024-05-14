@@ -6,11 +6,11 @@
 <PageTitle>Booking</PageTitle>
 
 <Div Class="booking" Display="new FluentDisplay().Flex">
-    <Div Class="row">
-        <Div Class="col-md-6 col-sm-3">
+    <Div Class="btn-group-justified">
+        <Div Class="col-md-6 col-sm-6 booking-form">
             <Form>
                 <Fields>
-                    <Card Class="booking-form">
+                    <Card>
                         <CardHeader>
                             <CardTitle Size="3">
                                 From
@@ -197,41 +197,13 @@
                             </Field>
                         </CardBody>
                     </Card>
-                    <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                        <FieldLabel>
-                            Adult(12+ yrs)
-                        </FieldLabel>
-                        <FieldBody>
-                            <Select TValue="string">
-                                <SelectItem>1</SelectItem>
-                                <SelectItem>2</SelectItem>
-                                <SelectItem>3</SelectItem>
-                                <SelectItem>4</SelectItem>
-                                <SelectItem>5+</SelectItem>
-                            </Select>
-                        </FieldBody>
-                    </Field>
-                    <Field ColumnSize="ColumnSize.IsFull.OnTablet.IsHalf.OnDesktop">
-                        <FieldLabel>
-                            Infant(under 2 yrs)
-                        </FieldLabel>
-                        <FieldBody>
-                            <Select TValue="string">
-                                <SelectItem>1</SelectItem>
-                                <SelectItem>2</SelectItem>
-                                <SelectItem>3</SelectItem>
-                                <SelectItem>4</SelectItem>
-                                <SelectItem>5+</SelectItem>
-                            </Select>
-                        </FieldBody>
-                    </Field>
                 </Fields>
                 <Field>
                     <FieldLabel>
-                        Any Message...
+                        <a class="btn btn-login" @onclick="RedirectPage">Do you want to buy another ticket?</a>
                     </FieldLabel>
                     <FieldBody>
-                        <MemoEdit Placeholder="Your message here" Rows="2" />
+                        <PersonalDetails @ref="popupRef" />
                     </FieldBody>
                 </Field>
                 <Field>
@@ -250,3 +222,12 @@
     </Div>
 </Div>
 
+@code {
+    private PersonalDetails popupRef;
+
+    private void RedirectPage()
+    {
+        // Shows the popup at the center of the screen
+        popupRef.Show("");
+    }
+}

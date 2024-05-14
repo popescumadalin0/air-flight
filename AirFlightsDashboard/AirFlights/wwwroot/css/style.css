@@ -401,11 +401,10 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
 }
 
 .single-how-works-icon {
-    display: inline-block;
+    display: flex;
     color: black;
     width: 60px;
     height: 60px;
-    line-height: 70px;
     background: #eef2f6;
     border-radius: 50%;
 }
@@ -966,27 +965,30 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     height: 400px;
     z-index: 1;
     width: 790px;
+    line-height: 1.4;
 }
 
 /*===============================
     Register
 ===============================*/
-    .register {
+.register {
     position: relative;
     background: #f8fafb;
     height: 600px;
     z-index: 1;
+    line-height: 1;
 }
 
 /*===============================
     Contact
 ===============================*/
 .contact {
-    position:relative;
+    position: relative;
     background: #f8fafb;
     height: 690px;
     width: 1000px;
     z-index: 1;
+    line-height: 2.4;
 }
 
 /*===============================
@@ -1039,16 +1041,6 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
 
 }
 
-.booking-form {
-    position: relative;
-    background: #f8fafb;
-    height: auto;
-    z-index: 1;
-    width: 500px;
-    margin-top:10px;
-    
-}
-
 .booking-form-icon {
     position: absolute;
     top: 20px;
@@ -1084,3 +1076,25 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
         height: auto;
         margin-left: 12px;
     }
+
+.account-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 500px;
+    width: auto;
+}
+
+.account-txt h2 {
+    font-size: 38px;
+    color: black;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-family: initial;
+    letter-spacing: 6px;
+    line-height: 2.4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
