@@ -54,22 +54,6 @@ public class UserController : BaseController
         }
     }
 
-    /*[HttpPost("login")]
-    public async Task<IActionResult> LoginUserAsync(UserLogin user)
-    {
-        try
-        {
-            var result = await _userService.LoginUserAsync(user.Email, user.Password);
-
-            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<IdentityResult>(result));
-
-        }
-        catch (Exception ex)
-        {
-            return ApiServiceResponse.ApiServiceResult(new ServiceResponse(ex));
-        }
-    }*/
-
     [HttpPost("register")]
     public async Task<IActionResult> RegisterUserAsync(UserRegister user)
     {

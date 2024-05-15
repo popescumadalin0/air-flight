@@ -37,7 +37,7 @@ public static class DependencyInjection
         services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<IUserService, UserService>();
 
-        var emailSettings = config.GetSection("EmailSettings");
+        /*var emailSettings = config.GetSection("EmailSettings");
         var defaultFromEmail = emailSettings["DefaultFromEmail"];
         var host = emailSettings["Host"];
         var port = emailSettings.GetValue<int>("Port");
@@ -46,7 +46,7 @@ public static class DependencyInjection
 
         services.AddTransient<IEmailService, EmailService>();
         services.AddTransient<IEmailSender, EmailSender>();
-        services.AddTransient<IEmailSender<User>, EmailSender>();
+        services.AddTransient<IEmailSender<User>, EmailSender>();*/
 
         return services;
     }

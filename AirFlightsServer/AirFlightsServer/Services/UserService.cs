@@ -24,13 +24,6 @@ public class UserService : IUserService
     }
 
     /// <inheritdoc />
-    public async Task<bool> SignInAsync(string userName, string password, bool rememberMe)
-    {
-        var isLogged = await _signinManager.PasswordSignInAsync(userName, password, rememberMe, false);
-        return isLogged.Succeeded;
-    }
-
-    /// <inheritdoc />
     public async Task SignOutAsync()
     {
         await _signinManager.SignOutAsync();

@@ -8,9 +8,6 @@ namespace AirFlightsServer.Services.Interfaces;
 public interface IUserService
 {
     /// <summary/>
-    Task<bool> SignInAsync(string userName, string password, bool rememberMe);
-
-    /// <summary/>
     Task SignOutAsync();
 
     /// <summary/>
