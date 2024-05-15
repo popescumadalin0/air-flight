@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories.Interfaces;
 using AirFlightsServer.Services.Interfaces;
-using DataBaseLayout.Models;
-using Models;
 
 namespace AirFlightsServer.Services;
 

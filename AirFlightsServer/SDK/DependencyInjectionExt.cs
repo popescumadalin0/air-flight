@@ -1,6 +1,4 @@
 using System;
-using System.Threading.Tasks;
-using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using SDK.Clients;

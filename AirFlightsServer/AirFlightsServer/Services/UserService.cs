@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AirFlightsServer.Services.Interfaces;
 using DataBaseLayout.Models;
@@ -13,6 +14,8 @@ public class UserService : IUserService
 {
     private readonly SignInManager<User> _signinManager;
     private readonly UserManager<User> _userManager;
+
+    private readonly IUserStore<User> _userStore;
 
     public UserService(SignInManager<User> signinManager, UserManager<User> userManager)
     {
@@ -61,6 +64,8 @@ public class UserService : IUserService
     public async Task<IdentityResult> RegisterUserAsync(Models.User model, string password)
     {
         var user = DtoToModel(model);
+
+        await _userStore.CreateAsync(user, CancellationToken.None);
         var result = await _userManager.CreateAsync(user, password);
 
         if (!result.Succeeded)
@@ -72,12 +77,6 @@ public class UserService : IUserService
 
         return result;
     }
-
-    /*public Task<IdentityResult> LoginUserAsync(string username, string password)
-    {
-       // var result = await _signinManager.PasswordSignInAsync()
-    }
-    */
 
     /// <inheritdoc />
     public async Task<IdentityResult> UpdateUserAsync(Models.User user)

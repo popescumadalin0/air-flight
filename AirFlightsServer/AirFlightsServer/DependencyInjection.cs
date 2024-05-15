@@ -8,7 +8,6 @@ using DataBaseLayout.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
-using Humanizer.Configuration;
 using FluentEmail.Core.Interfaces;
 using FluentEmail.Smtp;
 using System.Net.Mail;
