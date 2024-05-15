@@ -1,14 +1,16 @@
 @page "/register"
 @inherits ComponentBase
+@using Refit.Implementation
 @implements IDisposable
 
 <PageTitle>Register</PageTitle>
 
 
-<Div Margin="Margin.IsAuto.OnX" Width="Width.Is25" class="container">
+<Div Margin="Margin.IsAuto.OnX" class="register container">
     <Heading Size="HeadingSize.Is2" Margin="Margin.Is3.FromBottom" TextAlignment="TextAlignment.Center">
         Sign up to your account
     </Heading>
+    <br/>
     <Div class="row">
         <Div class="col-sm-6">
             <Card Shadow="Shadow.Default">
@@ -107,7 +109,7 @@
             </Card>
         </Div>
         <Div class="col-sm-6">
-             <Image src="../images/welcome-hero/register.jpg" alt="placeholder"></Image>
+             <Image src="../images/blog/contact1.jpg" alt="placeholder" Style="height: 500px; width: 500px; align-content: center"  ></Image>
         </Div>
      </Div>
  </Div>

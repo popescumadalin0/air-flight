@@ -1,0 +1,46 @@
+@page "/account"
+@inherits ComponentBase
+@implements IDisposable
+
+<Div Class="account-txt">
+    <h2> Personal Details</h2>
+</Div>
+
+<Table  Class="account-table">
+    <TableBody>
+        <TableRow >
+            <TableRowHeader Background="Background.Light">Image:</TableRowHeader>
+            <TableRowCell>imgggg</TableRowCell>
+            <TableRowCell><Button Color="Color.Danger" > Edit</Button></TableRowCell>
+        </TableRow>
+        <TableRow >
+            <TableRowHeader Background="Background.Light">First Name:</TableRowHeader>
+            <TableRowCell>Mark</TableRowCell>
+            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowHeader Background="Background.Light">Last Name:</TableRowHeader>
+            <TableRowCell>Jacob</TableRowCell>
+            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowHeader Background="Background.Light">Email:</TableRowHeader>
+            <TableRowCell>larry@yahoo.com</TableRowCell>
+            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowHeader Background="Background.Light">Phone:</TableRowHeader>
+            <TableRowCell>+40 765 432 123</TableRowCell>
+            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowHeader Background="Background.Light">Password:</TableRowHeader>
+            <TableRowCell>********</TableRowCell>
+            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+        </TableRow>
+    </TableBody>
+</Table>
+
+@code {
+
+}

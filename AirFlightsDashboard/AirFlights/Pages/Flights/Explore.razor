@@ -1,0 +1,86 @@
+@page "/explore"
+
+@inherits ComponentBase
+
+<Div class="explore-background">
+    <Div Margin="Margin.IsAuto.OnX" class="explore container">
+        <Heading Size="HeadingSize.Is2" Margin="Margin.Is3.FromBottom" TextAlignment="TextAlignment.Center">
+            Explore a new word!
+        </Heading>
+
+        <Div class="row">
+            @*<Div Class="col-md-4">
+                <Form>
+                    <Field>
+                        <FieldLabel><h2>Where?</h2></FieldLabel>
+                        <FieldBody>
+                            <Paragraph><Blazorise.Icon Name="@FontAwesomeIcons.PlaneDeparture" IconStyle="IconStyle.Solid" /> </Paragraph>
+
+                            <Select @bind-SelectedValue="@_filter.Leaving" Style="border-radius: 50px" TValue="string">
+                                <SelectItem Value="1">One</SelectItem>
+                                <SelectItem Value="2">Two</SelectItem>
+                                <SelectItem Value="3">Three</SelectItem>
+                                <SelectItem Value="4">Four</SelectItem>
+                            </Select>
+                            <Paragraph> <Blazorise.Icon Name="@FontAwesomeIcons.PlaneArrival" IconStyle="IconStyle.Solid" /> </Paragraph>
+                            <Select @bind-SelectedValue="@_filter.Going" Style="border-radius: 50px" TValue="string">
+                                <SelectItem Value="1">One</SelectItem>
+                                <SelectItem Value="2">Two</SelectItem>
+                                <SelectItem Value="3">Three</SelectItem>
+                                <SelectItem Value="4">Four</SelectItem>
+                            </Select>
+                        </FieldBody>
+                    </Field>
+                </Form>
+            </Div>
+            <Div Class="col-md-4">
+                <Form>
+                    <Field>
+                        <FieldLabel><h2>When?</h2></FieldLabel>
+                        <FieldBody>
+                            <Paragraph> <Blazorise.Icon Name="@FontAwesomeIcons.CalendarCheck" IconStyle="IconStyle.Solid" /></Paragraph>
+                            <Select SelectedValue="@_filter.Departing" SelectedValueChanged="@DepartingChangedAsync" Style="border-radius: 50px" TValue="DateTime">
+                                <SelectItem Value="1">12/12/2022</SelectItem>
+                                <SelectItem Value="2">11/12/2022</SelectItem>
+                                <SelectItem Value="3">10/12/2022</SelectItem>
+                            </Select>
+                            <Paragraph> <Blazorise.Icon Name="@FontAwesomeIcons.CalendarTimes" IconStyle="IconStyle.Solid" TValue="DateTime" /></Paragraph>
+                            <Select @bind-SelectedValue="@_filter.Arriving" Style="border-radius: 50px">
+                                <SelectItem Value="1">12/12/2022</SelectItem>
+                                <SelectItem Value="2">11/12/2022</SelectItem>
+                                <SelectItem Value="3">10/12/2022</SelectItem>
+                            </Select>
+                        </FieldBody>
+                    </Field>
+                </Form>
+            </Div>
+            <Div Class="col-md-4">
+                <Form>
+                    <Field>
+                        <FieldLabel><h2>Who?</h2></FieldLabel>
+                        <FieldBody>
+                            <Paragraph><Blazorise.Icon Name="@FontAwesomeIcons.Person" IconStyle="IconStyle.Solid" /></Paragraph>
+                            <Select @bind-SelectedValue="@_filter.NoChildren" Style="border-radius: 50px" TValue="int">
+                                <SelectItem Value="1">0</SelectItem>
+                                <SelectItem Value="2">1</SelectItem>
+                                <SelectItem Value="3">2</SelectItem>
+                            </Select>
+                            <Paragraph><Blazorise.Icon Name="@FontAwesomeIcons.ChildReaching" IconStyle="IconStyle.Solid" /></Paragraph>
+                            <Select @bind-SelectedValue="@_filter.NoChildren" Style="border-radius: 50px" TValue="int">
+                                <SelectItem Value="1">0</SelectItem>
+                                <SelectItem Value="2">1</SelectItem>
+                                <SelectItem Value="3">2</SelectItem>
+                            </Select>
+                        </FieldBody>
+                    </Field>
+                </Form>
+            </Div>*@
+            <Div Class="col-md-12">
+                @foreach (var flight in flights)
+                {
+                    <Flight FlightInfo="@flight"></Flight>
+                }
+            </Div>
+        </Div>
+    </Div>
+</Div>
