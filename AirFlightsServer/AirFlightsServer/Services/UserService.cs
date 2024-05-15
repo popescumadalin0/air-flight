@@ -103,10 +103,8 @@ public class UserService : IUserService
 
         userModel.FirstName = user.FirstName;
         userModel.LastName = user.LastName;
-        userModel.ProfileImage = user.ProfileImage;
-        userModel.ProfileImageName = user.ProfileImageName;
-        userModel.ProfileImageFileName = user.ProfileImageFileName;
-        userModel.Document = user.Document;
+        userModel.ProfileImage = Convert.FromBase64String(user.ProfileImage);
+        userModel.Document = Convert.FromBase64String(user.Document);
 
         var result = await _userManager.UpdateAsync(userModel);
 
@@ -150,14 +148,12 @@ public class UserService : IUserService
         {
             Id = model.CNP,
             CNP = model.CNP,
-            Document = model.Document,
+            Document = Convert.FromBase64String(model.Document),
             Email = model.Email,
             FirstName = model.FirstName,
             LastName = model.LastName,
             PhoneNumber = model.PhoneNumber,
-            ProfileImage = model.ProfileImage,
-            ProfileImageFileName = model.ProfileImageFileName,
-            ProfileImageName = model.ProfileImageName,
+            ProfileImage = Convert.FromBase64String(model.ProfileImage),
             EmailConfirmed = false,
             PhoneNumberConfirmed = false,
             TwoFactorEnabled = false,
@@ -172,15 +168,13 @@ public class UserService : IUserService
         var dto = new Models.User
         {
             CNP = model.CNP,
-            Document = model.Document,
+            Document = Convert.ToBase64String(model.Document),
             Email = model.Email,
             FirstName = model.FirstName,
             LastName = model.LastName,
             PhoneNumber = model.PhoneNumber,
-            ProfileImage = model.ProfileImage,
-            ProfileImageFileName = model.ProfileImageFileName,
+            ProfileImage = Convert.ToBase64String(model.ProfileImage),
             Id = model.Id,
-            ProfileImageName = model.ProfileImageName,
             UserName = model.UserName,
         };
 

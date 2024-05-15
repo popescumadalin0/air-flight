@@ -10,10 +10,6 @@ public class User : IdentityUser
 
     public byte[] ProfileImage { get; set; }
 
-    public string ProfileImageName { get; set; }
-
-    public string ProfileImageFileName { get; set; }
-
     public byte[] Document { get; set; }
 
     [PersonalData]

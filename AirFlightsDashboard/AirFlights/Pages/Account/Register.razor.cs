@@ -1,7 +1,9 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using AirFlightsDashboard.Models;
 using AirFlightsDashboard.States;
+using Blazorise;
 using Microsoft.AspNetCore.Components;
 using Models;
 using Models.Request;
@@ -51,9 +53,9 @@ public partial class Register : ComponentBase, IDisposable
                     FirstName = _registerModel.FirstName,
                     LastName = _registerModel.LastName,
                     PhoneNumber = _registerModel.PhoneNumber,
-                    ProfileImageFileName = _registerModel.FirstName,
-                    ProfileImageName = _registerModel.FirstName,
-                    UserName = _registerModel.UserName
+                    UserName = _registerModel.UserName,
+                    Document = Convert.ToBase64String(_registerModel.Document),
+                    ProfileImage = Convert.ToBase64String(_registerModel.ProfileImage),
                 }
             });
 
@@ -61,11 +63,49 @@ public partial class Register : ComponentBase, IDisposable
 
         await SnackbarState.PushAsync(
             result.Success ? "User created!" : result.ResponseMessage,
-            result.Success);
+            !result.Success);
 
         if (result.Success)
         {
             NavigationManager.NavigateTo("/login");
+        }
+    }
+
+    private async Task OnImageUploaded(FileUploadEventArgs e)
+    {
+        try
+        {
+            using MemoryStream result = new MemoryStream();
+            await e.File.OpenReadStream(long.MaxValue).CopyToAsync(result);
+
+            _registerModel.ProfileImage = result.ToArray();
+        }
+        catch (Exception exc)
+        {
+            Console.WriteLine(exc.Message);
+        }
+        finally
+        {
+            this.StateHasChanged();
+        }
+    }
+
+    private async Task OnDocumentUploaded(FileUploadEventArgs e)
+    {
+        try
+        {
+            using MemoryStream result = new MemoryStream();
+            await e.File.OpenReadStream(long.MaxValue).CopyToAsync(result);
+
+            _registerModel.Document = result.ToArray();
+        }
+        catch (Exception exc)
+        {
+            Console.WriteLine(exc.Message);
+        }
+        finally
+        {
+            this.StateHasChanged();
         }
     }
 }

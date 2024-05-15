@@ -76,8 +76,6 @@ public class UserController : BaseController
     {
         try
         {
-            user.User.ProfileImage = new byte[7];
-            user.User.Document = new byte[7];
             var result = await _userService.RegisterUserAsync(user.User, user.Password);
 
             return ApiServiceResponse.ApiServiceResult(new ServiceResponse<IdentityResult>(result));

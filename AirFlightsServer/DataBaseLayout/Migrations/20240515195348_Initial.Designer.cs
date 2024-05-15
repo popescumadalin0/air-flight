@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataBaseLayout.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240515110534_Initial")]
+    [Migration("20240515195348_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -252,12 +252,6 @@ namespace DataBaseLayout.Migrations
 
                     b.Property<byte[]>("ProfileImage")
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("ProfileImageFileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProfileImageName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

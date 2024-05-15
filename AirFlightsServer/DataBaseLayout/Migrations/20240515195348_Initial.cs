@@ -70,8 +70,6 @@ namespace DataBaseLayout.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CNP = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProfileImage = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    ProfileImageName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProfileImageFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Document = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),

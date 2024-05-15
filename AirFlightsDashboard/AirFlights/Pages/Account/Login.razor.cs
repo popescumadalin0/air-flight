@@ -54,7 +54,7 @@ public partial class Login : ComponentBase, IDisposable
 
         await SnackbarState.PushAsync(
             result.Success ? "User logged!" : result.ResponseMessage,
-            result.Success);
+            !result.Success);
 
         if (result.Success)
         {

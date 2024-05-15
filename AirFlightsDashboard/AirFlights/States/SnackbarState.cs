@@ -15,7 +15,7 @@ public class SnackbarState
         await Snackbar.PushAsync(
             message,
             isError ? SnackbarColor.Danger : SnackbarColor.Info,
-            options => { options.IntervalBeforeClose = 10; });
+            options => { options.IntervalBeforeClose = 3000; });
 
         NotifyStateChanged();
     }

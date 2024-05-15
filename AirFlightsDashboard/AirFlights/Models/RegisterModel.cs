@@ -18,6 +18,8 @@ public class RegisterModel
 
     public string PhoneNumber { get; set; }
 
+    public byte[] Document { get; set; }
+
     public byte[] ProfileImage { get; set; }
 
     [Required]

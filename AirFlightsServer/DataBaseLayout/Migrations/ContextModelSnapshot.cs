@@ -250,12 +250,6 @@ namespace DataBaseLayout.Migrations
                     b.Property<byte[]>("ProfileImage")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("ProfileImageFileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProfileImageName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
