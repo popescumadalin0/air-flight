@@ -1,23 +1,22 @@
-@page "/flight"
-
 
 @inherits BaseComponent
 
-<PageTitle>Flight</PageTitle>
 
 <Card Class="card-flight">
     <CardImage Source="../images/explore/London.jpg" Alt="Card image cap 3"></CardImage>
     <CardBody>
-        <CardTitle Size="5">London Flights</CardTitle>
+        <CardTitle Size="5">@FlightInfo.DestinationCity</CardTitle>
         <Divider DividerType="DividerType.Dashed" />
         <CardText>
-            Price per person 300  RON
-            <Divider DividerType="DividerType.Dashed" />
-            ora plecării 18:30
-            <Divider DividerType="DividerType.Dashed" />
-            ora sosirii 20:00
+            <Blazorise.Icon Name="@FontAwesomeIcons.MoneyBill1" IconStyle="IconStyle.Solid" />
+            <p>Price per person @FlightInfo.Price @FlightInfo.Currency</p>
+            <Divider DividerType="DividerType.Dashed"/>
+            <Blazorise.Icon Name="@FontAwesomeIcons.PlaneDeparture" IconStyle="IconStyle.Solid"/>
+            <p> @FlightInfo.StartPointAirport, @FlightInfo.StartPointCountry, @FlightInfo.DepartureTime</p>
+            <Divider DividerType="DividerType.Dashed"/>
+            <Blazorise.Icon Name="@FontAwesomeIcons.PlaneArrival" IconStyle="IconStyle.Solid"/>
+            <p> @FlightInfo.DestinationAirport, @FlightInfo.DestinationCountry, @FlightInfo.ArrivalTime</p>
         </CardText>
         <Button Class="btn-group-justified" Color="Color.Primary">Book now</Button>
     </CardBody>
 </Card>
-

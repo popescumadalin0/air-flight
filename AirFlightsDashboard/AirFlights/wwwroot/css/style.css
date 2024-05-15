@@ -705,7 +705,13 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
 /*-------------------------------------
         12. Footer
 --------------------------------------*/
-.footer-menu {padding: 45px 0;}
+.footer {
+    background-color: white;
+}
+
+.footer-menu {
+    padding: 45px 0;
+}
 .footer-menu .navbar-header{padding:0;}
 .footer-menu .navbar-header a.navbar-brand,.footer-menu.footer-menu .navbar-header a.navbar-brand:hover,.footer-menu .navbar-header a.navbar-brand:focus{
     padding:0;
@@ -960,7 +966,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     display: flex;
     padding: 0 10px;
     margin: 0 0 20px;
-    line-height: 1.9;
+    line-height: 1.4;
 }
 
 .explore {
@@ -969,4 +975,15 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     height: 300px;
     z-index: 1;
     line-height: 1;
+}
+
+.explore-background {
+    position: relative;
+    width: auto;
+    display: block;
+    background: url(../images/explore/Paris.jpg)no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 900px;
+    z-index: 1;
 }

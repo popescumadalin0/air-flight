@@ -1,27 +1,14 @@
 using System;
+using AirFlightsDashboard.Models;
 using Blazorise;
 using Microsoft.AspNetCore.Components;
 
 namespace AirFlightsDashboard.Pages.Flights;
 
-public partial class Booking : BaseComponent
+public partial class Flight : BaseComponent
 {
-    [Inject]
-    private NavigationManager Nav1 { get; set; }
+    [Parameter]
+    public FlightModel FlightInfo { get; set; }
 
-
-    private int selectedValue { get; set; }
-    bool accordionItem1Visible = true;
-    bool accordionItem2Visible = false;
-    bool accordionItem3Visible = false;
-   
-
-DatePicker<DateTime?> datePickerDestination;
-
-    DateTime? valueDestination;
-
-    DatePicker<DateTime?> datePickerReturn;
-
-    DateTime? valueReturn;
 
 }

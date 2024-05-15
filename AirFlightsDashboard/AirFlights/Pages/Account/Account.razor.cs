@@ -13,6 +13,7 @@ public partial class Account : ComponentBase, IDisposable
 
     [Inject]
     private LoadingState LoadingState { get; set; }
+
     public void Dispose()
     {
         SnackbarState.OnStateChange -= StateHasChanged;
