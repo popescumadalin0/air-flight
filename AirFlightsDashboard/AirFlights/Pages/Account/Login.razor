@@ -1,4 +1,4 @@
-﻿@page "/login"
+@page "/login"
 @inherits ComponentBase
 @implements IDisposable
 
@@ -14,10 +14,10 @@
             <Form>
                 <Field>
                     <FieldLabel>
-                        Email/Username
+                        Username
                     </FieldLabel>
                     <FieldBody>
-                        <TextEdit Placeholder="Enter your e-mail/username" Role="TextRole.Email" @bind-Text="_loginModel.Username" />
+                        <TextEdit Placeholder="Enter your username" Role="TextRole.Email" @bind-Text="_loginModel.Username" />
                     </FieldBody>
                 </Field>
                 <Field>
@@ -27,14 +27,6 @@
                     <FieldBody>
                         <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_loginModel.Password" autocomplete="new-password" />
                     </FieldBody>
-                </Field>
-                <Field Flex="Flex.Wrap.JustifyContent.Between">
-                    <Check TValue="bool" @bind-Checked="_loginModel.RememberMe">
-                        Remember me
-                    </Check>
-                    <Anchor To="/forgot-password" TextColor="TextColor.Primary">
-                        Forgot your password?
-                    </Anchor>
                 </Field>
                 <Field>
                     <Button Color="Color.Primary" Block Clicked="@SignInAsync">

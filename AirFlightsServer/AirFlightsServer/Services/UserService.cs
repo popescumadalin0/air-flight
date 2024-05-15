@@ -15,8 +15,6 @@ public class UserService : IUserService
     private readonly SignInManager<User> _signinManager;
     private readonly UserManager<User> _userManager;
 
-    private readonly IUserStore<User> _userStore;
-
     public UserService(SignInManager<User> signinManager, UserManager<User> userManager)
     {
         _signinManager = signinManager;
@@ -58,7 +56,6 @@ public class UserService : IUserService
     {
         var user = DtoToModel(model);
 
-        await _userStore.CreateAsync(user, CancellationToken.None);
         var result = await _userManager.CreateAsync(user, password);
 
         if (!result.Succeeded)
