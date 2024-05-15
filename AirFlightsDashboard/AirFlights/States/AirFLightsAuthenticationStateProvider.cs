@@ -1,4 +1,6 @@
+using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,19 +21,30 @@ public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        var token = await _sessionStorage.GetAsync<string>("token");
-        if (string.IsNullOrEmpty(token.Value))
+        try
+        {
+            var token = await _sessionStorage.GetAsync<string>("token");
+            if (string.IsNullOrEmpty(token.Value))
+            {
+                throw new Exception("Anonymous");
+            }
+
+            var handler = new JwtSecurityTokenHandler();
+            var decodedToken = handler.ReadJwtToken(token.Value);
+
+            var identity = new ClaimsIdentity(
+                decodedToken.Claims,
+                "jwt",
+                decodedToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value,
+                decodedToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);
+            var user = new ClaimsPrincipal(identity);
+
+            return await Task.FromResult(new AuthenticationState(user));
+        }
+        catch (Exception)
         {
             return new AuthenticationState(_anonymous);
         }
-
-        var handler = new JwtSecurityTokenHandler();
-        var decodedToken = handler.ReadJwtToken(token.Value);
-
-        var identity = new ClaimsIdentity(decodedToken.Claims);
-        var user = new ClaimsPrincipal(identity);
-
-        return await Task.FromResult(new AuthenticationState(user));
     }
 
     public async Task<string> GetBearerTokenAsync(CancellationToken cancellationToken)
@@ -46,12 +59,6 @@ public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
         await _sessionStorage.SetAsync("token", token);
         await _sessionStorage.SetAsync("refreshToken", refreshToken);
 
-        var handler = new JwtSecurityTokenHandler();
-        var decodedToken = handler.ReadJwtToken(token);
-
-        var identity = new ClaimsIdentity(decodedToken.Claims);
-        var user = new ClaimsPrincipal(identity);
-        var state = new AuthenticationState(user);
-        NotifyAuthenticationStateChanged(Task.FromResult(state));
+        NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
     }
 }

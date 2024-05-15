@@ -17,7 +17,9 @@ public static class DependencyInjection
     /// <summary />
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration config)
     {
-        services.AddAuthenticationCore();
+        services.AddCascadingAuthenticationState();
+
+        services.AddAuthorizationCore();
 
         services.AddBlazoredSessionStorage();
         services.AddBlazoredLocalStorage();
