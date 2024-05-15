@@ -1,10 +1,14 @@
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer;
+using AirFlightsServer.Authentication;
 using AirFlightsServer.Extensions;
+using AirFlightsServer.Services;
 using DataBaseLayout.DbContext;
 using DataBaseLayout.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
@@ -44,6 +48,16 @@ builder.Services.AddIdentityApiEndpoints<User>()
 builder.Services.AddScoped<ILookupProtectorKeyRing, KeyRing>();
 builder.Services.AddScoped<ILookupProtector, LookupProtector>();
 builder.Services.AddScoped<IPersonalDataProtector, PersonalDataProtector>();
+
+builder.Services.AddScoped<IAuthorizationHandler, AirAuthorizationHandler>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(Roles.User, policy => policy.Requirements.Add(new AuthorizationRequirement(Roles.User)));
+    options.AddPolicy(Roles.Admin, policy => policy.Requirements.Add(new AuthorizationRequirement(Roles.Admin)));
+    options.AddPolicy(Roles.Employee, policy => policy.Requirements.Add(new AuthorizationRequirement(Roles.Employee)));
+
+});
 
 var app = builder.Build();
 

@@ -2,11 +2,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Models;
+using Models.Response;
 
 namespace AirFlightsServer.Services.Interfaces;
 
 public interface IUserService
 {
+    /// <summary/>
+    Task<UserLoginResponse> SignInAsync(string userName, string password);
+
     /// <summary/>
     Task SignOutAsync();
 

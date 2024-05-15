@@ -28,6 +28,7 @@ public static class DependencyInjection
         services.AddScoped<IPlaneFacilityRepository, PlaneFacilityRepository>();
         services.AddScoped<IPlaneSeatRepository, PlaneSeatRepository>();
 
+        services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<ITicketService, TicketService>();
         services.AddScoped<IBookingService, BookingService>();
         services.AddScoped<ICompanyService, CompanyService>();

@@ -26,8 +26,6 @@ builder.Services
 
 builder.Services.AddServices(builder.Configuration);
 
-builder.Services.AddAuthorizationCore();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

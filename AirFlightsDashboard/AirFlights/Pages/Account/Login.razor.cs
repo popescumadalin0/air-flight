@@ -58,7 +58,7 @@ public partial class Login : ComponentBase, IDisposable
 
         if (result.Success)
         {
-            ((AirFLightsAuthenticationStateProvider)AuthenticationStateProvider).AuthenticateUser(result.Response.AccessToken, result.Response.RefreshToken);
+            await ((AirFLightsAuthenticationStateProvider)AuthenticationStateProvider).AuthenticateUserAsync(result.Response.AccessToken, result.Response.RefreshToken);
             NavigationManager.NavigateTo("/");
         }
     }

@@ -13,14 +13,14 @@
                         <li class="scroll active"><a href="/explore">explore</a></li>
                         <li class="scroll"><a href="/works">how it works</a></li>
                         <li class="scroll"><a href="/bookings">bookings</a></li>
-                        @{
-                            var accountRoute = "/login";
-                            if (_isAuthenticated)
-                            {
-                                accountRoute = "/account";
-                            }
-                        }
-                        <li class="scroll"><a href="@accountRoute">my account</a></li>
+                        <AuthorizeView>
+                            <Authorized>
+                                <li class="scroll"><a href="/account">my account Logged</a></li>
+                            </Authorized>
+                            <NotAuthorized>
+                                <li class="scroll"><a href="/login">my account</a></li>
+                            </NotAuthorized>
+                        </AuthorizeView>
                     </ul>
                 </div>
             </div>

@@ -28,7 +28,7 @@ public interface IAirFlightsApi
     [Post("/api/User/register")]
     Task RegisterUserAsync(UserRegister user);
 
-    [Post("/login")]
+    [Post("/api/User/login")]
     Task<UserLoginResponse> LoginUserAsync(UserLogin user);
 
     [Put("/api/User")]

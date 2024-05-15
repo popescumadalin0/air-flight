@@ -1,12 +1,16 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AirFlightsServer.ResponseModels;
 using AirFlightsServer.Services.Interfaces;
+using Azure.Core;
 using DataBaseLayout.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models.Constants;
+using Models.Response;
 
 namespace AirFlightsServer.Services;
 
@@ -14,11 +18,35 @@ public class UserService : IUserService
 {
     private readonly SignInManager<User> _signinManager;
     private readonly UserManager<User> _userManager;
+    private readonly ITokenService _tokenService;
 
-    public UserService(SignInManager<User> signinManager, UserManager<User> userManager)
+    public UserService(SignInManager<User> signinManager, UserManager<User> userManager, ITokenService tokenService)
     {
         _signinManager = signinManager;
         _userManager = userManager;
+        _tokenService = tokenService;
+    }
+
+    /// <inheritdoc />
+    public async Task<UserLoginResponse> SignInAsync(string userName, string password)
+    {
+        var isLogged = await _signinManager.PasswordSignInAsync(userName, password, false, false);
+
+        if (isLogged.Succeeded)
+        {
+            var token = await _tokenService.GenerateTokenAsync(userName, 2);
+            var refreshToken = await _tokenService.GenerateTokenAsync(userName, 8);
+
+            var responseLogin = new UserLoginResponse
+            {
+                AccessToken = token,
+                RefreshToken = refreshToken
+            };
+
+            return responseLogin;
+        }
+
+        throw new Exception("Email or password is incorrect!");
     }
 
     /// <inheritdoc />

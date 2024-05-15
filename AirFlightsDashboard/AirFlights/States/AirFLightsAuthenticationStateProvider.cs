@@ -1,46 +1,56 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 
 namespace AirFlightsDashboard.States;
 
 public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
 {
-
-    private readonly ISessionStorageService _sessionStorageService;
+    private readonly ProtectedSessionStorage _sessionStorage;
     private ClaimsPrincipal _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
 
-    public AirFLightsAuthenticationStateProvider(ISessionStorageService sessionStorageService)
+    public AirFLightsAuthenticationStateProvider(ProtectedSessionStorage sessionStorage)
     {
-        _sessionStorageService = sessionStorageService;
+        _sessionStorage = sessionStorage;
     }
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        /*var token = await _sessionStorageService.GetItemAsync<string>("token");
-    if (string.IsNullOrEmpty(token))
-    {
-        return new AuthenticationState(_anonymous);
-    }
-    var identity = new ClaimsIdentity(JwtParser.ParseClaimsFromJwt(token), "jwt");*/
-        var user = new ClaimsPrincipal();
+        var token = await _sessionStorage.GetAsync<string>("token");
+        if (string.IsNullOrEmpty(token.Value))
+        {
+            return new AuthenticationState(_anonymous);
+        }
+
+        var handler = new JwtSecurityTokenHandler();
+        var decodedToken = handler.ReadJwtToken(token.Value);
+
+        var identity = new ClaimsIdentity(decodedToken.Claims);
+        var user = new ClaimsPrincipal(identity);
 
         return await Task.FromResult(new AuthenticationState(user));
     }
 
     public async Task<string> GetBearerTokenAsync(CancellationToken cancellationToken)
     {
-        var token = await _sessionStorageService.GetItemAsync<string>("token");
+        var token = await _sessionStorage.GetAsync<string>("token");
 
-        return token;
+        return token.Value;
     }
 
-    public void AuthenticateUser(string token, string refreshToken)
+    public async Task AuthenticateUserAsync(string token, string refreshToken)
     {
-        /*var identity = new ClaimsIdentity(JwtParser.ParseClaimsFromJwt(token), "jwt");*/
-        var user = new ClaimsPrincipal();
+        await _sessionStorage.SetAsync("token", token);
+        await _sessionStorage.SetAsync("refreshToken", refreshToken);
+
+        var handler = new JwtSecurityTokenHandler();
+        var decodedToken = handler.ReadJwtToken(token);
+
+        var identity = new ClaimsIdentity(decodedToken.Claims);
+        var user = new ClaimsPrincipal(identity);
         var state = new AuthenticationState(user);
         NotifyAuthenticationStateChanged(Task.FromResult(state));
     }

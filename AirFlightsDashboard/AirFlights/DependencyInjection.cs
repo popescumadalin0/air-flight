@@ -1,7 +1,10 @@
 using System;
 using AirFlightsDashboard.States;
+using Blazored.LocalStorage;
 using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SDK;
@@ -14,7 +17,11 @@ public static class DependencyInjection
     /// <summary />
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration config)
     {
+        services.AddAuthenticationCore();
+
         services.AddBlazoredSessionStorage();
+        services.AddBlazoredLocalStorage();
+        services.AddScoped<ProtectedSessionStorage>();
 
         services.AddScoped<AuthenticationStateProvider, AirFLightsAuthenticationStateProvider>();
 

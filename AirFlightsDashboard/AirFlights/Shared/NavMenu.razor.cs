@@ -6,12 +6,7 @@ namespace AirFlightsDashboard.Shared;
 
 public partial class NavMenu
 {
-    [Inject]
-    private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
-
     private bool _collapseNavMenu = true;
-
-    private bool _isAuthenticated = false;
 
     private string? NavMenuCssClass => _collapseNavMenu ? "collapse" : null;
 
@@ -22,7 +17,5 @@ public partial class NavMenu
 
     protected override async Task OnInitializedAsync()
     {
-        var userClaims = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        _isAuthenticated = userClaims.User.Identity?.IsAuthenticated ?? false;
     }
 }
