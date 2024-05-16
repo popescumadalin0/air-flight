@@ -8,7 +8,7 @@ namespace AirFlightsDashboard.Pages.Booking;
 public partial class Booking : BaseComponent
 {
     private PersonalDetails personalDetails;
-private PersonalDetails personalDetails;
+
     [Parameter]
     public FlightModel BookingForm { get; set; }
 

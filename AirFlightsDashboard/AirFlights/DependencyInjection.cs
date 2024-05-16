@@ -1,13 +1,17 @@
 using System;
+using AirFlightsDashboard.Services;
 using AirFlightsDashboard.States;
 using Blazored.LocalStorage;
 using Blazored.SessionStorage;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Refit;
 using SDK;
+using SDK.Interfaces;
 
 namespace AirFlightsDashboard;
 
@@ -23,18 +27,30 @@ public static class DependencyInjection
 
         services.AddBlazoredSessionStorage();
         services.AddBlazoredLocalStorage();
-        services.AddScoped<ProtectedSessionStorage>();
 
-        services.AddScoped<AuthenticationStateProvider, AirFLightsAuthenticationStateProvider>();
+        services.AddSingleton<ApplicationSession>();
 
-        var authProvider = services.BuildServiceProvider().GetService<AuthenticationStateProvider>();
-        AuthBearerTokenFactory.SetBearerTokenGetterFunc(((AirFLightsAuthenticationStateProvider)authProvider)!.GetBearerTokenAsync);
+        services.AddAuthorizationCore();
 
+        services.AddScoped<
+            AirFLightsAuthenticationStateProvider,
+            AirFLightsAuthenticationStateProvider>();
+
+        services.AddScoped<AuthenticationStateProvider>(
+            p => p.GetService<AirFLightsAuthenticationStateProvider>());
+
+        var authProvider = services.BuildServiceProvider().GetService<AirFLightsAuthenticationStateProvider>();
+        AuthBearerTokenFactory.SetBearerTokenGetterFunc(authProvider!.GetBearerTokenAsync);
+
+        services.AddTransient<AuthHeaderHandler>();
         var apiUrl = new Uri(config.GetSection("Api:BaseUrl").Value);
         services.AddAirFlightsApiClient(apiUrl);
 
-        services.AddSingleton<SnackbarState>();
-        services.AddSingleton<LoadingState>();
+        services.AddRefitClient<IAirFlightsApi>()
+            .ConfigureHttpClient(c => c.BaseAddress = apiUrl).AddHttpMessageHandler<AuthHeaderHandler>();
+
+        services.AddScoped<SnackbarState>();
+        services.AddScoped<LoadingState>();
 
         return services;
     }

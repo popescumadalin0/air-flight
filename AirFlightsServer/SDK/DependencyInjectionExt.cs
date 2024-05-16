@@ -14,10 +14,10 @@ public static class DependencyInjectionExt
     {
         RefitSettings refitSettings = new()
         {
-            AuthorizationHeaderValueGetter = (_, cancellationToken) => AuthBearerTokenFactory.GetBearerTokenAsync(cancellationToken)
+            //AuthorizationHeaderValueGetter = (_, cancellationToken) => AuthBearerTokenFactory.GetBearerTokenAsync(cancellationToken)
         };
-        services.AddRefitClient<IAirFlightsApi>(refitSettings)
-            .ConfigureHttpClient(c => c.BaseAddress = url);
+        /*services.AddRefitClient<IAirFlightsApi>(refitSettings)
+            .ConfigureHttpClient(c => c.BaseAddress = url);*/
 
         services.AddSingleton<IAirFlightsApiClient, AirFlightsApiClient>();
         return services;

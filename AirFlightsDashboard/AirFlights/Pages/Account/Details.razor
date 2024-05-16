@@ -1,0 +1,52 @@
+@page "/account"
+@inherits ComponentBase
+@using global::Models
+@implements IDisposable
+
+<Div Class="account-txt">
+    <h2> Personal Details</h2>
+</Div>
+
+<Table Class="account-table">
+    <TableBody>
+        <TableRow >
+            <TableRowHeader Background="Background.Light">Image:</TableRowHeader>
+            <TableRowCell>
+                <Figure Size="FigureSize.Is256x256">
+                    <FigureImage Source="@($"data:image/jpeg;base64,{_user.ProfileImage}")" AlternateText="empty-256x256" />
+                    <FigureCaption>A caption for the above image.</FigureCaption>
+                </Figure>
+            </TableRowCell>
+            <TableRowCell><Button Color="Color.Danger" > Edit</Button></TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowHeader Background="Background.Light">Username:</TableRowHeader>
+            <TableRowCell>@_user.UserName</TableRowCell>TableRowCell>
+            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+        </TableRow>
+        <TableRow >
+            <TableRowHeader Background="Background.Light">First Name:</TableRowHeader>
+            <TableRowCell>@_user.FirstName</TableRowCell>
+            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowHeader Background="Background.Light">Last Name:</TableRowHeader>
+            <TableRowCell>@_user.LastName</TableRowCell>
+            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowHeader Background="Background.Light">CNP:</TableRowHeader>
+            <TableRowCell>@_user.CNP</TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowHeader Background="Background.Light">Email:</TableRowHeader>
+            <TableRowCell>@_user.Email</TableRowCell>
+            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowHeader Background="Background.Light">Phone:</TableRowHeader>
+            <TableRowCell>@_user.PhoneNumber</TableRowCell>
+            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+        </TableRow>
+    </TableBody>
+</Table>
