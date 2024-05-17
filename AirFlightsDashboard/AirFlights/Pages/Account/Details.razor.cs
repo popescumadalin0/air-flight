@@ -1,9 +1,11 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AirFlightsDashboard.Models;
 using AirFlightsDashboard.States;
+using Blazorise;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Models;
@@ -26,6 +28,15 @@ public partial class Details : ComponentBase, IDisposable
     private Task<AuthenticationState> AuthenticationState { get; set; }
 
     private AccountDetailsModel _user = new();
+
+    private AccountDetailsModel _oldUser = new();
+
+    private int _showProfileEdit;
+    private int _showUserNameEdit;
+    private int _showFirstNameEdit;
+    private int _showLastNameEdit;
+    private int _showEmailEdit;
+    private int _showPhoneNumberEdit;
 
     public void Dispose()
     {
@@ -63,6 +74,32 @@ public partial class Details : ComponentBase, IDisposable
             UserName = user.Response.UserName,
         };
 
+        _oldUser = _user;
+
         await LoadingState.HideAsync();
+    }
+
+    private async Task OnImageUploaded(FileUploadEventArgs e)
+    {
+        try
+        {
+            using var result = new MemoryStream();
+            await e.File.OpenReadStream(long.MaxValue).CopyToAsync(result);
+
+            _user.ProfileImage = Convert.ToBase64String(result.ToArray());
+        }
+        catch (Exception exc)
+        {
+            Console.WriteLine(exc.Message);
+        }
+        finally
+        {
+            this.StateHasChanged();
+        }
+    }
+
+    private async Task SaveAsync()
+    {
+        _oldUser = _user;
     }
 }

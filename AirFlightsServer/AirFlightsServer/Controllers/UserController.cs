@@ -38,7 +38,7 @@ public class UserController : BaseController
         }
     }
 
-    [HttpGet("/cnp/{CNP}")]
+    [HttpGet("{CNP}")]
     [Authorize(Roles.Admin)]
     public async Task<IActionResult> GetUserAsync(string CNP)
     {
@@ -102,7 +102,7 @@ public class UserController : BaseController
         }
     }
 
-    [HttpDelete("/cnp/{CNP}")]
+    [HttpDelete("{CNP}")]
     [Authorize(Roles.User)]
     public async Task<IActionResult> DeleteUserAsync(string CNP)
     {

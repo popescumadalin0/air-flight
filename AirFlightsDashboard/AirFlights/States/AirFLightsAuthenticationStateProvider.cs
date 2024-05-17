@@ -58,10 +58,9 @@ public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
         }
     }
 
-    //todo: move this into a singleton service
     public async Task<string> GetBearerTokenAsync(CancellationToken cancellationToken)
     {
-        var token = _session.GetItem("token");
+        var token = "test";// _session.GetItem("token");
 
         return token;
     }

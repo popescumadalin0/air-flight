@@ -940,6 +940,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
 
 .account-table {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;

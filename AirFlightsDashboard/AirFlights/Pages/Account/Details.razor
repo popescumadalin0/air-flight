@@ -9,30 +9,51 @@
 
 <Table Class="account-table">
     <TableBody>
-        <TableRow >
+        <TableRow>
             <TableRowHeader Background="Background.Light">Image:</TableRowHeader>
             <TableRowCell>
-                <Figure Size="FigureSize.Is256x256">
-                    <FigureImage Source="@($"data:image/jpeg;base64,{_user.ProfileImage}")" AlternateText="empty-256x256" />
-                    <FigureCaption>A caption for the above image.</FigureCaption>
+                <Figure Size="FigureSize.Is128x128">
+                    <FigureImage Width="Width.Px(128)" Height="Height.Px(128)" Source="@($"data:image/jpeg;base64,{_user.ProfileImage}")" AlternateText="empty-256x256" Rounded />
                 </Figure>
+                @if (_showProfileEdit == 1)
+                {
+                    <FilePicker Upload="@OnImageUploaded" Filter="image/*" Width="Width.Px(128)" />
+                }
             </TableRowCell>
-            <TableRowCell><Button Color="Color.Danger" > Edit</Button></TableRowCell>
+            <TableRowCell><Button Color="Color.Danger" Clicked="() => { _showProfileEdit = 1 - _showProfileEdit;}"> Edit</Button></TableRowCell>
         </TableRow>
         <TableRow>
             <TableRowHeader Background="Background.Light">Username:</TableRowHeader>
-            <TableRowCell>@_user.UserName</TableRowCell>TableRowCell>
-            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+            <TableRowCell>
+                <p>@_user.UserName</p>
+                @if (_showUserNameEdit == 1)
+                {
+                    <TextEdit Placeholder="Your username" @bind-Text="@_user.UserName"></TextEdit>
+                }
+            </TableRowCell>
+            <TableRowCell><Button Color="Color.Danger" Clicked="() => { _showUserNameEdit = 1 - _showUserNameEdit;}"> Edit</Button></TableRowCell>
         </TableRow>
-        <TableRow >
+        <TableRow>
             <TableRowHeader Background="Background.Light">First Name:</TableRowHeader>
-            <TableRowCell>@_user.FirstName</TableRowCell>
-            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+            <TableRowCell>
+                <p>@_user.FirstName</p>
+                @if (_showFirstNameEdit == 1)
+                {
+                    <TextEdit Placeholder="Your first name" @bind-Text="@_user.FirstName"></TextEdit>
+                }
+            </TableRowCell>
+            <TableRowCell><Button Color="Color.Danger" Clicked="() => { _showFirstNameEdit = 1 - _showFirstNameEdit;}"> Edit</Button></TableRowCell>
         </TableRow>
         <TableRow>
             <TableRowHeader Background="Background.Light">Last Name:</TableRowHeader>
-            <TableRowCell>@_user.LastName</TableRowCell>
-            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+            <TableRowCell>
+                <p>@_user.LastName</p>
+                @if (_showLastNameEdit == 1)
+                {
+                    <TextEdit Placeholder="Your last name" @bind-Text="@_user.LastName"></TextEdit>
+                }
+            </TableRowCell>
+            <TableRowCell><Button Color="Color.Danger" Clicked="() => { _showLastNameEdit = 1 - _showLastNameEdit;}"> Edit</Button></TableRowCell>
         </TableRow>
         <TableRow>
             <TableRowHeader Background="Background.Light">CNP:</TableRowHeader>
@@ -40,13 +61,35 @@
         </TableRow>
         <TableRow>
             <TableRowHeader Background="Background.Light">Email:</TableRowHeader>
-            <TableRowCell>@_user.Email</TableRowCell>
-            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+            <TableRowCell>
+                <p>@_user.Email</p>
+                @if (_showEmailEdit == 1)
+                {
+                    <TextEdit Placeholder="Your email" @bind-Text="@_user.Email"></TextEdit>
+                }
+            </TableRowCell>
+            <TableRowCell><Button Color="Color.Danger" Clicked="() => { _showEmailEdit = 1 - _showEmailEdit;}"> Edit</Button></TableRowCell>
         </TableRow>
         <TableRow>
             <TableRowHeader Background="Background.Light">Phone:</TableRowHeader>
-            <TableRowCell>@_user.PhoneNumber</TableRowCell>
-            <TableRowCell><Button Color="Color.Danger"> Edit</Button></TableRowCell>
+            <TableRowCell>
+                <p>@_user.PhoneNumber</p>
+                @if (_showPhoneNumberEdit == 1)
+                {
+                    <TextEdit Placeholder="Your phone number" @bind-Text="@_user.PhoneNumber"></TextEdit>
+                }
+            </TableRowCell>
+            <TableRowCell><Button Color="Color.Danger" Clicked="() => { _showPhoneNumberEdit = 1 - _showPhoneNumberEdit;}"> Edit</Button></TableRowCell>
         </TableRow>
     </TableBody>
+    <Field>
+        <Button Width="Width.Max100" Color="Color.Success" Clicked="SaveAsync" Disabled="@(_oldUser.UserName == _user.UserName &&
+                                                                                           _oldUser.ProfileImage == _user.ProfileImage &&
+                                                                                           _oldUser.Email == _user.Email &&
+                                                                                           _oldUser.FirstName == _user.FirstName &&
+                                                                                           _oldUser.LastName == _user.LastName &&
+                                                                                           _oldUser.PhoneNumber == _user.PhoneNumber)">
+            Save
+        </Button>
+    </Field>
 </Table>

@@ -42,12 +42,8 @@ public static class DependencyInjection
         var authProvider = services.BuildServiceProvider().GetService<AirFLightsAuthenticationStateProvider>();
         AuthBearerTokenFactory.SetBearerTokenGetterFunc(authProvider!.GetBearerTokenAsync);
 
-        services.AddTransient<AuthHeaderHandler>();
         var apiUrl = new Uri(config.GetSection("Api:BaseUrl").Value);
         services.AddAirFlightsApiClient(apiUrl);
-
-        services.AddRefitClient<IAirFlightsApi>()
-            .ConfigureHttpClient(c => c.BaseAddress = apiUrl).AddHttpMessageHandler<AuthHeaderHandler>();
 
         services.AddScoped<SnackbarState>();
         services.AddScoped<LoadingState>();

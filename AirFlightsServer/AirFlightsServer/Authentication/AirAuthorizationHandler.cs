@@ -20,6 +20,11 @@ namespace AirFlightsServer.Authentication
             (AuthorizationHandlerContext context, AuthorizationRequirement requirement)
         {
             var httpRequest = _httpContextAccessor.HttpContext!.Request;
+            if (httpRequest.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty) != "test")
+            {
+                context.Fail();
+                return Task.CompletedTask;
+            }
             /*if (!httpRequest.Headers[requirement].Any())
             {
                 context.Fail();
