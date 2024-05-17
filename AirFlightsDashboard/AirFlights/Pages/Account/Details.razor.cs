@@ -143,7 +143,7 @@ public partial class Details : ComponentBase, IDisposable
         await LoadingState.ShowAsync();
         await LoadingState.HideAsync();
 
-            var customProvider = (AirFLightsAuthenticationStateProvider)AuthenticationStateProvider;
+        var customProvider = (AirFLightsAuthenticationStateProvider)AuthenticationStateProvider;
         await customProvider.LogoutUserAsync();
 
         await SnackbarState.PushAsync("Successfully logout!");

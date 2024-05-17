@@ -38,7 +38,7 @@ public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
 
             if (string.IsNullOrEmpty(_session.GetItem("token")))
             {
-                throw new Exception("Anonymous");
+                return await Task.FromResult(new AuthenticationState(_anonymous));
             }
 
             var handler = new JwtSecurityTokenHandler();
@@ -55,7 +55,7 @@ public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
         }
         catch (Exception)
         {
-            return new AuthenticationState(_anonymous);
+            return await Task.FromResult(new AuthenticationState(_anonymous));
         }
     }
 
@@ -85,6 +85,6 @@ public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
         _session.SetItem("token", string.Empty);
         _session.SetItem("refreshToken", string.Empty);
 
-        NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
+        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
     }
 }

@@ -129,34 +129,24 @@
                                     </FieldBody>
                                 </Field>
                             </Validation>
-                            <Validation>
-                                <Field>
-                                    <FieldLabel>
-                                        Upload your document
-                                    </FieldLabel>
-                                    <FieldBody>
-                                        <FilePicker Upload="@OnDocumentUploaded" ShowMode="FilePickerShowMode.List">
-                                            <Feedback>
-                                                <ValidationError />
-                                            </Feedback>
-                                        </FilePicker>
-                                    </FieldBody>
-                                </Field>
-                            </Validation>
-                            <Validation>
-                                <Field>
-                                    <FieldLabel>
-                                        Upload your profile image
-                                    </FieldLabel>
-                                    <FieldBody>
-                                        <FilePicker Upload="@OnImageUploaded" ShowMode="FilePickerShowMode.List" Filter="image/*">
-                                            <Feedback>
-                                                <ValidationError />
-                                            </Feedback>
-                                        </FilePicker>
-                                    </FieldBody>
-                                </Field>
-                            </Validation>
+
+                            <Field>
+                                <FieldLabel>
+                                    Upload your document
+                                </FieldLabel>
+                                <FieldBody>
+                                    <FilePicker Upload="@OnDocumentUploaded" ShowMode="FilePickerShowMode.List" />
+                                </FieldBody>
+                            </Field>
+
+                            <Field>
+                                <FieldLabel>
+                                    Upload your profile image
+                                </FieldLabel>
+                                <FieldBody>
+                                    <FilePicker Upload="@OnImageUploaded" ShowMode="FilePickerShowMode.List" Filter="image/*" />
+                                </FieldBody>
+                            </Field>
                             <Field>
                                 <Button Color="Color.Primary" Block Clicked="@RegisterAsync">
                                     Sign up
