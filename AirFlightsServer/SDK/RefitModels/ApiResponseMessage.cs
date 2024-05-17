@@ -14,10 +14,10 @@ public class ApiResponseMessage
         string responseMessage = null,
         string reasonPhrase = null)
     {
-        this.Success = success;
-        this.ResponseMessage = responseMessage;
-        this.StatusCode = (int)statusCode;
-        this.ReasonPhrase = reasonPhrase;
+        Success = success;
+        ResponseMessage = responseMessage;
+        StatusCode = (int)statusCode;
+        ReasonPhrase = reasonPhrase;
     }
 
     public ApiResponseMessage(
@@ -26,10 +26,10 @@ public class ApiResponseMessage
         string responseMessage = null,
         string reasonPhrase = null)
     {
-        this.Success = success;
-        this.ResponseMessage = responseMessage;
-        this.StatusCode = statusCode;
-        this.ReasonPhrase = reasonPhrase;
+        Success = success;
+        ResponseMessage = responseMessage;
+        StatusCode = statusCode;
+        ReasonPhrase = reasonPhrase;
     }
 
     public bool Success { get; set; }
@@ -46,26 +46,26 @@ public class ApiResponseMessage<T>
 {
     public ApiResponseMessage(T response)
     {
-        this.Response = response;
+        Response = response;
     }
 
 
     public ApiResponseMessage(bool success, T response, HttpStatusCode statusCode = HttpStatusCode.OK, string responseMessage = null, string reasonPhrase = null)
     {
-        this.Success = success;
-        this.ResponseMessage = responseMessage;
-        this.StatusCode = (int)statusCode;
-        this.ReasonPhrase = reasonPhrase;
-        this.Response = response;
+        Success = success;
+        ResponseMessage = responseMessage;
+        StatusCode = (int)statusCode;
+        ReasonPhrase = reasonPhrase;
+        Response = response;
     }
 
     public ApiResponseMessage(bool success, T response, int statusCode, string responseMessage = null, string reasonPhrase = null)
     {
-        this.Success = success;
-        this.ResponseMessage = responseMessage;
-        this.StatusCode = statusCode;
-        this.ReasonPhrase = reasonPhrase;
-        this.Response = response;
+        Success = success;
+        ResponseMessage = responseMessage;
+        StatusCode = statusCode;
+        ReasonPhrase = reasonPhrase;
+        Response = response;
     }
 
 

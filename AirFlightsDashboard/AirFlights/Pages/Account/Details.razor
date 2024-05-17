@@ -25,13 +25,8 @@
         <TableRow>
             <TableRowHeader Background="Background.Light">Username:</TableRowHeader>
             <TableRowCell>
-                <p>@_user.UserName</p>
-                @if (_showUserNameEdit == 1)
-                {
-                    <TextEdit Placeholder="Your username" @bind-Text="@_user.UserName"></TextEdit>
-                }
+                @_user.UserName
             </TableRowCell>
-            <TableRowCell><Button Color="Color.Danger" Clicked="() => { _showUserNameEdit = 1 - _showUserNameEdit;}"> Edit</Button></TableRowCell>
         </TableRow>
         <TableRow>
             <TableRowHeader Background="Background.Light">First Name:</TableRowHeader>
@@ -83,8 +78,7 @@
         </TableRow>
     </TableBody>
     <Field>
-        <Button Width="Width.Max100" Color="Color.Success" Clicked="SaveAsync" Disabled="@(_oldUser.UserName == _user.UserName &&
-                                                                                           _oldUser.ProfileImage == _user.ProfileImage &&
+        <Button Width="Width.Max100" Color="Color.Success" Clicked="SaveAsync" Disabled="@(_oldUser.ProfileImage == _user.ProfileImage &&
                                                                                            _oldUser.Email == _user.Email &&
                                                                                            _oldUser.FirstName == _user.FirstName &&
                                                                                            _oldUser.LastName == _user.LastName &&

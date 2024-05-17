@@ -18,7 +18,7 @@ public abstract class RefitApiClient<TU> where TU : class
         try
         {
             var response = await task;
-            this.OnApiCallExecuted(new ApiResponseMessage(true));
+            OnApiCallExecuted(new ApiResponseMessage(true));
             return new ApiResponseMessage<T>(true, response);
         }
         catch (ApiException e)
@@ -32,7 +32,7 @@ public abstract class RefitApiClient<TU> where TU : class
             {
             }
 
-            this.OnApiCallExecuted(new ApiResponseMessage
+            OnApiCallExecuted(new ApiResponseMessage
             {
                 Success = false,
                 StatusCode = (int)e.StatusCode,
@@ -52,7 +52,7 @@ public abstract class RefitApiClient<TU> where TU : class
         }
         catch (Exception e)
         {
-            this.OnApiCallExecuted(new ApiResponseMessage
+            OnApiCallExecuted(new ApiResponseMessage
             {
                 Success = false,
                 StatusCode = (int)HttpStatusCode.InternalServerError,
@@ -77,7 +77,7 @@ public abstract class RefitApiClient<TU> where TU : class
         try
         {
             await task;
-            this.OnApiCallExecuted(new ApiResponseMessage(true));
+            OnApiCallExecuted(new ApiResponseMessage(true));
             return new ApiResponseMessage(true);
         }
         catch (ApiException e)
@@ -89,7 +89,7 @@ public abstract class RefitApiClient<TU> where TU : class
                 ResponseMessage = e.Content,
                 ReasonPhrase = e.ReasonPhrase
             };
-            this.OnApiCallExecuted(result);
+            OnApiCallExecuted(result);
             return result;
         }
         catch (Exception e)
@@ -103,7 +103,7 @@ public abstract class RefitApiClient<TU> where TU : class
                 ClientError = $"{e.Message}. Inner Exception: {e.InnerException?.Message}"
             };
 
-            this.OnApiCallExecuted(result);
+            OnApiCallExecuted(result);
             return result;
         }
     }
@@ -118,7 +118,7 @@ public abstract class RefitApiClient<TU> where TU : class
             var transformedJson = transformFunc(json);
             var response = JsonConvert.DeserializeObject<T>(transformedJson);
 
-            this.OnApiCallExecuted(new ApiResponseMessage(true));
+            OnApiCallExecuted(new ApiResponseMessage(true));
             return new ApiResponseMessage<T>(true, response);
         }
         catch (ApiException e)
@@ -132,7 +132,7 @@ public abstract class RefitApiClient<TU> where TU : class
             {
             }
 
-            this.OnApiCallExecuted(new ApiResponseMessage
+            OnApiCallExecuted(new ApiResponseMessage
             {
                 Success = false,
                 StatusCode = (int)e.StatusCode,
@@ -152,7 +152,7 @@ public abstract class RefitApiClient<TU> where TU : class
         }
         catch (Exception e)
         {
-            this.OnApiCallExecuted(new ApiResponseMessage
+            OnApiCallExecuted(new ApiResponseMessage
             {
                 Success = false,
                 StatusCode = (int)HttpStatusCode.InternalServerError,

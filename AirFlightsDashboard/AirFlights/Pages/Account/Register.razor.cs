@@ -86,7 +86,7 @@ public partial class Register : ComponentBase, IDisposable
         }
         finally
         {
-            this.StateHasChanged();
+            StateHasChanged();
         }
     }
 
@@ -105,7 +105,7 @@ public partial class Register : ComponentBase, IDisposable
         }
         finally
         {
-            this.StateHasChanged();
+            StateHasChanged();
         }
     }
 }

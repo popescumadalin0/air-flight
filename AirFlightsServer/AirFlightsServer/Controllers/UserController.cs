@@ -94,6 +94,10 @@ public class UserController : BaseController
         try
         {
             await _userService.UpdateUserAsync(user);
+            await _userService.UpdateUserEmailAsync(user, user.Email, HttpContext.Request.Headers.Authorization.ToString().Replace("Bearer ", string.Empty));
+            await _userService.UpdateUserPasswordAsync(user, user.Email, HttpContext.Request.Headers.Authorization.ToString().Replace("Bearer ", string.Empty));
+            await _userService.UpdateUserPhoneNumberAsync(user, user.Email, HttpContext.Request.Headers.Authorization.ToString().Replace("Bearer ", string.Empty));
+
             return ApiServiceResponse.ApiServiceResult(new ServiceResponse());
         }
         catch (Exception ex)

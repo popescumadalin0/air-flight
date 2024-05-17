@@ -28,4 +28,18 @@ public class AccountDetailsModel
     [Required]
 
     public string UserName { get; set; }
+
+    public AccountDetailsModel()
+    {
+    }
+    public AccountDetailsModel(AccountDetailsModel user)
+    {
+        CNP = user.CNP;
+        PhoneNumber = user.PhoneNumber;
+        ProfileImage = user.ProfileImage;
+        FirstName = user.FirstName;
+        LastName = user.LastName;
+        Email = user.Email;
+        UserName = user.UserName;
+    }
 }

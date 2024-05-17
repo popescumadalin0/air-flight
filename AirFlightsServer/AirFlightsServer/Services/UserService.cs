@@ -103,8 +103,10 @@ public class UserService : IUserService
 
         userModel.FirstName = user.FirstName;
         userModel.LastName = user.LastName;
-        userModel.ProfileImage = Convert.FromBase64String(user.ProfileImage);
-        userModel.Document = Convert.FromBase64String(user.Document);
+        if (user.ProfileImage != null)
+        {
+            userModel.ProfileImage = Convert.FromBase64String(user.ProfileImage);
+        }
 
         var result = await _userManager.UpdateAsync(userModel);
 

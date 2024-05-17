@@ -32,7 +32,6 @@ public partial class Details : ComponentBase, IDisposable
     private AccountDetailsModel _oldUser = new();
 
     private int _showProfileEdit;
-    private int _showUserNameEdit;
     private int _showFirstNameEdit;
     private int _showLastNameEdit;
     private int _showEmailEdit;
@@ -74,7 +73,7 @@ public partial class Details : ComponentBase, IDisposable
             UserName = user.Response.UserName,
         };
 
-        _oldUser = _user;
+        _oldUser = new AccountDetailsModel(_user);
 
         await LoadingState.HideAsync();
     }
@@ -94,12 +93,39 @@ public partial class Details : ComponentBase, IDisposable
         }
         finally
         {
-            this.StateHasChanged();
+            StateHasChanged();
         }
     }
 
     private async Task SaveAsync()
     {
-        _oldUser = _user;
+        await LoadingState.ShowAsync();
+
+        var user = new User()
+        {
+            UserName = _user.UserName,
+            CNP = _user.CNP,
+            Email = _user.Email,
+            PhoneNumber = _user.PhoneNumber,
+            ProfileImage = _user.ProfileImage,
+            FirstName = _user.FirstName,
+            LastName = _user.LastName,
+            Id = _user.CNP
+        };
+
+        var response = await AirFlightsApiClient.UpdateUserAsync(user);
+
+        if (!response.Success)
+        {
+            await SnackbarState.PushAsync(response.ResponseMessage, !response.Success);
+            await LoadingState.HideAsync();
+            return;
+        }
+
+        _oldUser = new AccountDetailsModel(_user);
+
+        await LoadingState.HideAsync();
+
+        await SnackbarState.PushAsync("Successfully updated!");
     }
 }
