@@ -27,6 +27,8 @@ public partial class Register : ComponentBase, IDisposable
 
     private RegisterModel _registerModel = new RegisterModel();
 
+    private Form form;
+
     public void Dispose()
     {
         SnackbarState.OnStateChange -= StateHasChanged;
@@ -75,7 +77,7 @@ public partial class Register : ComponentBase, IDisposable
     {
         try
         {
-            using MemoryStream result = new MemoryStream();
+            using var result = new MemoryStream();
             await e.File.OpenReadStream(long.MaxValue).CopyToAsync(result);
 
             _registerModel.ProfileImage = result.ToArray();

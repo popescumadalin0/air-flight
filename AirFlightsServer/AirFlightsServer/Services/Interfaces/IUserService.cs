@@ -27,16 +27,16 @@ public interface IUserService
     Task<IdentityResult> RegisterUserAsync(User model, string password);
 
     /// <summary/>
-    Task<IdentityResult> UpdateUserAsync(User user);
+    Task<IdentityResult> UpdateUserAsync(UserUpdate user);
 
     /// <summary/>
-    Task<IdentityResult> UpdateUserEmailAsync(User user, string newEmail, string token);
+    Task<IdentityResult> UpdateUserEmailAsync(UserUpdate user, string token);
 
     /// <summary/>
-    Task<IdentityResult> UpdateUserPasswordAsync(User user, string oldPassword, string newPassword);
+    Task<IdentityResult> UpdateUserPasswordAsync(UserUpdate user);
 
     /// <summary/>
-    Task<IdentityResult> UpdateUserPhoneNumberAsync(User user, string newPhoneNumber, string token);
+    Task<IdentityResult> UpdateUserPhoneNumberAsync(UserUpdate user, string token);
 
     /// <summary/>
     Task<IdentityResult> DeleteUserAsync(string CNP);

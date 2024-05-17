@@ -33,7 +33,7 @@ public interface IAirFlightsApi
 
     [Put("/api/User")]
     [Headers("Authorization: Bearer")]
-    Task UpdateUserAsync(User user);
+    Task UpdateUserAsync(UserUpdate user);
 
     [Get("/api/Ticket")]
     Task<List<Ticket>> GetTicketsAsync();

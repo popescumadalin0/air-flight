@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using AirFlightsServer.ResponseModels;
 using AirFlightsServer.Services.Interfaces;
 using Azure.Core;
-using DataBaseLayout.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Models;
 using Models.Constants;
 using Models.Response;
 
@@ -16,11 +16,11 @@ namespace AirFlightsServer.Services;
 
 public class UserService : IUserService
 {
-    private readonly SignInManager<User> _signinManager;
-    private readonly UserManager<User> _userManager;
+    private readonly SignInManager<DataBaseLayout.Models.User> _signinManager;
+    private readonly UserManager<DataBaseLayout.Models.User> _userManager;
     private readonly ITokenService _tokenService;
 
-    public UserService(SignInManager<User> signinManager, UserManager<User> userManager, ITokenService tokenService)
+    public UserService(SignInManager<DataBaseLayout.Models.User> signinManager, UserManager<DataBaseLayout.Models.User> userManager, ITokenService tokenService)
     {
         _signinManager = signinManager;
         _userManager = userManager;
@@ -97,7 +97,7 @@ public class UserService : IUserService
     }
 
     /// <inheritdoc />
-    public async Task<IdentityResult> UpdateUserAsync(Models.User user)
+    public async Task<IdentityResult> UpdateUserAsync(UserUpdate user)
     {
         var userModel = await _userManager.Users.FirstAsync(s => s.Id == user.CNP && s.CNP == user.CNP);
 
@@ -114,25 +114,27 @@ public class UserService : IUserService
     }
 
     /// <inheritdoc />
-    public async Task<IdentityResult> UpdateUserEmailAsync(Models.User user, string newEmail, string token)
+    public async Task<IdentityResult> UpdateUserEmailAsync(UserUpdate user, string token)
     {
         var userModel = await _userManager.Users.FirstAsync(s => s.Id == user.CNP && s.CNP == user.CNP);
-        var result = await _userManager.ChangeEmailAsync(userModel, newEmail, token);
+        var result = await _userManager.ChangeEmailAsync(userModel, user.Email, token);
         return result;
     }
 
     /// <inheritdoc />
-    public async Task<IdentityResult> UpdateUserPasswordAsync(Models.User user, string oldPassword, string newPassword)
+    public async Task<IdentityResult> UpdateUserPasswordAsync(UserUpdate user)
     {
-        var result = await _userManager.ChangePasswordAsync(DtoToModel(user), oldPassword, newPassword);
+        var userModel = await _userManager.Users.FirstAsync(s => s.Id == user.CNP && s.CNP == user.CNP);
+
+        var result = await _userManager.ChangePasswordAsync(userModel, user.OldPassword, user.NewPassword);
         return result;
     }
 
     /// <inheritdoc />
-    public async Task<IdentityResult> UpdateUserPhoneNumberAsync(Models.User user, string newPhoneNumber, string token)
+    public async Task<IdentityResult> UpdateUserPhoneNumberAsync(UserUpdate user, string token)
     {
         var userModel = await _userManager.Users.FirstAsync(s => s.Id == user.CNP && s.CNP == user.CNP);
-        var result = await _userManager.ChangePhoneNumberAsync(userModel, newPhoneNumber, token);
+        var result = await _userManager.ChangePhoneNumberAsync(userModel, user.PhoneNumber, token);
         return result;
     }
 
@@ -144,9 +146,9 @@ public class UserService : IUserService
         return await _userManager.DeleteAsync(user);
     }
 
-    private static User DtoToModel(Models.User model)
+    private static DataBaseLayout.Models.User DtoToModel(Models.User model)
     {
-        var entity = new User
+        var entity = new DataBaseLayout.Models.User
         {
             Id = model.CNP,
             CNP = model.CNP,
@@ -165,7 +167,7 @@ public class UserService : IUserService
         return entity;
     }
 
-    private static Models.User ModelToDto(User model)
+    private static Models.User ModelToDto(DataBaseLayout.Models.User model)
     {
         var dto = new Models.User
         {

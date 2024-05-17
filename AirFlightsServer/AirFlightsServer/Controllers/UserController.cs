@@ -89,14 +89,14 @@ public class UserController : BaseController
 
     [HttpPut]
     [Authorize(Roles.User)]
-    public async Task<IActionResult> UpdateUserAsync(User user)
+    public async Task<IActionResult> UpdateUserAsync(UserUpdate user)
     {
         try
         {
             await _userService.UpdateUserAsync(user);
-            await _userService.UpdateUserEmailAsync(user, user.Email, HttpContext.Request.Headers.Authorization.ToString().Replace("Bearer ", string.Empty));
-            await _userService.UpdateUserPasswordAsync(user, user.Email, HttpContext.Request.Headers.Authorization.ToString().Replace("Bearer ", string.Empty));
-            await _userService.UpdateUserPhoneNumberAsync(user, user.Email, HttpContext.Request.Headers.Authorization.ToString().Replace("Bearer ", string.Empty));
+            await _userService.UpdateUserEmailAsync(user, HttpContext.Request.Headers.Authorization.ToString().Replace("Bearer ", string.Empty));
+            await _userService.UpdateUserPasswordAsync(user);
+            await _userService.UpdateUserPhoneNumberAsync(user, HttpContext.Request.Headers.Authorization.ToString().Replace("Bearer ", string.Empty));
 
             return ApiServiceResponse.ApiServiceResult(new ServiceResponse());
         }

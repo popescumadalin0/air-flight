@@ -27,6 +27,12 @@ public partial class Details : ComponentBase, IDisposable
     [CascadingParameter]
     private Task<AuthenticationState> AuthenticationState { get; set; }
 
+    [Inject]
+    private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
     private AccountDetailsModel _user = new();
 
     private AccountDetailsModel _oldUser = new();
@@ -36,6 +42,7 @@ public partial class Details : ComponentBase, IDisposable
     private int _showLastNameEdit;
     private int _showEmailEdit;
     private int _showPhoneNumberEdit;
+    private int _showPasswordEdit;
 
     public void Dispose()
     {
@@ -71,6 +78,8 @@ public partial class Details : ComponentBase, IDisposable
             Email = user.Response.Email,
             PhoneNumber = user.Response.PhoneNumber,
             UserName = user.Response.UserName,
+            NewPassword = string.Empty,
+            OldPassword = string.Empty
         };
 
         _oldUser = new AccountDetailsModel(_user);
@@ -101,16 +110,16 @@ public partial class Details : ComponentBase, IDisposable
     {
         await LoadingState.ShowAsync();
 
-        var user = new User()
+        var user = new UserUpdate()
         {
-            UserName = _user.UserName,
             CNP = _user.CNP,
             Email = _user.Email,
             PhoneNumber = _user.PhoneNumber,
             ProfileImage = _user.ProfileImage,
             FirstName = _user.FirstName,
             LastName = _user.LastName,
-            Id = _user.CNP
+            NewPassword = _user.NewPassword,
+            OldPassword = _user.OldPassword
         };
 
         var response = await AirFlightsApiClient.UpdateUserAsync(user);
@@ -127,5 +136,40 @@ public partial class Details : ComponentBase, IDisposable
         await LoadingState.HideAsync();
 
         await SnackbarState.PushAsync("Successfully updated!");
+    }
+
+    private async Task LogoutAsync()
+    {
+        await LoadingState.ShowAsync();
+        await LoadingState.HideAsync();
+
+            var customProvider = (AirFLightsAuthenticationStateProvider)AuthenticationStateProvider;
+        await customProvider.LogoutUserAsync();
+
+        await SnackbarState.PushAsync("Successfully logout!");
+
+        NavigationManager.NavigateTo("/login");
+    }
+
+    private async Task DeleteAsync()
+    {
+        await LoadingState.ShowAsync();
+
+        var response = await AirFlightsApiClient.DeleteUserAsync(_user.CNP);
+
+        if (!response.Success)
+        {
+            await SnackbarState.PushAsync(response.ResponseMessage, !response.Success);
+            await LoadingState.HideAsync();
+            return;
+        }
+
+        await LogoutAsync();
+
+        await LoadingState.HideAsync();
+
+        await SnackbarState.PushAsync("Successfully deleted!");
+
+        NavigationManager.NavigateTo("/login");
     }
 }

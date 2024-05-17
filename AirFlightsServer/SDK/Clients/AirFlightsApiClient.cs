@@ -100,7 +100,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         }
     }
 
-    public async Task<ApiResponseMessage> UpdateUserAsync(User user)
+    public async Task<ApiResponseMessage> UpdateUserAsync(UserUpdate user)
     {
         try
         {

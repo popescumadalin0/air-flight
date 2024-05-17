@@ -1,6 +1,7 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -72,6 +73,17 @@ public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
 
         _session.SetItem("token", token);
         _session.SetItem("refreshToken", refreshToken);
+
+        NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
+    }
+
+    public async Task LogoutUserAsync()
+    {
+        await _localStorage.SetItemAsync("token", string.Empty);
+        await _localStorage.SetItemAsync("refreshToken", string.Empty);
+
+        _session.SetItem("token", string.Empty);
+        _session.SetItem("refreshToken", string.Empty);
 
         NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
     }

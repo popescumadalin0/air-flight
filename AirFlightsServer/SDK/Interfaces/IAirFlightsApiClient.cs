@@ -48,7 +48,7 @@ public interface IAirFlightsApiClient
     /// Update user.
     /// </summary>
     /// <returns></returns>
-    Task<ApiResponseMessage> UpdateUserAsync(User user);
+    Task<ApiResponseMessage> UpdateUserAsync(UserUpdate user);
 
 
     /// <summary>
