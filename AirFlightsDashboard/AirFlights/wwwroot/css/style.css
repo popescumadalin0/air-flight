@@ -944,18 +944,28 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 500px;
+    height: 800px;
     width: auto;
 }
 
 .account-txt h2 {
     font-size: 38px;
     color: black;
-    font-weight: 400;
-    text-transform: uppercase;
+    font-weight: 900;
     font-family: initial;
-    letter-spacing: 6px;
-    line-height: 2.4;
+    letter-spacing: 1px;
+    line-height: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.account-txt h2 p {
+    font-size: 38px;
+    color: orangered;
+    font-weight: 900;
+    font-family: initial;
+    letter-spacing: 1px;
+    line-height: 2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -987,4 +997,11 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     background-size: cover;
     height: 900px;
     z-index: 1;
+}
+.details-background {
+    opacity: 0.7;
+    position: absolute;
+    display: block;
+    z-index: -1;
+    padding-top: 100px; 
 }
