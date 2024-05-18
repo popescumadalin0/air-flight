@@ -14,14 +14,14 @@
                     <Field>
                         <FieldLabel><h2>Where?</h2></FieldLabel>
                         <FieldBody>
-                            <Blazorise.Icon Name="@FontAwesomeIcons.PlaneDeparture" IconStyle="IconStyle.Solid" />
+                            <Paragraph><Blazorise.Icon Name="@FontAwesomeIcons.PlaneDeparture" IconStyle="IconStyle.Solid" /></Paragraph>
                             <Select @bind-SelectedValue="@_filter.Leaving" Style="border-radius: 50px" TValue="LocationModel">
                                 @foreach (var from in FromLocations)
                                 {
                                     <SelectItem Value="@from">@from.City, @from.Country</SelectItem>
                                 }
                             </Select>
-                            <Blazorise.Icon Name="@FontAwesomeIcons.PlaneArrival" IconStyle="IconStyle.Solid" />
+                            <Paragraph><Blazorise.Icon Name="@FontAwesomeIcons.PlaneArrival" IconStyle="IconStyle.Solid" /></Paragraph>
                             <Select @bind-SelectedValue="@_filter.Going" Style="border-radius: 50px" TValue="LocationModel">
                                 @foreach (var going in ToLocations)
                                 {
@@ -37,9 +37,9 @@
                     <Field>
                         <FieldLabel><h2>When?</h2></FieldLabel>
                         <FieldBody>
-                            <Blazorise.Icon Name="@FontAwesomeIcons.CalendarCheck" IconStyle="IconStyle.Solid" />
+                            <Paragraph><Blazorise.Icon Name="@FontAwesomeIcons.CalendarCheck" IconStyle="IconStyle.Solid" /></Paragraph>
                             <DatePicker TValue="DateTime" @bind-Date="@_filter.Departing" />
-                            <Blazorise.Icon Name="@FontAwesomeIcons.CalendarTimes" IconStyle="IconStyle.Solid" TValue="DateTime" />
+                            <Paragraph><Blazorise.Icon Name="@FontAwesomeIcons.CalendarTimes" IconStyle="IconStyle.Solid" /></Paragraph>
                             <DatePicker TValue="DateTime" @bind-Date="@_filter.Arriving" />
                         </FieldBody>
                     </Field>
