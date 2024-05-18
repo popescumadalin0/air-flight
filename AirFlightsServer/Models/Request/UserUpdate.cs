@@ -1,4 +1,4 @@
-namespace Models;
+namespace Models.Request;
 
 public class UserUpdate
 {

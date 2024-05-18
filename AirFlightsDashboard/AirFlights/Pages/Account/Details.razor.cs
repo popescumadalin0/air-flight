@@ -9,6 +9,7 @@ using Blazorise;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Models;
+using Models.Request;
 using SDK.Interfaces;
 
 namespace AirFlightsDashboard.Pages.Account;
