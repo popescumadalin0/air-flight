@@ -1,7 +1,8 @@
 @page "/account"
 @inherits ComponentBase
-@using global::Models
+@using global::Models.Constants
 @implements IDisposable
+@attribute [Authorize(Roles = Roles.User)]
 
 <Div Class="details-background">
     <Image Source="../images/welcome-hero/booking.jpg"></Image>

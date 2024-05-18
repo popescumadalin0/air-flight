@@ -1,22 +1,29 @@
-
 @inherits BaseComponent
 
 
 <Card Class="card-flight">
-    <CardImage Source="../images/explore/London.jpg" Alt="Card image cap 3"></CardImage>
+    <Figure Size="FigureSize.Is128x128">
+        <FigureImage Width="@Blazorise.Width.Px(128)" Height="@Blazorise.Height.Px(128)" Source="@($"data:image/jpeg;base64,{FlightInfo.Image}")" AlternateText="empty-256x256" Rounded />
+    </Figure>
     <CardBody>
-        <CardTitle Size="5">@FlightInfo.DestinationCity</CardTitle>
-        <Divider DividerType="DividerType.Dashed" />
+        <CardTitle Size="5">@FlightInfo.ToLocation.City</CardTitle>
+        <Divider DividerType="DividerType.Dashed"/>
         <CardText>
-            <Blazorise.Icon Name="@FontAwesomeIcons.MoneyBill1" IconStyle="IconStyle.Solid" />
-            <p>Price per person @FlightInfo.Price @FlightInfo.Currency</p>
+            <p>
+                <Blazorise.Icon Name="@FontAwesomeIcons.MoneyBill1" IconStyle="@IconStyle.Solid"/>
+                @FlightInfo.Price @FlightInfo.Currency
+            </p>
             <Divider DividerType="DividerType.Dashed"/>
-            <Blazorise.Icon Name="@FontAwesomeIcons.PlaneDeparture" IconStyle="IconStyle.Solid"/>
-            <p> @FlightInfo.StartPointAirport, @FlightInfo.StartPointCountry, @FlightInfo.DepartureTime</p>
+            <p>
+                <Blazorise.Icon Name="@FontAwesomeIcons.PlaneDeparture" IconStyle="@IconStyle.Solid"/>
+                @FlightInfo.FromLocation.City, @FlightInfo.FromLocation.Country, @FlightInfo.DepartureTime
+            </p>
             <Divider DividerType="DividerType.Dashed"/>
-            <Blazorise.Icon Name="@FontAwesomeIcons.PlaneArrival" IconStyle="IconStyle.Solid"/>
-            <p> @FlightInfo.DestinationAirport, @FlightInfo.DestinationCountry, @FlightInfo.ArrivalTime</p>
+            <p>
+                <Blazorise.Icon Name="@FontAwesomeIcons.PlaneArrival" IconStyle="IconStyle.Solid"/>
+                @FlightInfo.ToLocation.City, @FlightInfo.ToLocation.Country, @FlightInfo.ArrivalTime
+            </p>
         </CardText>
-        <Button Class="btn-group-justified" Color="Color.Primary">Book now</Button>
+        <Button Class="btn-group-justified" Clicked="@OnClick" Color="@Color.Primary">Book now</Button>
     </CardBody>
 </Card>

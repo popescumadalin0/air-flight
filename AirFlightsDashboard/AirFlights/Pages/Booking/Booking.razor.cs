@@ -1,4 +1,3 @@
-using System;
 using AirFlightsDashboard.Models;
 using Blazorise;
 using Microsoft.AspNetCore.Components;
@@ -10,7 +9,7 @@ public partial class Booking : BaseComponent
     private PersonalDetails personalDetails;
 
     [Parameter]
-    public FlightModel BookingForm { get; set; }
+    public BookingModel BookingForm { get; set; }
 
     [Parameter]
     public CompanyModel Company { get; set; }
