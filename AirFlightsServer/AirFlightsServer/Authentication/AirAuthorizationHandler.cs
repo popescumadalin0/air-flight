@@ -1,4 +1,3 @@
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
@@ -20,16 +19,14 @@ namespace AirFlightsServer.Authentication
             (AuthorizationHandlerContext context, AuthorizationRequirement requirement)
         {
             var httpRequest = _httpContextAccessor.HttpContext!.Request;
-            if (httpRequest.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty) != "test")
+            var token = httpRequest.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
+
+            if (!_tokenService.IsValidToken(token, requirement.RoleName))
             {
                 context.Fail();
                 return Task.CompletedTask;
             }
-            /*if (!httpRequest.Headers[requirement].Any())
-            {
-                context.Fail();
-                return Task.CompletedTask;
-            }*/
+
             context.Succeed(requirement);
             return Task.CompletedTask;
         }

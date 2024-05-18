@@ -8,6 +8,7 @@ using AirFlightsServer.Services.Interfaces;
 using DataBaseLayout.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace AirFlightsServer.Services;
@@ -15,6 +16,8 @@ namespace AirFlightsServer.Services;
 public class TokenService : ITokenService
 {
     private readonly IConfiguration _configuration;
+
+    private readonly ILogger<TokenService> _logger;
 
     private readonly UserManager<User> _userManager;
 
@@ -47,7 +50,7 @@ public class TokenService : ITokenService
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
-    public bool IsValidToken(string token)
+    public bool IsValidToken(string token, string role)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = new SymmetricSecurityKey(
@@ -55,7 +58,8 @@ public class TokenService : ITokenService
         var validationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            ValidateLifetime = true,
+            //todo: change this to true when you implement the refresh token
+            ValidateLifetime = false,
             IssuerSigningKey = key,
             ValidateIssuer = false,
             ValidateAudience = false,
@@ -64,11 +68,20 @@ public class TokenService : ITokenService
         };
         try
         {
+            var jwtToken = tokenHandler.ReadJwtToken(token);
+
             tokenHandler.ValidateToken(token, validationParameters, out _);
+
+            if (!jwtToken.Claims.Any(c => c.Type == ClaimTypes.Role && c.Value == role))
+            {
+                throw new Exception($"Unauthorized! You are not {role}");
+            }
+
             return true;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            _logger.LogError(ex.ToString());
             return false;
         }
     }

@@ -27,4 +27,8 @@
         <ProjectReference Include="..\..\AirFlightsServer\SDK\SDK.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Services\" />
+    </ItemGroup>
+
 </Project>

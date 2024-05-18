@@ -22,6 +22,7 @@ public class UserController : BaseController
     {
         _userService = userService;
     }
+
     [HttpGet]
     [Authorize(Roles.Admin)]
     public async Task<IActionResult> GetUsersAsync()
@@ -39,7 +40,7 @@ public class UserController : BaseController
     }
 
     [HttpGet("{CNP}")]
-    [Authorize(Roles.Admin)]
+    [Authorize(Roles.User)]
     public async Task<IActionResult> GetUserAsync(string CNP)
     {
         try

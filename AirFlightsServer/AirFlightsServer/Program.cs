@@ -1,11 +1,9 @@
 using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer;
 using AirFlightsServer.Authentication;
 using AirFlightsServer.Extensions;
-using AirFlightsServer.Services;
 using DataBaseLayout.DbContext;
 using DataBaseLayout.Models;
 using Microsoft.AspNetCore.Authorization;
