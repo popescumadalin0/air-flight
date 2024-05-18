@@ -1,20 +1,21 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using AirFlightsDashboard.Services;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 
 namespace AirFlightsDashboard.States;
 
 public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
 {
     private readonly ILocalStorageService _localStorage;
+    private readonly HttpClient _httpClient;
     private readonly ApplicationSession _session;
     private ClaimsPrincipal _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
 
@@ -38,24 +39,24 @@ public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
 
             if (string.IsNullOrEmpty(_session.GetItem("token")))
             {
-                return await Task.FromResult(new AuthenticationState(_anonymous));
+                return new AuthenticationState(_anonymous);
             }
 
             var handler = new JwtSecurityTokenHandler();
             var decodedToken = handler.ReadJwtToken(_session.GetItem("token"));
 
             var identity = new ClaimsIdentity(
-                decodedToken.Claims,
-                "jwt",
-                decodedToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value,
-                decodedToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);
+                decodedToken.Claims.ToList(),
+                "jwt");
+            /*decodedToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value,
+            decodedToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);*/
             var user = new ClaimsPrincipal(identity);
 
-            return await Task.FromResult(new AuthenticationState(user));
+            return new AuthenticationState(user);
         }
         catch (Exception)
         {
-            return await Task.FromResult(new AuthenticationState(_anonymous));
+            return new AuthenticationState(_anonymous);
         }
     }
 
@@ -74,6 +75,8 @@ public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
         _session.SetItem("token", token);
         _session.SetItem("refreshToken", refreshToken);
 
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+
         NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
     }
 
@@ -84,6 +87,8 @@ public class AirFLightsAuthenticationStateProvider : AuthenticationStateProvider
 
         _session.SetItem("token", string.Empty);
         _session.SetItem("refreshToken", string.Empty);
+
+        _httpClient.DefaultRequestHeaders.Authorization = null;
 
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
     }

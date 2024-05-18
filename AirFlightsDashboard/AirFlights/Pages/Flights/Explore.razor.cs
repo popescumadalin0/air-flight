@@ -1,45 +1,87 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsDashboard.Models;
+using AirFlightsDashboard.States;
 using Microsoft.AspNetCore.Components;
+using SDK.Interfaces;
 
 namespace AirFlightsDashboard.Pages.Flights;
 
 public partial class Explore : ComponentBase
 {
-    private FlightFilter _filter;
+    [Inject]
+    private LoadingState LoadingState { get; set; }
 
-    private List<FlightModel> flights;
+    [Inject]
+    private SnackbarState SnackbarState { get; set; }
 
-    protected override Task OnInitializedAsync()
+    [Inject]
+    private IAirFlightsApiClient AirFlightsApiClient { get; set; }
+
+    private FlightFilter _filter = new();
+
+    private List<FlightModel> flights = new();
+
+    private List<FlightModel> _filteredFlights = new();
+
+    private List<LocationModel> FromLocations = new();
+
+    private List<LocationModel> ToLocations = new();
+
+    protected override async Task OnInitializedAsync()
     {
-        //se apleaza baza
-        flights = new List<FlightModel>()
-        {
-            new FlightModel()
-            {
-                DepartureTime = DateTime.Now,
-                StartPointAirport = "Bucharest",
-                DestinationCountry = "Anglia",
-                ArrivalTime = DateTime.Now,
-                DestinationAirport = "Anglia",
-                DestinationCity = "Londra",
-                StartPointCity = "Bucharest",
-                StartPointCountry = "Romania",
-                Currency = "Ron",
-                Price = 120
-            }
-        };
+        await LoadingState.ShowAsync();
 
-        return base.OnInitializedAsync();
+        var tickets = await AirFlightsApiClient.GetTicketsAsync();
+
+        if (!tickets.Success)
+        {
+            await SnackbarState.PushAsync(tickets.ResponseMessage, true);
+            await LoadingState.HideAsync();
+
+            return;
+        }
+
+        FromLocations = tickets.Response.Select(t => new LocationModel()
+        {
+            City = t.FromCity,
+            Country = t.FromCountry,
+        }).ToList();
+        ToLocations = tickets.Response.Select(t => new LocationModel()
+        {
+            City = t.ToCity,
+            Country = t.ToCountry,
+        }).ToList();
+
+        flights = tickets.Response.Select(t => new FlightModel()
+        {
+            ArrivalTime = t.ArrivalTime,
+            Currency = t.Currency,
+            DepartureTime = t.DepartureTime,
+            ToLocation = new LocationModel()
+            {
+                City = t.ToCity,
+                Country = t.ToCountry,
+            },
+            FromLocation = new LocationModel()
+            {
+                City = t.FromCity,
+                Country = t.FromCountry,
+            },
+            Price = t.Price,
+            Image = t.Image
+        }).ToList();
+        _filteredFlights = flights;
+        await LoadingState.HideAsync();
     }
 
     private Task DepartingChangedAsync(DateTime value)
     {
         _filter.Departing = value;
         //se apleaza iar baza
-        flights = new List<FlightModel>();
+        //flights = new List<BookingModel>();
 
         return Task.CompletedTask;
     }

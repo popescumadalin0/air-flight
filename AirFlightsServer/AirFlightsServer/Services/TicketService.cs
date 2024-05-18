@@ -15,20 +15,36 @@ public class TicketService : ITicketService
     {
         _ticketRepository = ticketRepository;
     }
+
     /// <inheritdoc />
     public async Task<IList<Models.Ticket>> GetTicketsAsync()
     {
-        var ticket = await _ticketRepository.GetTicketsAsync();
+        var tickets = await _ticketRepository.GetTicketsAsync();
 
-        var response = ticket.Select(af => new Models.Ticket
+        var response = tickets.Select(t =>
         {
-            Currency = af.Currency,
-            Id = af.Id,
-            Price = af.Price
+            var startLayover = t.Layovers.MaxBy(l => l.Order);
+            var endLayover = t.Layovers.MinBy(l => l.Order);
+
+            var response = new Models.Ticket
+            {
+                Currency = t.Currency,
+                Id = t.Id,
+                Price = t.Price,
+                ArrivalTime = startLayover.ArrivalDuration,
+                DepartureTime = endLayover.DepartureTime,
+                FromCountry = startLayover.StartPointCountry,
+                FromCity = startLayover.StartPointCity,
+                NumberOfSeats = t.Layovers.Min(l => l.PlaneSeats.Count),
+                ToCity = endLayover.DestinationCity,
+                ToCountry = endLayover.DestinationCountry,
+                Image = Convert.ToBase64String(t.Image)
+            };
+
+            return response;
         }).ToList();
 
         return response;
-
     }
 
     /// <inheritdoc />
@@ -36,11 +52,22 @@ public class TicketService : ITicketService
     {
         var ticket = await _ticketRepository.GetTicketAsync(id);
 
+        var startLayover = ticket.Layovers.MaxBy(l => l.Order);
+        var endLayover = ticket.Layovers.MinBy(l => l.Order);
+
         var response = new Models.Ticket
         {
             Currency = ticket.Currency,
             Id = ticket.Id,
-            Price = ticket.Price
+            Price = ticket.Price,
+            ArrivalTime = startLayover.ArrivalDuration,
+            DepartureTime = endLayover.DepartureTime,
+            FromCountry = startLayover.StartPointCountry,
+            FromCity = startLayover.StartPointCity,
+            NumberOfSeats = ticket.Layovers.Min(l => l.PlaneSeats.Count),
+            ToCity = endLayover.DestinationCity,
+            ToCountry = endLayover.DestinationCountry,
+            Image = Convert.ToBase64String(ticket.Image)
         };
 
         return response;
@@ -54,6 +81,7 @@ public class TicketService : ITicketService
             Currency = ticket.Currency,
             Id = ticket.Id,
             Price = ticket.Price,
+            Image = Convert.FromBase64String(ticket.Image),
             //todo: sa vedem daca le adaugam de aici
             //Layovers = 
         };
@@ -79,5 +107,4 @@ public class TicketService : ITicketService
     {
         await _ticketRepository.DeleteTicketAsync(id);
     }
-
 }

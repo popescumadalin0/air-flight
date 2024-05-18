@@ -1,7 +1,8 @@
 @page "/account"
 @inherits ComponentBase
-@using global::Models
+@using global::Models.Constants
 @implements IDisposable
+@attribute [Authorize(Roles = Roles.User)]
 
 <Div Class="account-txt">
     <h2> Personal Details</h2>

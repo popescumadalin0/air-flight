@@ -18,13 +18,15 @@ public class Layover
 
     public DateTime DepartureTime { get; set; }
 
-    public DateTime FlightDuration { get; set; }
+    public DateTime ArrivalDuration { get; set; }
 
     public string DestinationCity { get; set; }
 
     public string DestinationCountry { get; set; }
 
     public string StartPointCity { get; set; }
+
+    public int Order { get; set; }
 
     public Guid TicketId { get; set; }
 

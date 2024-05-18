@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataBaseLayout.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240515195348_Initial")]
+    [Migration("20240518140038_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -80,6 +80,9 @@ namespace DataBaseLayout.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("ArrivalDuration")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
@@ -95,8 +98,8 @@ namespace DataBaseLayout.Migrations
                     b.Property<string>("DestinationCountry")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("FlightDuration")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
 
                     b.Property<string>("StartPointAirport")
                         .HasColumnType("nvarchar(max)");
@@ -187,6 +190,9 @@ namespace DataBaseLayout.Migrations
 
                     b.Property<string>("Currency")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");

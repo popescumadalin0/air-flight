@@ -8,7 +8,7 @@ using Layover = Models.Layover;
 
 namespace AirFlightsServer.Services;
 
-public class LayoverService:ILayoverService
+public class LayoverService : ILayoverService
 {
     private readonly ILayoverRepository _layoverRepository;
 
@@ -29,10 +29,11 @@ public class LayoverService:ILayoverService
             DestinationAirport = l.DestinationAirport,
             DestinationCity = l.DestinationCity,
             DestinationCountry = l.DestinationCountry,
-            FlightDuration = l.FlightDuration,
+            ArrivalTime = l.ArrivalDuration,
             StartPointAirport = l.StartPointAirport,
             StartPointCity = l.StartPointCity,
-            StartPointCountry = l.StartPointCountry
+            StartPointCountry = l.StartPointCountry,
+            Order = l.Order,
         }).ToList();
 
         return response;
@@ -50,10 +51,11 @@ public class LayoverService:ILayoverService
             DestinationAirport = layover.DestinationAirport,
             DestinationCity = layover.DestinationCity,
             DestinationCountry = layover.DestinationCountry,
-            FlightDuration = layover.FlightDuration,
+            ArrivalTime = layover.ArrivalDuration,
             StartPointAirport = layover.StartPointAirport,
             StartPointCity = layover.StartPointCity,
-            StartPointCountry = layover.StartPointCountry
+            StartPointCountry = layover.StartPointCountry,
+            Order = layover.Order,
         };
 
         return response;
@@ -70,10 +72,11 @@ public class LayoverService:ILayoverService
             DestinationAirport = model.DestinationAirport,
             DestinationCity = model.DestinationCity,
             DestinationCountry = model.DestinationCountry,
-            FlightDuration = model.FlightDuration,
+            ArrivalDuration = model.ArrivalTime,
             StartPointAirport = model.StartPointAirport,
             StartPointCity = model.StartPointCity,
-            StartPointCountry = model.StartPointCountry
+            StartPointCountry = model.StartPointCountry,
+            Order = model.Order,
         };
 
         await _layoverRepository.AddLayoverAsync(entity);
@@ -89,10 +92,10 @@ public class LayoverService:ILayoverService
             DestinationAirport = model.DestinationAirport,
             DestinationCity = model.DestinationCity,
             DestinationCountry = model.DestinationCountry,
-            FlightDuration = model.FlightDuration,
+            ArrivalDuration = model.ArrivalTime,
             StartPointAirport = model.StartPointAirport,
             StartPointCity = model.StartPointCity,
-            StartPointCountry = model.StartPointCountry
+            StartPointCountry = model.StartPointCountry,
         };
 
         await _layoverRepository.AddLayoverAsync(entity);

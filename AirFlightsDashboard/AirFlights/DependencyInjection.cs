@@ -3,15 +3,10 @@ using AirFlightsDashboard.Services;
 using AirFlightsDashboard.States;
 using Blazored.LocalStorage;
 using Blazored.SessionStorage;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Server;
-using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Refit;
 using SDK;
-using SDK.Interfaces;
 
 namespace AirFlightsDashboard;
 
@@ -32,15 +27,10 @@ public static class DependencyInjection
 
         services.AddAuthorizationCore();
 
-        services.AddScoped<
-            AirFLightsAuthenticationStateProvider,
-            AirFLightsAuthenticationStateProvider>();
+        services.AddScoped<AuthenticationStateProvider, AirFLightsAuthenticationStateProvider>();
 
-        services.AddScoped<AuthenticationStateProvider>(
-            p => p.GetService<AirFLightsAuthenticationStateProvider>());
-
-        var authProvider = services.BuildServiceProvider().GetService<AirFLightsAuthenticationStateProvider>();
-        AuthBearerTokenFactory.SetBearerTokenGetterFunc(authProvider!.GetBearerTokenAsync);
+        var authProvider = services.BuildServiceProvider().GetService<AuthenticationStateProvider>();
+        AuthBearerTokenFactory.SetBearerTokenGetterFunc((authProvider as AirFLightsAuthenticationStateProvider)!.GetBearerTokenAsync);
 
         var apiUrl = new Uri(config.GetSection("Api:BaseUrl").Value);
         services.AddAirFlightsApiClient(apiUrl);

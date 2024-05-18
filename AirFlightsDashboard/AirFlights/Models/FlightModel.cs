@@ -4,16 +4,17 @@ namespace AirFlightsDashboard.Models;
 
 public class FlightModel
 {
-   
-    public string StartPointCountry { get; set; }
-    public string StartPointCity { get; set; }
-    public string StartPointAirport { get; set; }
-    public string DestinationAirport { get; set; }
+    public LocationModel FromLocation { get; set; }
+
+    public LocationModel ToLocation { get; set; }
+
     public DateTime DepartureTime { get; set; }
+
     public DateTime ArrivalTime { get; set; }
-    public string DestinationCountry { get; set; }
-    public string DestinationCity { get; set; }
+
     public int Price { get; set; }
+
     public string Currency { get; set; }
 
+    public string Image { get; set; }
 }

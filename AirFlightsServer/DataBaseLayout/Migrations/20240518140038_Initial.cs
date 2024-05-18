@@ -56,7 +56,8 @@ namespace DataBaseLayout.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    Currency = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Currency = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -123,10 +124,11 @@ namespace DataBaseLayout.Migrations
                     StartPointAirport = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DestinationAirport = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DepartureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FlightDuration = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ArrivalDuration = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DestinationCity = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DestinationCountry = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StartPointCity = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Order = table.Column<int>(type: "int", nullable: false),
                     TicketId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },

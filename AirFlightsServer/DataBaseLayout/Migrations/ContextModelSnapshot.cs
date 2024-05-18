@@ -77,6 +77,9 @@ namespace DataBaseLayout.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("ArrivalDuration")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
@@ -92,8 +95,8 @@ namespace DataBaseLayout.Migrations
                     b.Property<string>("DestinationCountry")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("FlightDuration")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
 
                     b.Property<string>("StartPointAirport")
                         .HasColumnType("nvarchar(max)");
@@ -184,6 +187,9 @@ namespace DataBaseLayout.Migrations
 
                     b.Property<string>("Currency")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");

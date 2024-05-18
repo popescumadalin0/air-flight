@@ -13,5 +13,7 @@ public class Ticket
 
     public string Currency { get; set; }
 
+    public byte[] Image { get; set; }
+
     public ICollection<Layover> Layovers { get; set; }
 }
