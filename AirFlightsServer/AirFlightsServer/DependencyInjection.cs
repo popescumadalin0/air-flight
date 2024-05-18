@@ -4,13 +4,7 @@ using AirFlightsServer.Repositories.Interfaces;
 using AirFlightsServer.Services;
 using AirFlightsServer.Services.Interfaces;
 using DataBaseLayout;
-using DataBaseLayout.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
-using FluentEmail.Core.Interfaces;
-using FluentEmail.Smtp;
-using System.Net.Mail;
 
 namespace AirFlightsServer;
 

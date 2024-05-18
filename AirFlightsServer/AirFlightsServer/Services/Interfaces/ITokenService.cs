@@ -8,7 +8,7 @@ public interface ITokenService
     Task<string> GenerateTokenAsync(string username, int durationMin);
 
     /// <summary/>
-    bool IsValidToken(string token);
+    bool IsValidToken(string token, string role);
 
     /// <summary/>
     int GetExpirationTimeFromJwtInMinutes(string token);

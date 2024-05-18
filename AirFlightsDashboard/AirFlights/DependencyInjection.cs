@@ -1,5 +1,4 @@
 using System;
-using AirFlightsDashboard.Services;
 using AirFlightsDashboard.States;
 using Blazored.LocalStorage;
 using Blazored.SessionStorage;
@@ -22,8 +21,6 @@ public static class DependencyInjection
 
         services.AddBlazoredSessionStorage();
         services.AddBlazoredLocalStorage();
-
-        services.AddSingleton<ApplicationSession>();
 
         services.AddAuthorizationCore();
 

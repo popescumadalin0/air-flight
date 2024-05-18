@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace AirFlightsDashboard.Models;
 
 public class LocationModel
