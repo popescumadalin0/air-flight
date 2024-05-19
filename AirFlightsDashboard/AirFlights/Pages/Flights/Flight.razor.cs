@@ -15,6 +15,6 @@ public partial class Flight : BaseComponent
 
     private void OnClick()
     {
-        NavigationManager.NavigateTo("todo");
+        NavigationManager.NavigateTo($"ticket/{FlightInfo.Id.ToString()}");
     }
 }

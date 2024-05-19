@@ -1,0 +1,38 @@
+@page "/ticket/{id}"
+
+
+<PageTitle>Destination Details</PageTitle>
+
+<Div Margin="Margin.IsAuto.OnX" Padding="Padding.Is5.OnX" Width="Width.Is75" Class="container">
+    
+    <Heading Size="HeadingSize.Is1" Margin="Margin.Is5.FromBottom" TextAlignment="TextAlignment.Center">
+        Destination Details
+    </Heading>
+    <Heading Size="HeadingSize.Is2"  Margin="Margin.Is5.FromBottom" TextAlignment="TextAlignment.Center">
+        Welcome to Our World, Where<br/> Innovation Meets Purpose, and<br/> Possibilities Unfold.
+    </Heading>
+
+    <Div Class="row">
+        <Div Class="col-md-5">
+            <Figure Size="FigureSize.Is512x512">
+                <FigureImage Width="@Blazorise.Width.Px(512)" Height="@Blazorise.Height.Px(512)" Source="@($"data:image/jpeg;base64,{TicketInfo.Image}")" AlternateText="empty-512x512" Rounded />
+                <FigureCaption>Paris</FigureCaption>
+            </Figure>
+        </Div>
+        <Div Class="col-md-5 detail">
+            <Paragraph TextWeight="TextWeight.Bold">Start Point Country:@TicketInfo.StartPointCountry</Paragraph>
+            <Paragraph TextWeight="TextWeight.Bold">Start Point City:@TicketInfo.StartPointCity</Paragraph>
+            <Paragraph TextWeight="TextWeight.Bold">Start Point Airport:@TicketInfo.StartPointAirport</Paragraph>
+            <Paragraph TextWeight="TextWeight.Bold">Departure Time:@TicketInfo.DepartureTime</Paragraph>
+            <Paragraph TextWeight="TextWeight.Bold">Destination Country:@TicketInfo.DestinationCountry</Paragraph>
+            <Paragraph TextWeight="TextWeight.Bold">Destination City:@TicketInfo.DestinationCity</Paragraph>
+            <Paragraph TextWeight="TextWeight.Bold">Destination Airport:@TicketInfo.DestinationAirport</Paragraph>
+            <Paragraph TextWeight="TextWeight.Bold">Arrival Duration:@TicketInfo.ArrivalDuration</Paragraph>
+            <Paragraph TextWeight="TextWeight.Bold">Company:@TicketInfo.CompanyName</Paragraph>
+            <ListGroup TextWeight="TextWeight.Bold">Plane Facilities:@TicketInfo.PlaneFacilities</ListGroup>
+            <ListGroup TextWeight="TextWeight.Bold">Layovers:@TicketInfo.Layovers</ListGroup>
+            <Paragraph TextWeight="TextWeight.Bold">Price:@TicketInfo.Price</Paragraph>
+            <Paragraph TextWeight="TextWeight.Bold">Currency:@TicketInfo.Currency</Paragraph>
+        </Div>
+    </Div>
+</Div>

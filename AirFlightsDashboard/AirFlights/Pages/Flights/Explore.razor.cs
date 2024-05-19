@@ -57,6 +57,7 @@ public partial class Explore : ComponentBase
 
         flights = tickets.Response.Select(t => new FlightModel()
         {
+            Id = t.Id,
             ArrivalTime = t.ArrivalTime,
             Currency = t.Currency,
             DepartureTime = t.DepartureTime,

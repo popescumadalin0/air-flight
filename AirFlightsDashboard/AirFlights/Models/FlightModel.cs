@@ -4,6 +4,7 @@ namespace AirFlightsDashboard.Models;
 
 public class FlightModel
 {
+    public Guid Id { get; set; }
     public LocationModel FromLocation { get; set; }
 
     public LocationModel ToLocation { get; set; }
