@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Components;
 using Models.Request;
 using SDK.Interfaces;
 
-namespace AirFlightsDashboard.Pages.Ticket;
+namespace AirFlightsDashboard.Pages.Flights;
 
 public partial class AddTicket : ComponentBase, IDisposable
 {
