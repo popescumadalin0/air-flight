@@ -24,8 +24,6 @@ public class TicketModel
 
     public string CompanyName { get; set; }
 
-
-    public List<PlaneFacility> PlaneFacilities { get; set; }
     public int Price { get; set; }
 
     public string Currency { get; set; }

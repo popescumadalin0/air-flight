@@ -1,18 +1,11 @@
 <Modal @ref="ModalRef">
     <ModalContent Centered>
         <ModalHeader>
-            <ModalTitle>Person Details</ModalTitle>
+            <ModalTitle>Seats</ModalTitle>
             <CloseButton />
         </ModalHeader>
         <ModalBody>
-            <Field>
-                <FieldLabel>First Name</FieldLabel>
-                <TextEdit Placeholder="Enter first name..." />
-            </Field>
-            <Field>
-                <FieldLabel>Last Name</FieldLabel>
-                <TextEdit Placeholder="Enter last name..." />
-            </Field>
+            <Image Source="~/images/welcome-hero/plane-seats.png"></Image>
         </ModalBody>
         <ModalFooter>
             <Button Color="Color.Secondary" Clicked="@HideModal">Close</Button>

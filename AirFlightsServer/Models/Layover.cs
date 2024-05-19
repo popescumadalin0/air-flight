@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Models;
 
@@ -23,4 +24,8 @@ public class Layover
     public string StartPointCity { get; set; }
 
     public int Order { get; set; }
+
+    public string CompanyName { get; set; }
+
+    public List<PlaneFacility> PlaneFacilities { get; set; }
 }

@@ -1,5 +1,10 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using AirFlightsDashboard.Models;
+using AirFlightsDashboard.States;
 using Microsoft.AspNetCore.Components;
+using SDK.Interfaces;
 
 namespace AirFlightsDashboard.Pages.Flights;
 
@@ -8,7 +13,59 @@ public partial class Ticket
     [Parameter]
     public string Id { get; set; }
 
-    private TicketModel TicketInfo = new TicketModel();
+    [Inject]
+    private LoadingState LoadingState { get; set; }
 
+    [Inject]
+    private SnackbarState SnackbarState { get; set; }
 
+    [Inject]
+    private IAirFlightsApiClient AirFlightsApiClient { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    private TicketModel _ticketInfo = new TicketModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadingState.ShowAsync();
+
+        var response = await AirFlightsApiClient.GetTicketAsync(Guid.Parse(Id));
+
+        if (!response.Success)
+        {
+            await SnackbarState.PushAsync(response.ResponseMessage, true);
+            await LoadingState.HideAsync();
+            return;
+        }
+
+        var startLayover = response.Response.Layovers.MinBy(l => l.Order);
+        var endLayover = response.Response.Layovers.MaxBy(l => l.Order);
+
+        _ticketInfo = new TicketModel()
+        {
+            ArrivalDuration = endLayover.ArrivalTime,
+            CompanyName = startLayover.CompanyName,
+            Currency = response.Response.Currency,
+            DepartureTime = startLayover.DepartureTime,
+            DestinationAirport = endLayover.DestinationAirport,
+            DestinationCity = endLayover.DestinationCity,
+            DestinationCountry = endLayover.DestinationCountry,
+            Id = response.Response.Id,
+            Image = response.Response.Image,
+            Price = response.Response.Price,
+            StartPointAirport = startLayover.StartPointAirport,
+            StartPointCity = startLayover.StartPointCity,
+            StartPointCountry = startLayover.StartPointCountry,
+            Layovers = response.Response.Layovers,
+        };
+
+        await LoadingState.HideAsync();
+    }
+
+    private void OnClick()
+    {
+        NavigationManager.NavigateTo("/booking");
+    }
 }

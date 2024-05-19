@@ -50,26 +50,36 @@ public class TicketService : ITicketService
     }
 
     /// <inheritdoc />
-    public async Task<Models.Ticket> GetTicketAsync(Guid id)
+    public async Task<Models.TicketDetail> GetTicketAsync(Guid id)
     {
         var ticket = await _ticketRepository.GetTicketAsync(id);
 
-        var startLayover = ticket.Layovers.MaxBy(l => l.Order);
-        var endLayover = ticket.Layovers.MinBy(l => l.Order);
-
-        var response = new Models.Ticket
+        var response = new Models.TicketDetail
         {
             Currency = ticket.Currency,
             Id = ticket.Id,
             Price = ticket.Price,
-            ArrivalTime = startLayover.ArrivalDuration,
-            DepartureTime = endLayover.DepartureTime,
-            FromCountry = startLayover.StartPointCountry,
-            FromCity = startLayover.StartPointCity,
+            Image = Convert.ToBase64String(ticket.Image),
+            Layovers = ticket.Layovers.Select(l=> new Models.Layover()
+            {
+                Order = l.Order,
+                ArrivalTime = l.ArrivalDuration,
+                DepartureTime = l.DepartureTime,
+                DestinationAirport = l.DestinationAirport,
+                DestinationCity = l.DestinationCity,
+                DestinationCountry = l.DestinationCountry,
+                Id = l.Id,
+                StartPointAirport = l.StartPointAirport,
+                StartPointCity = l.StartPointCity,
+                StartPointCountry = l.StartPointCountry,
+                CompanyName = l.Company.Name,
+                PlaneFacilities = l.PlaneFacilities.Select(pl=>new Models.PlaneFacility()
+                {
+                    Name = pl.Name,
+                    Id = pl.Id,
+                }).ToList()
+            }).ToList(),
             NumberOfSeats = ticket.Layovers.Min(l => l.PlaneSeats.Count),
-            ToCity = endLayover.DestinationCity,
-            ToCountry = endLayover.DestinationCountry,
-            Image = Convert.ToBase64String(ticket.Image)
         };
 
         return response;

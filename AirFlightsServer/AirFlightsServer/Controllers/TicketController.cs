@@ -43,12 +43,12 @@ public class TicketController : BaseController
         {
             var result = await _ticketService.GetTicketAsync(Guid.Parse(id));
 
-            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<Ticket>(result));
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<TicketDetail>(result));
 
         }
         catch (Exception ex)
         {
-            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<Ticket>(ex));
+            return ApiServiceResponse.ApiServiceResult(new ServiceResponse<TicketDetail>(ex));
         }
     }
 

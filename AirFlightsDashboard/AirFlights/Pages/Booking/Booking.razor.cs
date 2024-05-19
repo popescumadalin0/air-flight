@@ -1,7 +1,7 @@
-/*
 using AirFlightsDashboard.Models;
 using Blazorise;
 using Microsoft.AspNetCore.Components;
+using Models;
 
 namespace AirFlightsDashboard.Pages.Booking;
 
@@ -9,12 +9,12 @@ public partial class Booking : BaseComponent
 {
     private PersonalDetails personalDetails;
 
-    [Parameter]
-    public BookingModel BookingForm { get; set; }
+    private Seats seats;
 
     [Parameter]
-    public CompanyModel Company { get; set; }
+    public BookingModel BookingForm { get; set; } = new BookingModel();
 
+    [Parameter]
+    public CompanyModel Company { get; set; } = new CompanyModel();
 
 }
-*/

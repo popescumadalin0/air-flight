@@ -61,7 +61,7 @@ public interface IAirFlightsApiClient
     /// Get air flight by ID.
     /// </summary>
     /// <returns></returns>
-    Task<ApiResponseMessage<Ticket>> GetTicketAsync(Guid id);
+    Task<ApiResponseMessage<TicketDetail>> GetTicketAsync(Guid id);
 
     /// <summary>
     /// Create ir flight.

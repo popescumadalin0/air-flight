@@ -39,7 +39,7 @@ public interface IAirFlightsApi
     Task<List<Ticket>> GetTicketsAsync();
 
     [Get("/api/Ticket/{id}")]
-    Task<Ticket> GetTicketAsync(Guid id);
+    Task<TicketDetail> GetTicketAsync(Guid id);
 
     [Post("/api/Ticket")]
     [Headers("Authorization: Bearer")]

@@ -12,7 +12,7 @@ public interface ITicketService
     Task<IList<Ticket>> GetTicketsAsync();
 
     /// <summary/>
-    Task<Ticket> GetTicketAsync(Guid id);
+    Task<TicketDetail> GetTicketAsync(Guid id);
 
     /// <summary/>
     Task CreateTicketAsync(AddTicket ticket);
