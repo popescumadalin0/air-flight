@@ -5,22 +5,28 @@
 <PageTitle>Booking History</PageTitle>
 
 <Div Margin="Margin.IsAuto.OnX" Padding="Padding.Is5.OnX" Width="Width.Is75" Class="container">
-    <Heading Size="HeadingSize.Is2" Margin="Margin.Is5.FromBottom" TextAlignment="TextAlignment.Center">
+    <Heading Size="HeadingSize.Is2" Margin="Margin.Is5.FromBottom" TextAlignment="TextAlignment.Center" Italic="true">
         Booking History
     </Heading>
-    <Card Class="history">
-        <CardImage>
-            <Figure Size="FigureSize.Is24x24">
-                <FigureImage Width="@Blazorise.Width.Px(24)" Height="@Blazorise.Height.Px(24)" Source="@($"data:image/jpeg;base64,{TicketInfo.Image}")" AlternateText="empty-24x24" Rounded/>
-            </Figure> />
-        </CardImage>
-        <CardBody>
-            <CardTitle Size="3">
-              Start from  @TicketInfo.StartPointCountry, @TicketInfo.StartPointCity, @TicketInfo.StartPointAirport
-            </CardTitle>
-            <CardText>
-               Destination to @TicketInfo.DestinationCountry, @TicketInfo.DestinationCity, @TicketInfo.DestinationAirport
-            </CardText>
-        </CardBody>
-    </Card>
+    @foreach (var ticketInfo in flights)
+    {
+        <Card Class="history">
+            <CardBody Class="row">
+                <Figure Size="FigureSize.Is128x128">
+                    <FigureImage Width="@Blazorise.Width.Px(128)" Height="@Blazorise.Height.Px(128)" Source="@($"data:image/jpeg;base64,{ticketInfo.Image}")" AlternateText="empty-48x48" Rounded />
+                 </Figure>
+                 <Div Class="col-md-5">
+                     <CardTextS>
+                         <Paragraph TextSize="new FluentTextSize().Heading3" Italic="true">Start from </Paragraph>@ticketInfo.FromLocation.Country, @ticketInfo.FromLocation.City,  @ticketInfo.DepartureTime
+                    </CardTextS>
+                     <CardText>
+                        <Paragraph TextSize="new FluentTextSize().Heading3" Italic="true"> Destination to</Paragraph> @ticketInfo.ToLocation.Country, @ticketInfo.ToLocation.City, @ticketInfo.ArrivalTime
+                     </CardText>
+                     <CardText>
+                        <Paragraph TextSize="new FluentTextSize().Heading3" Italic="true">Price</Paragraph> @ticketInfo.Price @ticketInfo.Currency
+                     </CardText>
+                </Div>
+            </CardBody>
+        </Card>
+    }
 </Div>
