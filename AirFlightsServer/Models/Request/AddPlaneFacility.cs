@@ -1,5 +1,3 @@
-using System;
-
 namespace Models.Request;
 
 public class AddPlaneFacility

@@ -29,5 +29,10 @@
             @FlightInfo.ArrivalTime
         </p>
         <Button Class="btn-group-justified" Clicked="@OnClick" Color="@Color.Primary">Book now</Button>
+        <AuthorizeView Roles="@Roles.Employee">
+            <Authorized>
+                <Button Class="btn-group-justified" Clicked="@OnDeleteAsync" Color="@Color.Danger">Delete</Button>
+            </Authorized>
+        </AuthorizeView>
     </CardBody>
 </Card>

@@ -1,7 +1,4 @@
 @page "/explore"
-
-@using Blazorise
-@using Blazorise.Icons.FontAwesome
 @inherits ComponentBase
 
 <Div class="explore-background">
@@ -68,10 +65,13 @@
             }
         </Div>
     </Div>
-    <Div Style="position: fixed; right: 25px; bottom: 25px;">
-        <Anchor To="/add-ticket" Class="btn btn-success">
-            Add New Ticket
-        </Anchor>
-    </Div>
-
+    <AuthorizeView Roles="@Roles.Employee">
+        <Authorized>
+            <Div Style="position: fixed; right: 25px; bottom: 25px;">
+                <Anchor To="/add-ticket" Class="btn btn-success">
+                    Add New Ticket
+                </Anchor>
+            </Div>
+        </Authorized>
+    </AuthorizeView>
 </Div>
