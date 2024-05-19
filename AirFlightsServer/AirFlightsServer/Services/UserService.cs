@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.Constants;
+using Models.Request;
 using Models.Response;
 
 namespace AirFlightsServer.Services;

@@ -1005,3 +1005,12 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     z-index: -1;
     padding-top: 100px; 
 }
+
+.detail {
+    position: relative;
+    background: #f8fafb;
+    height: 400px;
+    z-index: -1;
+    border-radius: 6%;
+}
+
