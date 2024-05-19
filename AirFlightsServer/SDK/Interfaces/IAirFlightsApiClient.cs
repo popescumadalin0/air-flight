@@ -67,7 +67,7 @@ public interface IAirFlightsApiClient
     /// Create ir flight.
     /// </summary>
     /// <returns></returns>
-    Task<ApiResponseMessage> CreateTicketAsync(Ticket ticket);
+    Task<ApiResponseMessage> CreateTicketAsync(AddTicket ticket);
 
     /// <summary>
     /// Update air flight.

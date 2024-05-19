@@ -12,7 +12,7 @@ using Models.Constants;
 
 namespace AirFlightsServer.Controllers;
 
-public class BookingController:BaseController
+public class BookingController : BaseController
 {
     private readonly IBookingService _bookingService;
 
@@ -23,7 +23,7 @@ public class BookingController:BaseController
 
     [HttpGet]
     [Authorize(Roles.User)]
-    public async Task<IActionResult>GetBookingsAsync()
+    public async Task<IActionResult> GetBookingsAsync()
     {
         try
         {

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.Constants;
+using Models.Request;
 using Models.Response;
 
 namespace AirFlightsServer.Services;
@@ -54,7 +55,7 @@ public class UserService : IUserService
 
 
     /// <inheritdoc />
-    public async Task<IList<Models.User>> GetUsersAsync()
+    public async Task<IList<User>> GetUsersAsync()
     {
         var users = await _userManager.Users.ToListAsync();
         var response = users.Select(ModelToDto).ToList();
@@ -62,14 +63,14 @@ public class UserService : IUserService
     }
 
     /// <inheritdoc />
-    public async Task<Models.User> GetUserByCNPAsync(string CNP)
+    public async Task<User> GetUserByCNPAsync(string CNP)
     {
         var user = await _userManager.Users.FirstAsync(s => s.Id == CNP && s.CNP == CNP);
 
         return ModelToDto(user);
     }
 
-    public async Task<Models.User> GetUserByUserNameAsync(string userName)
+    public async Task<User> GetUserByUserNameAsync(string userName)
     {
         var user = await _userManager.Users.FirstAsync(s => s.UserName == userName);
 
@@ -77,7 +78,7 @@ public class UserService : IUserService
     }
 
     /// <inheritdoc />
-    public async Task<IdentityResult> RegisterUserAsync(Models.User model, string password)
+    public async Task<IdentityResult> RegisterUserAsync(User model, string password)
     {
         var user = DtoToModel(model);
 
@@ -143,7 +144,7 @@ public class UserService : IUserService
         return await _userManager.DeleteAsync(user);
     }
 
-    private static DataBaseLayout.Models.User DtoToModel(Models.User model)
+    private static DataBaseLayout.Models.User DtoToModel(User model)
     {
         var entity = new DataBaseLayout.Models.User
         {
@@ -164,9 +165,9 @@ public class UserService : IUserService
         return entity;
     }
 
-    private static Models.User ModelToDto(DataBaseLayout.Models.User model)
+    private static User ModelToDto(DataBaseLayout.Models.User model)
     {
-        var dto = new Models.User
+        var dto = new User
         {
             CNP = model.CNP,
             Document = Convert.ToBase64String(model.Document),

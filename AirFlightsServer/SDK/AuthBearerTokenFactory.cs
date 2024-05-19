@@ -6,7 +6,7 @@ namespace SDK;
 
 public static class AuthBearerTokenFactory
 {
-    private static Func<CancellationToken, Task<string>>? _getBearerTokenAsyncFunc;
+    private static Func<CancellationToken, Task<string>> _getBearerTokenAsyncFunc;
 
     /// <summary>
     /// Provide a delegate that returns a bearer token to use for authorization

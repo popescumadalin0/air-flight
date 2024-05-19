@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer;
@@ -81,7 +82,9 @@ return;
 
 async Task DefaultDataAsync()
 {
-    var roleManager = builder.Services.BuildServiceProvider().GetService<RoleManager<Role>>();
+    var serviceProvider = builder.Services.BuildServiceProvider();
+    var roleManager = serviceProvider.GetService<RoleManager<Role>>();
+    var userManager = serviceProvider.GetService<UserManager<User>>();
 
     var userRole = await roleManager.Roles.FirstOrDefaultAsync(x => x.Id == Roles.User);
     if (userRole == null)
@@ -122,6 +125,39 @@ async Task DefaultDataAsync()
                 Id = Roles.Admin,
                 Name = Roles.Admin
             });
+        if (!result.Succeeded)
+        {
+            throw new Exception(result.Errors.First().Description);
+        }
+    }
+
+    var adminUser = await userManager.GetUsersInRoleAsync(Roles.Admin);
+    if (!adminUser.Any())
+    {
+        var user = new User
+        {
+            Id = "admin",
+            UserName = "admin",
+            Email = "admin@admin.ro",
+            CNP = "admin",
+            FirstName = "admin",
+            LastName = "admin",
+            Document = Array.Empty<byte>(),
+            EmailConfirmed = true,
+            PhoneNumber = "0111111111",
+            PhoneNumberConfirmed = true,
+            TwoFactorEnabled = false,
+            ProfileImage = Array.Empty<byte>(),
+        };
+        var result = await userManager.CreateAsync(user, "Admin1234!");
+
+        if (!result.Succeeded)
+        {
+            throw new Exception(result.Errors.First().Description);
+        }
+
+        result = await userManager.AddToRolesAsync(user, new List<string>() { Roles.User, Roles.Employee, Roles.Admin });
+
         if (!result.Succeeded)
         {
             throw new Exception(result.Errors.First().Description);

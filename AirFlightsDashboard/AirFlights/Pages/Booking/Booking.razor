@@ -1,4 +1,4 @@
-@page "/booking"
+@*@page "/booking"
 
 @inherits BaseComponent
 
@@ -22,8 +22,8 @@
                                 </FieldLabel>
                                 <FieldBody>
                                     <Select TValue="string" @bind-SelectedValue="@BookingForm.StartPointCountry">
-                                        @*@for()
-                                       <SelectItem>@BookingForm.Country</SelectItem>*@
+                                        @#1#for()
+                                       <SelectItem>@BookingForm.Country</SelectItem>#1#
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -33,8 +33,8 @@
                                 </FieldLabel>
                                 <FieldBody>
                                     <Select TValue="string" @bind-SelectedValue="@BookingForm.StartPointCity">
-                                        @*<SelectItem>Sibiu</SelectItem>
-                                        <SelectItem>Atena</SelectItem>*@
+                                        $1$<SelectItem>Sibiu</SelectItem>
+                                        <SelectItem>Atena</SelectItem>#1#
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -44,8 +44,8 @@
                                 </FieldLabel>
                                 <FieldBody>
                                         <Select TValue="string" @bind-SelectedValue="@BookingForm.StartPointAirport">
-                                        @*<SelectItem>Henry</SelectItem>
-                                        <SelectItem>Atena</SelectItem>*@
+                                        $1$<SelectItem>Henry</SelectItem>
+                                        <SelectItem>Atena</SelectItem>#1#
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -64,8 +64,8 @@
                                 </FieldLabel>
                                 <FieldBody>
                                         <Select TValue="string" @bind-SelectedValue="@BookingForm.DestinationCountry">
-                                        @*<SelectItem>Romaina</SelectItem>
-                                        <SelectItem>Grace</SelectItem>*@
+                                        $1$<SelectItem>Romaina</SelectItem>
+                                        <SelectItem>Grace</SelectItem>#1#
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -75,8 +75,8 @@
                                 </FieldLabel>
                                 <FieldBody>
                                         <Select TValue="string" @bind-SelectedValue="@BookingForm.DestinationCity">
-                                        @*<SelectItem>Sibiu</SelectItem>
-                                        <SelectItem>Atena</SelectItem>*@
+                                        $1$<SelectItem>Sibiu</SelectItem>
+                                        <SelectItem>Atena</SelectItem>#1#
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -86,8 +86,8 @@
                                 </FieldLabel>
                                 <FieldBody>
                                         <Select TValue="string" @bind-SelectedValue="@BookingForm.DestinationAirport">
-                                        @*<SelectItem>Henry</SelectItem>
-                                        <SelectItem>Atena</SelectItem>*@
+                                        $1$<SelectItem>Henry</SelectItem>
+                                        <SelectItem>Atena</SelectItem>#1#
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -106,11 +106,11 @@
                                 </FieldLabel>
                                 <FieldBody>
                                     <Select TValue="string" @bind-SelectedValue="@Company.Name">
-                                        @*<SelectItem>American Airline</SelectItem>
+                                        $1$<SelectItem>American Airline</SelectItem>
                                         <SelectItem>Delta Airline</SelectItem>
                                         <SelectItem>Frontier Airline</SelectItem>
                                         <SelectItem>Jet Blue</SelectItem>
-                                        <SelectItem>Southwest Airlines</SelectItem>*@
+                                        <SelectItem>Southwest Airlines</SelectItem>#1#
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -120,11 +120,11 @@
                                 </FieldLabel>
                                 <FieldBody>
                                     <Select TValue="string" @bind-SelectedValue="@Company.Route">
-                                        @*<SelectItem>American Airline</SelectItem>
+                                        $1$<SelectItem>American Airline</SelectItem>
                                         <SelectItem>Delta Airline</SelectItem>
                                         <SelectItem>Frontier Airline</SelectItem>
                                         <SelectItem>Jet Blue</SelectItem>
-                                        <SelectItem>Southwest Airlines</SelectItem>*@
+                                        <SelectItem>Southwest Airlines</SelectItem>#1#
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -143,9 +143,9 @@
                                 </FieldLabel>
                                 <FieldBody>
                                     <Select @bind-SelectedValue="@BookingForm.DepartureTime">
-                                        @*<SelectItem>12/03/2024</SelectItem>
+                                        $1$<SelectItem>12/03/2024</SelectItem>
                                         <SelectItem>12/05/2024</SelectItem>
-                                        <SelectItem>20/07/2024</SelectItem>*@
+                                        <SelectItem>20/07/2024</SelectItem>#1#
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -164,9 +164,9 @@
                                 </FieldLabel>
                                 <FieldBody>
                                     <Select @bind-SelectedValue="@BookingForm.ArrivalTime">
-                                        @*<SelectItem>12/03/2024</SelectItem>
+                                        $1$<SelectItem>12/03/2024</SelectItem>
                                         <SelectItem>12/05/2024</SelectItem>
-                                        <SelectItem>20/07/2024</SelectItem>*@
+                                        <SelectItem>20/07/2024</SelectItem>#1#
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -203,4 +203,4 @@
     </Div>
 </Div>
 
-<PersonalDetails @ref="@personalDetails"></PersonalDetails>
+<PersonalDetails @ref="@personalDetails"></PersonalDetails>*@

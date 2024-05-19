@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AirFlightsServer.Repositories.Interfaces;
 using AirFlightsServer.Services.Interfaces;
+using DataBaseLayout.Models;
+using Models.Request;
 
 namespace AirFlightsServer.Services;
 
@@ -74,16 +76,52 @@ public class TicketService : ITicketService
     }
 
     /// <inheritdoc />
-    public async Task CreateTicketAsync(Models.Ticket ticket)
+    public async Task CreateTicketAsync(AddTicket ticket)
     {
-        var entity = new DataBaseLayout.Models.Ticket
+        var entity = new Ticket
         {
             Currency = ticket.Currency,
-            Id = ticket.Id,
+            Id = Guid.NewGuid(),
             Price = ticket.Price,
             Image = Convert.FromBase64String(ticket.Image),
-            //todo: sa vedem daca le adaugam de aici
-            //Layovers = 
+            Layovers = ticket.Layovers.Select(l =>
+            {
+                var planSeats = new List<PlaneSeat>();
+                for (var i = 0; i < l.PlaneSeats; i++)
+                {
+                    planSeats.Add(new PlaneSeat()
+                    {
+                        Id = Guid.NewGuid(),
+                        IsOcuppied = false
+                    });
+                }
+                return new Layover()
+                {
+                    Order = l.Order,
+                    StartPointCity = l.StartPointCity,
+                    DestinationCity = l.DestinationCity,
+                    StartPointCountry = l.StartPointCountry,
+                    DepartureTime = l.DepartureTime,
+                    ArrivalDuration = l.ArrivalDuration,
+                    DestinationCountry = l.DestinationCountry,
+                    Company = new Company()
+                    {
+                        Name = l.CompanyName,
+                        Id = Guid.NewGuid()
+                    },
+                    Id = Guid.NewGuid(),
+                    DestinationAirport = l.DestinationAirport,
+                    StartPointAirport = l.StartPointAirport,
+                    PlaneFacilities = l.PlaneFacilities.Select(
+                            pf => new PlaneFacility()
+                            {
+                                Name = pf.Name,
+                                Id = Guid.NewGuid()
+                            })
+                        .ToList(),
+                    PlaneSeats = planSeats,
+                };
+            }).ToList(),
         };
         await _ticketRepository.AddTicketAsync(entity);
     }
@@ -91,7 +129,7 @@ public class TicketService : ITicketService
     /// <inheritdoc />
     public async Task UpdateTicketAsync(Models.Ticket ticket)
     {
-        var entity = new DataBaseLayout.Models.Ticket
+        var entity = new Ticket
         {
             Currency = ticket.Currency,
             Id = ticket.Id,

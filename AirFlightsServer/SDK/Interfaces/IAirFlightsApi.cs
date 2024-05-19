@@ -43,7 +43,7 @@ public interface IAirFlightsApi
 
     [Post("/api/Ticket")]
     [Headers("Authorization: Bearer")]
-    Task CreateTicketAsync(Ticket ticket);
+    Task CreateTicketAsync(AddTicket ticket);
 
     [Put("/api/Ticket")]
     [Headers("Authorization: Bearer")]

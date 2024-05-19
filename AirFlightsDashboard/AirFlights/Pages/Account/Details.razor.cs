@@ -8,7 +8,6 @@ using AirFlightsDashboard.States;
 using Blazorise;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Models;
 using Models.Request;
 using SDK.Interfaces;
 
@@ -48,7 +47,7 @@ public partial class Details : ComponentBase, IDisposable
     public void Dispose()
     {
         SnackbarState.OnStateChange -= StateHasChanged;
-        LoadingState.OnStateChange += StateHasChanged;
+        LoadingState.OnStateChange -= StateHasChanged;
     }
 
     protected override async Task OnInitializedAsync()

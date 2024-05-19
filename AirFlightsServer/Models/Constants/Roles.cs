@@ -2,9 +2,9 @@ namespace Models.Constants;
 
 public static class Roles
 {
-    public const string Admin = "admin";
+    public const string Admin = "Admin";
 
-    public const string Employee = "employee";
+    public const string Employee = "Employee";
 
-    public const string User = "user";
+    public const string User = "User";
 }

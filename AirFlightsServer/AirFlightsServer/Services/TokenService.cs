@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Models.Constants;
 
 namespace AirFlightsServer.Services;
 
@@ -31,16 +33,17 @@ public class TokenService : ITokenService
     {
         var user = _userManager.Users.FirstOrDefault(u => u.UserName == username);
         var roles = await _userManager.GetRolesAsync(user);
-        var claims = new[]
+        var claims = new List<Claim>()
         {
-            new Claim(ClaimTypes.Name, username),
-            new Claim(ClaimTypes.SerialNumber, user.CNP),
-            new Claim(ClaimTypes.Surname, user.LastName),
-            new Claim(ClaimTypes.GivenName, user.FirstName),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Role, roles.First()),
-
+            new(ClaimTypes.Name, username),
+            new(ClaimTypes.SerialNumber, user.CNP),
+            new(ClaimTypes.Surname, user.LastName),
+            new(ClaimTypes.GivenName, user.FirstName),
+            new(ClaimTypes.Email, user.Email),
+            new(ClaimTypes.Role, roles.First()),
         };
+        claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+
         var key = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(_configuration.GetSection("AppTokenSettings:Token").Value!));
         var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);

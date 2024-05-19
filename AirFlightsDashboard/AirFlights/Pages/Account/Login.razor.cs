@@ -31,7 +31,7 @@ public partial class Login : ComponentBase, IDisposable
     public void Dispose()
     {
         SnackbarState.OnStateChange -= StateHasChanged;
-        LoadingState.OnStateChange += StateHasChanged;
+        LoadingState.OnStateChange -= StateHasChanged;
     }
 
     protected override void OnInitialized()

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.Constants;
+using Models.Request;
 
 namespace AirFlightsServer.Controllers;
 
@@ -53,7 +54,7 @@ public class TicketController : BaseController
 
     [HttpPost]
     [Authorize(Roles.Employee)]
-    public async Task<IActionResult> CreateTicketAsync(Ticket ticket)
+    public async Task<IActionResult> CreateTicketAsync(AddTicket ticket)
     {
         try
         {
@@ -86,7 +87,7 @@ public class TicketController : BaseController
     public async Task<IActionResult> DeleteTicketAsync(string id)
     {
         try
-        { 
+        {
             await _ticketService.DeleteTicketAsync(Guid.Parse(id));
             return ApiServiceResponse.ApiServiceResult(new ServiceResponse());
         }

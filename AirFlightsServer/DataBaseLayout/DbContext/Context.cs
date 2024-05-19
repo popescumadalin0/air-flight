@@ -20,7 +20,6 @@ public class Context : IdentityDbContext<User, Role, string>, IContext
 
     public async Task<int> SaveChangesAsync()
     {
-
         return await base.SaveChangesAsync();
     }
 
@@ -76,6 +75,14 @@ public class Context : IdentityDbContext<User, Role, string>, IContext
         modelBuilder.Entity<PlaneSeat>().HasOne(x => x.Layover)
             .WithMany(x => x.PlaneSeats).OnDelete(DeleteBehavior.NoAction)
             .HasForeignKey(x => x.LayoverId);
+
+        modelBuilder.Entity<Ticket>().Navigation(t => t.Layovers).AutoInclude();
+
+        modelBuilder.Entity<Layover>().Navigation(t => t.PlaneFacilities).AutoInclude();
+
+        modelBuilder.Entity<Layover>().Navigation(t => t.PlaneSeats).AutoInclude();
+
+        modelBuilder.Entity<Layover>().Navigation(t => t.Company).AutoInclude();
 
         // modelBuilder.Entity<Ticket>()
         //     .Navigation(a => a.Layovers)

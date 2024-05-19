@@ -23,7 +23,7 @@ public abstract class RefitApiClient<TU> where TU : class
         }
         catch (ApiException e)
         {
-            T instance = default(T);
+            var instance = default(T);
             try
             {
                 instance = JsonConvert.DeserializeObject<T>(e.Content);
@@ -108,12 +108,12 @@ public abstract class RefitApiClient<TU> where TU : class
         }
     }
 
-    public async Task<ApiResponseMessage<T>> ExecuteAndTransform<T>(Task<object> task,Func<string, string> transformFunc)
+    public async Task<ApiResponseMessage<T>> ExecuteAndTransform<T>(Task<object> task, Func<string, string> transformFunc)
     {
         try
         {
             var rawResponse = await task;
-            var json= rawResponse.ToString();
+            var json = rawResponse.ToString();
             // Apply the transformation function to the JSON
             var transformedJson = transformFunc(json);
             var response = JsonConvert.DeserializeObject<T>(transformedJson);
@@ -123,7 +123,7 @@ public abstract class RefitApiClient<TU> where TU : class
         }
         catch (ApiException e)
         {
-            T instance = default(T);
+            var instance = default(T);
             try
             {
                 instance = JsonConvert.DeserializeObject<T>(e.Content);

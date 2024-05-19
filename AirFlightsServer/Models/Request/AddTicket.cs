@@ -1,13 +1,14 @@
+using System.Collections.Generic;
+
 namespace Models.Request;
 
 public class AddTicket
 {
-    public string CNP { get; set; }
-    public string PhoneNumber { get; set; }
-    public string ProfileImage { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Email { get; set; }
-    public string OldPassword { get; set; }
-    public string NewPassword { get; set; }
+    public int Price { get; set; }
+
+    public string Currency { get; set; }
+
+    public string Image { get; set; }
+
+    public List<AddLayover> Layovers { get; set; }
 }

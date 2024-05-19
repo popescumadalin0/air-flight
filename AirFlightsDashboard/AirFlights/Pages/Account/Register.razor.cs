@@ -32,7 +32,7 @@ public partial class Register : ComponentBase, IDisposable
     public void Dispose()
     {
         SnackbarState.OnStateChange -= StateHasChanged;
-        LoadingState.OnStateChange += StateHasChanged;
+        LoadingState.OnStateChange -= StateHasChanged;
     }
 
     protected override void OnInitialized()
@@ -96,7 +96,7 @@ public partial class Register : ComponentBase, IDisposable
     {
         try
         {
-            using MemoryStream result = new MemoryStream();
+            using var result = new MemoryStream();
             await e.File.OpenReadStream(long.MaxValue).CopyToAsync(result);
 
             _registerModel.Document = result.ToArray();

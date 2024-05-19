@@ -3,7 +3,7 @@
 @inherits ComponentBase
 
 <Div class="explore-background">
-    <Div Margin="Margin.IsAuto.OnX" class="explore container">
+    <Div class="explore container">
         <Heading Size="HeadingSize.Is2" Margin="Margin.Is3.FromBottom" TextAlignment="TextAlignment.Center">
             Explore a new word!
         </Heading>
@@ -58,17 +58,18 @@
                     </Field>
                 </Form>
             </Div>
-            <Div Class="col-md-12">
-                @foreach (var flight in _filteredFlights)
-                {
-                    <Flight FlightInfo="@flight"></Flight>
-                }
-            </Div>
+        </Div>
+        <Div Class="row gap-2">
+            @foreach (var flight in _filteredFlights)
+            {
+                <Flight FlightInfo="@flight"></Flight>
+            }
         </Div>
     </Div>
     <Div Style="position: fixed; right: 25px; bottom: 25px;">
-        <Anchor To="AddFlight" Class="btn btn-success">
-            Add New Flight
+        <Anchor To="/add-ticket" Class="btn btn-success">
+            Add New Ticket
         </Anchor>
     </Div>
+
 </Div>

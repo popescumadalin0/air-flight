@@ -145,7 +145,7 @@ public class AirFlightsApiClient : RefitApiClient<IAirFlightsApi>, IAirFlightsAp
         }
     }
 
-    public async Task<ApiResponseMessage> CreateTicketAsync(Ticket ticket)
+    public async Task<ApiResponseMessage> CreateTicketAsync(AddTicket ticket)
     {
         try
         {

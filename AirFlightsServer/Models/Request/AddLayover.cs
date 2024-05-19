@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
 
+namespace Models.Request;
 
-namespace DataBaseLayout.Models;
-[PrimaryKey(nameof(Id))]
-public class Layover
+public class AddLayover
 {
     public Guid Id { get; set; }
 
@@ -28,17 +25,9 @@ public class Layover
 
     public int Order { get; set; }
 
-    public Guid TicketId { get; set; }
+    public string CompanyName { get; set; }
 
-    [Required]
-    public Ticket Ticket { get; set; }
+    public int PlaneSeats { get; set; }
 
-    public Guid CompanyId { get; set; }
-
-    [Required]
-    public Company Company { get; set; }
-
-    public ICollection<PlaneSeat> PlaneSeats { get; set; }
-
-    public virtual ICollection<PlaneFacility> PlaneFacilities { get; set; }
+    public List<AddPlaneFacility> PlaneFacilities { get; set; }
 }

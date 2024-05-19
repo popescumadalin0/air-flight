@@ -1,3 +1,4 @@
+/*
 using AirFlightsDashboard.Models;
 using Blazorise;
 using Microsoft.AspNetCore.Components;
@@ -16,3 +17,4 @@ public partial class Booking : BaseComponent
 
 
 }
+*/

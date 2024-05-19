@@ -972,11 +972,8 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
 }
 
 .card-flight  {
-    width: 15%;
-    float: left;
+    width: auto;
     display: flex;
-    padding: 0 10px;
-    margin: 0 0 20px;
     line-height: 1.4;
 }
 
