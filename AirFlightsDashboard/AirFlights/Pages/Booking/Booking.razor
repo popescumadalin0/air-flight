@@ -7,8 +7,8 @@
 <Div Class="booking" Display="new FluentDisplay().Flex">
     <Div Class="btn-group-justified">
         <Div Class="col-md-6 col-sm-6">
-            <Form>
-                <Fields>
+            <Form >
+                <Fields Background="Background.Light">
                     <Card>
                         <CardHeader>
                             <CardTitle Size="3">
@@ -33,8 +33,8 @@
                                 </FieldLabel>
                                 <FieldBody>
                                     <Select TValue="string" @bind-SelectedValue="@BookingForm.StartPointCity">
-                                        @*<SelectItem>Sibiu</SelectItem>
-                                        <SelectItem>Atena</SelectItem>*@
+                                        <SelectItem>Sibiu</SelectItem>
+                                        <SelectItem>Atena</SelectItem>
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -44,8 +44,8 @@
                                 </FieldLabel>
                                 <FieldBody>
                                         <Select TValue="string" @bind-SelectedValue="@BookingForm.StartPointAirport">
-                                        @*<SelectItem>Henry</SelectItem>
-                                        <SelectItem>Atena</SelectItem>*@
+                                        <SelectItem>Henry</SelectItem>
+                                        <SelectItem>Atena</SelectItem>
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -64,8 +64,8 @@
                                 </FieldLabel>
                                 <FieldBody>
                                         <Select TValue="string" @bind-SelectedValue="@BookingForm.DestinationCountry">
-                                        @*<SelectItem>Romaina</SelectItem>
-                                        <SelectItem>Grace</SelectItem>*@
+                                        <SelectItem>Romaina</SelectItem>
+                                        <SelectItem>Grace</SelectItem>
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -75,8 +75,8 @@
                                 </FieldLabel>
                                 <FieldBody>
                                         <Select TValue="string" @bind-SelectedValue="@BookingForm.DestinationCity">
-                                        @*<SelectItem>Sibiu</SelectItem>
-                                        <SelectItem>Atena</SelectItem>*@
+                                        <SelectItem>Sibiu</SelectItem>
+                                        <SelectItem>Atena</SelectItem>
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -86,14 +86,14 @@
                                 </FieldLabel>
                                 <FieldBody>
                                         <Select TValue="string" @bind-SelectedValue="@BookingForm.DestinationAirport">
-                                        @*<SelectItem>Henry</SelectItem>
-                                        <SelectItem>Atena</SelectItem>*@
+                                        <SelectItem>Henry</SelectItem>
+                                        <SelectItem>Atena</SelectItem>
                                     </Select>
                                 </FieldBody>
                             </Field>
                         </CardBody>
                     </Card>
-                    <Card Class="booking-form">
+                    <Card>
                         <CardHeader>
                             <CardTitle Size="3">
                                 Preferred Airline
@@ -106,11 +106,11 @@
                                 </FieldLabel>
                                 <FieldBody>
                                     <Select TValue="string" @bind-SelectedValue="@Company.Name">
-                                        @*<SelectItem>American Airline</SelectItem>
+                                        <SelectItem>American Airline</SelectItem>
                                         <SelectItem>Delta Airline</SelectItem>
                                         <SelectItem>Frontier Airline</SelectItem>
                                         <SelectItem>Jet Blue</SelectItem>
-                                        <SelectItem>Southwest Airlines</SelectItem>*@
+                                        <SelectItem>Southwest Airlines</SelectItem>
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -120,17 +120,17 @@
                                 </FieldLabel>
                                 <FieldBody>
                                     <Select TValue="string" @bind-SelectedValue="@Company.Name">
-                                        @*<SelectItem>American Airline</SelectItem>
+                                        <SelectItem>American Airline</SelectItem>
                                         <SelectItem>Delta Airline</SelectItem>
                                         <SelectItem>Frontier Airline</SelectItem>
                                         <SelectItem>Jet Blue</SelectItem>
-                                        <SelectItem>Southwest Airlines</SelectItem>*@
+                                        <SelectItem>Southwest Airlines</SelectItem>
                                     </Select>
                                 </FieldBody>
                             </Field>
                         </CardBody>
                     </Card>
-                    <Card Class="booking-form">
+                    <Card>
                         <CardHeader>
                             <CardTitle Size="3">
                                 Departure Data
@@ -143,15 +143,15 @@
                                 </FieldLabel>
                                 <FieldBody>
                                     <Select @bind-SelectedValue="@BookingForm.DepartureTime">
-                                        @*<SelectItem>12/03/2024</SelectItem>
+                                        <SelectItem>12/03/2024</SelectItem>
                                         <SelectItem>12/05/2024</SelectItem>
-                                        <SelectItem>20/07/2024</SelectItem>*@
+                                        <SelectItem>20/07/2024</SelectItem>
                                     </Select>
                                 </FieldBody>
                             </Field>
                         </CardBody>
                     </Card>
-                    <Card Class="booking-form">
+                    <Card>
                         <CardHeader>
                             <CardTitle Size="3">
                                 Return Data
@@ -164,9 +164,9 @@
                                 </FieldLabel>
                                 <FieldBody>
                                     <Select @bind-SelectedValue="@BookingForm.ArrivalTime">
-                                        @*<SelectItem>12/03/2024</SelectItem>
+                                        <SelectItem>12/03/2024</SelectItem>
                                         <SelectItem>12/05/2024</SelectItem>
-                                        <SelectItem>20/07/2024</SelectItem>*@
+                                        <SelectItem>20/07/2024</SelectItem>
                                     </Select>
                                 </FieldBody>
                             </Field>
@@ -182,14 +182,14 @@
             </Field>
             <Field>
                 <FieldLabel>
-                    <Button Color="Color.Primary" Clicked="@personalDetails.ShowModal"> Choose Your Seat</Button>
+                    <Button Color="Color.Primary" Clicked="@seats.ShowModal"> Choose Your Seat</Button>
                 </FieldLabel>
                 <FieldBody>
                 </FieldBody>
             </Field>
                 <Field>
                     <Button Class="booking-btn">
-                        Show flights
+                        Buy New
                     </Button>
                 </Field>
 
