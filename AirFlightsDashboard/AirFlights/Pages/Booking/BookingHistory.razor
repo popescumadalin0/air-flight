@@ -16,9 +16,9 @@
                     <FigureImage Width="@Blazorise.Width.Px(128)" Height="@Blazorise.Height.Px(128)" Source="@($"data:image/jpeg;base64,{ticketInfo.Image}")" AlternateText="empty-48x48" Rounded />
                  </Figure>
                  <Div Class="col-md-5">
-                     <CardTextS>
+                     <CardText>
                          <Paragraph TextSize="new FluentTextSize().Heading3" Italic="true">Start from </Paragraph>@ticketInfo.FromLocation.Country, @ticketInfo.FromLocation.City,  @ticketInfo.DepartureTime
-                    </CardTextS>
+                    </CardText>
                      <CardText>
                         <Paragraph TextSize="new FluentTextSize().Heading3" Italic="true"> Destination to</Paragraph> @ticketInfo.ToLocation.Country, @ticketInfo.ToLocation.City, @ticketInfo.ArrivalTime
                      </CardText>
