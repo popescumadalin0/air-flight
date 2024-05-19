@@ -1,0 +1,26 @@
+@page "/history"
+@inherits ComponentBase
+@implements IDisposable
+
+<PageTitle>Booking History</PageTitle>
+
+<Div Margin="Margin.IsAuto.OnX" Padding="Padding.Is5.OnX" Width="Width.Is75" Class="container">
+    <Heading Size="HeadingSize.Is2" Margin="Margin.Is5.FromBottom" TextAlignment="TextAlignment.Center">
+        Booking History
+    </Heading>
+    <Card Class="history">
+        <CardImage>
+            <Figure Size="FigureSize.Is24x24">
+                <FigureImage Width="@Blazorise.Width.Px(24)" Height="@Blazorise.Height.Px(24)" Source="@($"data:image/jpeg;base64,{TicketInfo.Image}")" AlternateText="empty-24x24" Rounded/>
+            </Figure> />
+        </CardImage>
+        <CardBody>
+            <CardTitle Size="3">
+              Start from  @TicketInfo.StartPointCountry, @TicketInfo.StartPointCity, @TicketInfo.StartPointAirport
+            </CardTitle>
+            <CardText>
+               Destination to @TicketInfo.DestinationCountry, @TicketInfo.DestinationCity, @TicketInfo.DestinationAirport
+            </CardText>
+        </CardBody>
+    </Card>
+</Div>

@@ -984,6 +984,10 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     z-index: 1;
     line-height: 1;
 }
+.history {
+    position: relative;
+    background: #f8fafb;
+}
 
 .explore-background {
     position: relative;
