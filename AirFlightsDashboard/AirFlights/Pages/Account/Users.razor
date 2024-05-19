@@ -10,8 +10,9 @@
           Editable
           Responsive
           ShowPager
-          CommandMode="DataGridCommandMode.ButtonRow">
-    <DataGridColumns>
+          CommandMode="DataGridCommandMode.ButtonRow"
+          Style="margin-left: 10px; margin-right: 10px; ">
+    <DataGridColumns >
         <DataGridColumn Field="@nameof(User.Id)" Caption="#" Sortable="false" />
         <DataGridColumn Field="@nameof(User.FirstName)" Caption="First Name" Editable />
         <DataGridColumn Field="@nameof(User.LastName)" Caption="Last Name" Editable />
