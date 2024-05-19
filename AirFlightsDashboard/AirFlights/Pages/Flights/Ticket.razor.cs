@@ -10,4 +10,5 @@ public partial class Ticket
 
     private TicketModel TicketInfo = new TicketModel();
 
+
 }

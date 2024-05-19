@@ -1,7 +1,5 @@
 @page "/account"
 @inherits ComponentBase
-@using global::Models.Constants
-@using Microsoft.AspNetCore.Authorization
 @implements IDisposable
 @attribute [Authorize(Roles = Roles.User)]
 
