@@ -2,6 +2,8 @@
 
 @inherits BaseComponent
 
+@attribute [Authorize(Roles = Roles.User)]
+
 <PageTitle>Booking</PageTitle>
 
 <Div Class="booking" Display="new FluentDisplay().Flex">
