@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AirFlightsDashboard.Models;
 using AirFlightsDashboard.States;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using SDK.Interfaces;
 
 namespace AirFlightsDashboard.Pages.Flights;
@@ -21,6 +22,9 @@ public partial class Ticket
 
     [Inject]
     private IAirFlightsApiClient AirFlightsApiClient { get; set; }
+
+    /*[Inject]
+    private Task<AuthenticationState> AuthenticationState { get; set; }*/
 
     [Inject]
     private NavigationManager NavigationManager { get; set; }
@@ -66,6 +70,7 @@ public partial class Ticket
 
     private void OnClick()
     {
+        //ar AuthenticationState
         NavigationManager.NavigateTo("/booking");
     }
 }
