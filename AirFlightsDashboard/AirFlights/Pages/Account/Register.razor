@@ -64,7 +64,7 @@
                                         Username
                                     </FieldLabel>
                                     <FieldBody>
-                                        <TextEdit Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.UserName">
+                                        <TextEdit ElementId="register_username" Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.UserName">
                                             <Feedback>
                                                 <ValidationError />
                                             </Feedback>
@@ -106,7 +106,7 @@
                                         Password
                                     </FieldLabel>
                                     <FieldBody>
-                                        <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.Password" autocomplete="new-password">
+                                        <TextEdit ElementId="password_register" Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.Password" autocomplete="new-password">
                                             <Feedback>
                                                 <ValidationError />
                                             </Feedback>
@@ -147,7 +147,7 @@
                                 </FieldBody>
                             </Field>
                             <Field>
-                                <Button Color="Color.Primary" Block Clicked="@RegisterAsync">
+                                <Button ElementId="register_button" Color="Color.Primary" Block Clicked="@RegisterAsync">
                                     Sign up
                                 </Button>
                             </Field>

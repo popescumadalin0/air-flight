@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solutionItems", "_solution
 		_solutionItems\StyleCop.Tests.ruleset = _solutionItems\StyleCop.Tests.ruleset
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationTesting", "AutomationTesting\AutomationTesting.csproj", "{5E7EF0FA-4BD0-4E87-9AF5-4D5F6FF98C89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{342F55B3-5C20-4805-90FA-08F8AAA9FD20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{342F55B3-5C20-4805-90FA-08F8AAA9FD20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{342F55B3-5C20-4805-90FA-08F8AAA9FD20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E7EF0FA-4BD0-4E87-9AF5-4D5F6FF98C89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E7EF0FA-4BD0-4E87-9AF5-4D5F6FF98C89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E7EF0FA-4BD0-4E87-9AF5-4D5F6FF98C89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E7EF0FA-4BD0-4E87-9AF5-4D5F6FF98C89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,7 +22,7 @@
                         Username
                             </FieldLabel>
                             <FieldBody>
-                        <TextEdit Placeholder="Enter your username" Role="TextRole.Text" @bind-Text="_loginModel.Username" />
+                        <TextEdit ElementId="login_username" Placeholder="Enter your username" Role="TextRole.Text" @bind-Text="_loginModel.Username" />
                             </FieldBody>
                         </Field>
                         <Field>
@@ -30,11 +30,11 @@
                                 Password
                             </FieldLabel>
                             <FieldBody>
-                                <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_loginModel.Password" autocomplete="new-password"/>
+                                <TextEdit ElementId="password_login" Placeholder="********" Role="TextRole.Password" @bind-Text="_loginModel.Password" autocomplete="new-password"/>
                             </FieldBody>
                         </Field>
                         <Field>
-                            <Button Color="Color.Primary" Block Clicked="@SignInAsync">
+                            <Button ElementId="login_button" Color="Color.Primary" Block Clicked="@SignInAsync">
                                 Sign in
                             </Button>
                         </Field>
