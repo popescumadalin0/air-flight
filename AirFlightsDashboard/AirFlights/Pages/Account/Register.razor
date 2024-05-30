@@ -22,7 +22,7 @@
                                         FirstName
                                     </FieldLabel>
                                     <FieldBody>
-                                        <TextEdit Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.FirstName">
+                                        <TextEdit ElementId="firstname_register" Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.FirstName">
                                             <Feedback>
                                                 <ValidationError />
                                             </Feedback>
@@ -36,7 +36,7 @@
                                         LastName
                                     </FieldLabel>
                                     <FieldBody>
-                                        <TextEdit Placeholder="Enter the last name" Role="TextRole.Text" @bind-Text="_registerModel.LastName">
+                                        <TextEdit ElementId="lastname_register" Placeholder="Enter the last name" Role="TextRole.Text" @bind-Text="_registerModel.LastName">
                                             <Feedback>
                                                 <ValidationError />
                                             </Feedback>
@@ -50,7 +50,7 @@
                                         CNP
                                     </FieldLabel>
                                     <FieldBody>
-                                        <TextEdit Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.CNP">
+                                        <TextEdit ElementId="cnp_register" Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.CNP">
                                             <Feedback>
                                                 <ValidationError />
                                             </Feedback>
@@ -78,7 +78,7 @@
                                         Email
                                     </FieldLabel>
                                     <FieldBody>
-                                        <TextEdit Placeholder="Enter your e-mail" Role="TextRole.Email" @bind-Text="_registerModel.Email">
+                                        <TextEdit ElementId="email_register" Placeholder="Enter your e-mail" Role="TextRole.Email" @bind-Text="_registerModel.Email">
                                             <Feedback>
                                                 <ValidationError />
                                             </Feedback>
@@ -92,7 +92,7 @@
                                         Phone
                                     </FieldLabel>
                                     <FieldBody>
-                                        <TextEdit Placeholder="Enter your phone number" Role="TextRole.Telephone" @bind-Text="_registerModel.PhoneNumber">
+                                        <TextEdit ElementId="phone_register" Placeholder="Enter your phone number" Role="TextRole.Telephone" @bind-Text="_registerModel.PhoneNumber">
                                             <Feedback>
                                                 <ValidationError />
                                             </Feedback>
@@ -120,7 +120,7 @@
                                         Confirm Password
                                     </FieldLabel>
                                     <FieldBody>
-                                        <TextEdit Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.ConfirmPassword" autocomplete="confirm-password">
+                                        <TextEdit ElementId="password_confirm_register" Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.ConfirmPassword" autocomplete="confirm-password">
                                             <Feedback>
                                                 <ValidationError />
                                             </Feedback>
@@ -134,7 +134,7 @@
                                     Upload your document
                                 </FieldLabel>
                                 <FieldBody>
-                                    <FilePicker Upload="@OnDocumentUploaded" ShowMode="FilePickerShowMode.List" />
+                                    <FilePicker ElementId="upload_document" Upload="@OnDocumentUploaded" ShowMode="FilePickerShowMode.List" />
                                 </FieldBody>
                             </Field>
 
@@ -143,7 +143,7 @@
                                     Upload your profile image
                                 </FieldLabel>
                                 <FieldBody>
-                                    <FilePicker Upload="@OnImageUploaded" ShowMode="FilePickerShowMode.List" Filter="image/*" />
+                                    <FilePicker ElementId="upload_image" Upload="@OnImageUploaded" ShowMode="FilePickerShowMode.List" Filter="image/*" />
                                 </FieldBody>
                             </Field>
                             <Field>

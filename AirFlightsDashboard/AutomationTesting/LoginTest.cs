@@ -1,5 +1,6 @@
-//Inside SeleniumTest.cs
+
 using System.Collections.ObjectModel;
+using AutomationTesting.BaseClass;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -9,9 +10,8 @@ public class LoginTest: Test
 { 
 
     [Test]
-    public async Task LoginSucces()
+    public async Task LoginSuccesTest()
     {
-
         Driver.Navigate().GoToUrl("https://localhost:7081/login");
         var username = Driver.FindElement(By.Id("login_username"));
         username.Clear();
@@ -26,7 +26,7 @@ public class LoginTest: Test
     }
 
     [Test]
-    public async Task LoginWrongPassword()
+    public async Task LoginWrongPasswordTest()
     {
 
         Driver.Navigate().GoToUrl("https://localhost:7081/login");
@@ -43,7 +43,7 @@ public class LoginTest: Test
     }
 
     [Test]
-    public async Task LoginWrongUsername()
+    public async Task LoginWrongUsernameTest()
     {
 
         Driver.Navigate().GoToUrl("https://localhost:7081/login");
@@ -59,10 +59,4 @@ public class LoginTest: Test
         Assert.AreEqual("https://localhost:7081/login", Driver.Url);
     }
 
-    [OneTimeTearDown]
-    public void TearDown()
-    {
-        Driver.Close();
-        Driver.Quit();
-    }
 }
