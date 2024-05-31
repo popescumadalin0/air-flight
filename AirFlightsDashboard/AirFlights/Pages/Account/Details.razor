@@ -21,10 +21,10 @@
                         </Figure>
                         @if (_showProfileEdit == 1)
                         {
-                            <FilePicker Upload="@OnImageUploaded" Filter="image/*" Width="Width.Px(128)"/>
+                        <FilePicker ElementId="upload_image" Upload="@OnImageUploaded" Filter="image/*" Width="Width.Px(128)" />
                         }
                     </TableRowCell>
-                    <TableRowCell><Button Color="Color.Danger" ElementId="edit_user_image" Clicked="() => { _showProfileEdit = 1 - _showProfileEdit; }"> Edit</Button></TableRowCell>
+                <TableRowCell ElementId="edit_user_image"><Button Color="Color.Danger" ElementId="edit_user_image" Clicked="() => { _showProfileEdit = 1 - _showProfileEdit; }"> Edit</Button></TableRowCell>
                 </TableRow>
                 <TableRow Border="new FluentBorder().Is1">
                     <TableRowHeader Background="Background.Light">Username:</TableRowHeader>
@@ -136,7 +136,7 @@
             </Validations>
         </TableBody>
         <Field>
-            <Button Width="Width.Max100" Color="Color.Success" Clicked="SaveAsync" Disabled="@(_oldUser.ProfileImage == _user.ProfileImage && _oldUser.Email == _user.Email && _oldUser.FirstName == _user.FirstName && _oldUser.LastName == _user.LastName && _oldUser.PhoneNumber == _user.PhoneNumber && _oldUser.NewPassword == _user.NewPassword && _oldUser.OldPassword == _user.OldPassword)">
+        <Button ElementId="save" Width="Width.Max100" Color="Color.Success" Clicked="SaveAsync" Disabled="@(_oldUser.ProfileImage == _user.ProfileImage && _oldUser.Email == _user.Email && _oldUser.FirstName == _user.FirstName && _oldUser.LastName == _user.LastName && _oldUser.PhoneNumber == _user.PhoneNumber && _oldUser.NewPassword == _user.NewPassword && _oldUser.OldPassword == _user.OldPassword)">
                 Save
             </Button>
         </Field>
@@ -146,7 +146,7 @@
             </Button>
         </Field>
         <Field>
-            <Button Width="Width.Max100" Color="Color.Danger" Clicked="DeleteAsync">
+        <Button ElementId="delete" Width="Width.Max100" Color="Color.Danger" Clicked="DeleteAsync">
                 Delete Account
             </Button>
         </Field>

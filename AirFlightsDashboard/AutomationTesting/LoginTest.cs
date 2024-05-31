@@ -11,6 +11,7 @@ public class LoginTest : Test
     public async Task LoginSuccesTest()
     {
         Driver.Navigate().GoToUrl("https://localhost:7081/login");
+        await Task.Delay(2000);
         var username = Driver.FindElement(By.Id("login_username"));
         username.Clear();
         username.SendKeys("admin");
@@ -28,6 +29,7 @@ public class LoginTest : Test
     {
 
         Driver.Navigate().GoToUrl("https://localhost:7081/login");
+        await Task.Delay(2000);
         var username = Driver.FindElement(By.Id("login_username"));
         username.Clear();
         username.SendKeys("admin");
@@ -45,6 +47,7 @@ public class LoginTest : Test
     {
 
         Driver.Navigate().GoToUrl("https://localhost:7081/login");
+        await Task.Delay(2000);
         var username = Driver.FindElement(By.Id("login_username"));
         username.Clear();
         username.SendKeys("Ana");
