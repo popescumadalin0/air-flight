@@ -8,7 +8,7 @@ public class LoginTest : Test
 {
 
     [Test]
-    public async Task LoginSuccesTest()
+    public async Task LoginSuccessTest()
     {
         Driver.Navigate().GoToUrl("https://localhost:7081/login");
         await Task.Delay(2000);
@@ -72,7 +72,6 @@ public class LoginTest : Test
         Assert.AreNotEqual(username.Text, string.Empty);
         var password = Driver.FindElement(By.Id("required_password"));
         Assert.AreNotEqual(password.Text, string.Empty);
-
     }
 
     [Test]

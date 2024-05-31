@@ -7,7 +7,7 @@ namespace AutomationTesting
     public class RegisterTest : Test
     {
         [Test]
-        public async Task RegisterSuccesTest()
+        public async Task RegisterSuccessTest()
         {
             Driver.Navigate().GoToUrl("https://localhost:7081/register");
             string baseDirectory = AppContext.BaseDirectory;

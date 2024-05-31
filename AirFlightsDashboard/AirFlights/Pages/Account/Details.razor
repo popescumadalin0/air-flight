@@ -113,17 +113,17 @@
                         @if (_showPasswordEdit == 1)
                         {
                             <Validation>
-                                <TextEdit Placeholder="Your old password" @bind-Text="@_user.OldPassword">
+                                <TextEdit ElementId="old_password" Placeholder="Your old password" @bind-Text="@_user.OldPassword">
                                     <Feedback>
                                         <ValidationError/>
                                     </Feedback>
                                 </TextEdit>
-                                <TextEdit Placeholder="Your new password" @bind-Text="@_user.NewPassword">
+                            <TextEdit ElementId="new_password" Placeholder="Your new password" @bind-Text="@_user.NewPassword">
                                     <Feedback>
                                         <ValidationError/>
                                     </Feedback>
                                 </TextEdit>
-                                <TextEdit Placeholder="Confirm new password" @bind-Text="@_user.ConfirmPassword">
+                            <TextEdit ElementId="confirm_new_password" Placeholder="Confirm new password" @bind-Text="@_user.ConfirmPassword">
                                     <Feedback>
                                         <ValidationError/>
                                     </Feedback>
@@ -131,7 +131,7 @@
                             </Validation>
                         }
                     </TableRowCell>
-                    <TableRowCell><Button Color="Color.Danger" Clicked="() => { _showPasswordEdit = 1 - _showPasswordEdit; }"> Edit</Button></TableRowCell>
+                <TableRowCell ElementId="edit_password"><Button ElementId="edit_password" Color="Color.Danger" Clicked="() => { _showPasswordEdit = 1 - _showPasswordEdit; }"> Edit</Button></TableRowCell>
                 </TableRow>
             </Validations>
         </TableBody>

@@ -96,7 +96,12 @@ public class UserController : BaseController
         {
             await _userService.UpdateUserAsync(user);
             await _userService.UpdateUserEmailAsync(user, HttpContext.Request.Headers.Authorization.ToString().Replace("Bearer ", string.Empty));
-            await _userService.UpdateUserPasswordAsync(user);
+            var result = await _userService.UpdateUserPasswordAsync(user);
+            if (!result.Succeeded)
+            {
+                return ApiServiceResponse.ApiServiceResult(new ServiceResponse(new Exception(result.Errors.FirstOrDefault()?.Description)));
+            }
+
             await _userService.UpdateUserPhoneNumberAsync(user, HttpContext.Request.Headers.Authorization.ToString().Replace("Bearer ", string.Empty));
 
             return ApiServiceResponse.ApiServiceResult(new ServiceResponse());
