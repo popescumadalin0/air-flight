@@ -24,7 +24,7 @@
                             <FilePicker Upload="@OnImageUploaded" Filter="image/*" Width="Width.Px(128)"/>
                         }
                     </TableRowCell>
-                    <TableRowCell><Button Color="Color.Danger" Clicked="() => { _showProfileEdit = 1 - _showProfileEdit; }"> Edit</Button></TableRowCell>
+                    <TableRowCell><Button Color="Color.Danger" ElementId="edit_user_image" Clicked="() => { _showProfileEdit = 1 - _showProfileEdit; }"> Edit</Button></TableRowCell>
                 </TableRow>
                 <TableRow Border="new FluentBorder().Is1">
                     <TableRowHeader Background="Background.Light">Username:</TableRowHeader>

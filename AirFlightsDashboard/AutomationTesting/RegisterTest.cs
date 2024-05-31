@@ -168,13 +168,30 @@ namespace AutomationTesting
         {
             Driver.Navigate().GoToUrl("https://localhost:7081/register");
             await Task.Delay(2000);
+
             //Password
             var password = Driver.FindElement(By.Id("password_register"));
             password.Clear();
             password.SendKeys("admin1234");
 
             await Task.Delay(2000);
-            var error=Driver.FindElement(By.Id("password_error_message"));
+            var error = Driver.FindElement(By.Id("password_error_message"));
+            Assert.AreNotEqual(error.Text, string.Empty);
+
+        }
+
+        [Test]
+        public async Task InvalidEmailTest()
+        {
+            Driver.Navigate().GoToUrl("https://localhost:7081/register");
+            await Task.Delay(2000);
+            //Password
+            var password = Driver.FindElement(By.Id("email_register"));
+            password.Clear();
+            password.SendKeys("admin@admin");
+
+            await Task.Delay(2000);
+            var error = Driver.FindElement(By.Id("required_email"));
             Assert.AreNotEqual(error.Text, string.Empty);
         }
 
@@ -225,7 +242,6 @@ namespace AutomationTesting
             Assert.AreNotEqual(password.Text, string.Empty);
             var passwordconfirm = Driver.FindElement(By.Id("confirmation"));
             Assert.AreNotEqual(passwordconfirm.Text, string.Empty);
-
         }
     }
 }
