@@ -78,6 +78,7 @@ public class UserDetailsTest : Test
         actions.MoveToElement(deleteButton);
         actions.Perform();
         deleteButton.Click();
+        await Task.Delay(2000);
 
         Assert.AreNotEqual("https://localhost:7081/account", Driver.Url);
     }

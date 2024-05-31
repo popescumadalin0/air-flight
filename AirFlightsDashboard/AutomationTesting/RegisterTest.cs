@@ -1,6 +1,7 @@
 using AutomationTesting.BaseClass;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using System;
 
 namespace AutomationTesting
 {
@@ -58,6 +59,7 @@ namespace AutomationTesting
             var document = Path.GetFullPath(Path.Combine(baseDirectory, relativePath));
             IWebElement fileInput = Driver.FindElement(By.Id("upload_document"));
             fileInput.SendKeys(document);
+
             var upload = Driver.FindElement(By.ClassName("b-file-picker-file-upload"));
             Actions actions = new Actions(Driver);
             actions.MoveToElement(upload);
@@ -168,7 +170,13 @@ namespace AutomationTesting
         {
             Driver.Navigate().GoToUrl("https://localhost:7081/register");
             await Task.Delay(2000);
+            Actions actions = new Actions(Driver);
 
+            var registerButton = Driver.FindElement(By.Id("register_button"));
+            actions.MoveToElement(registerButton);
+            actions.Perform();
+            registerButton.Click();
+            await Task.Delay(2000);
             //Password
             var password = Driver.FindElement(By.Id("password_register"));
             password.Clear();
@@ -185,6 +193,15 @@ namespace AutomationTesting
         {
             Driver.Navigate().GoToUrl("https://localhost:7081/register");
             await Task.Delay(2000);
+
+            Actions actions = new Actions(Driver);
+
+            var registerButton = Driver.FindElement(By.Id("register_button"));
+            actions.MoveToElement(registerButton);
+            actions.Perform();
+            registerButton.Click();
+            await Task.Delay(2000);
+
             //Password
             var password = Driver.FindElement(By.Id("email_register"));
             password.Clear();
