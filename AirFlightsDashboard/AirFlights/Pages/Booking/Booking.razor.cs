@@ -1,7 +1,6 @@
 using AirFlightsDashboard.Models;
 using Blazorise;
 using Microsoft.AspNetCore.Components;
-using Models;
 
 namespace AirFlightsDashboard.Pages.Booking;
 

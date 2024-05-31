@@ -16,23 +16,36 @@
         <Div class="col-sm-6">
             <Card Shadow="Shadow.Default">
                 <CardBody>
-                    <Form>
-                        <Field>
-                            <FieldLabel>
-                        Username
-                            </FieldLabel>
-                            <FieldBody>
-                        <TextEdit ElementId="login_username" Placeholder="Enter your username" Role="TextRole.Text" @bind-Text="_loginModel.Username" />
-                            </FieldBody>
-                        </Field>
+                    <Form @ref="form">
+                        <Validations @ref="validations" Mode="ValidationMode.Manual" Model="@_loginModel">
+                        <Validation>
+                            <Field>
+                                <FieldLabel>
+                                    Username
+                                </FieldLabel>
+                                <FieldBody>
+                                    <TextEdit ElementId="login_username" Placeholder="Enter your username" Role="TextRole.Text" @bind-Text="_loginModel.Username">
+                                    <Feedback>
+                                        <ValidationError ElementId="required_username" />
+                                    </Feedback>
+                                    </TextEdit>
+                                </FieldBody>
+                            </Field>
+                        </Validation>
+                        <Validation>
                         <Field>
                             <FieldLabel>
                                 Password
                             </FieldLabel>
                             <FieldBody>
-                                <TextEdit ElementId="password_login" Placeholder="********" Role="TextRole.Password" @bind-Text="_loginModel.Password" autocomplete="new-password"/>
+                                <TextEdit ElementId="password_login" Placeholder="********" Role="TextRole.Password" @bind-Text="_loginModel.Password" autocomplete="new-password">
+                                <Feedback>
+                                    <ValidationError ElementId="required_password" />
+                                </Feedback>
+                                </TextEdit>
                             </FieldBody>
                         </Field>
+                            </Validation>
                         <Field>
                             <Button ElementId="login_button" Color="Color.Primary" Block Clicked="@SignInAsync">
                                 Sign in
@@ -41,6 +54,7 @@
                         <Field>
                             Don’t have an account yet? <Anchor To="/register" TextColor="TextColor.Primary">Sign up</Anchor>
                         </Field>
+                        </Validations>
                     </Form>
                 </CardBody>
             </Card>

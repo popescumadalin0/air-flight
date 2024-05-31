@@ -141,14 +141,15 @@ public partial class Details : ComponentBase, IDisposable
     private async Task LogoutAsync()
     {
         await LoadingState.ShowAsync();
-        await LoadingState.HideAsync();
+
+        NavigationManager.NavigateTo("/login");
 
         var customProvider = (AirFLightsAuthenticationStateProvider)AuthenticationStateProvider;
         await customProvider.LogoutUserAsync();
 
         await SnackbarState.PushAsync("Successfully logout!");
 
-        NavigationManager.NavigateTo("/login");
+        await LoadingState.HideAsync();
     }
 
     private async Task DeleteAsync()

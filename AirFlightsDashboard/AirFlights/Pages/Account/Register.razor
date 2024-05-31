@@ -15,7 +15,7 @@
             <Card Shadow="Shadow.Default">
                 <CardBody>
                     <Form @ref="form">
-                        <Validations Mode="ValidationMode.Auto" Model="@_registerModel">
+                        <Validations @ref="validations" Mode="ValidationMode.Manual" Model="@_registerModel">
                             <Validation>
                                 <Field>
                                     <FieldLabel>
@@ -24,7 +24,7 @@
                                     <FieldBody>
                                         <TextEdit ElementId="firstname_register" Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.FirstName">
                                             <Feedback>
-                                                <ValidationError />
+                                                <ValidationError ElementId="required_firstname" />
                                             </Feedback>
                                         </TextEdit>
                                     </FieldBody>
@@ -38,7 +38,7 @@
                                     <FieldBody>
                                         <TextEdit ElementId="lastname_register" Placeholder="Enter the last name" Role="TextRole.Text" @bind-Text="_registerModel.LastName">
                                             <Feedback>
-                                                <ValidationError />
+                                                <ValidationError ElementId="required_lastname" />
                                             </Feedback>
                                         </TextEdit>
                                     </FieldBody>
@@ -52,7 +52,7 @@
                                     <FieldBody>
                                         <TextEdit ElementId="cnp_register" Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.CNP">
                                             <Feedback>
-                                                <ValidationError />
+                                                <ValidationError ElementId="required_cnp" />
                                             </Feedback>
                                         </TextEdit>
                                     </FieldBody>
@@ -66,7 +66,7 @@
                                     <FieldBody>
                                         <TextEdit ElementId="register_username" Placeholder="Enter the first name" Role="TextRole.Text" @bind-Text="_registerModel.UserName">
                                             <Feedback>
-                                                <ValidationError />
+                                                <ValidationError ElementId="required_username" />
                                             </Feedback>
                                         </TextEdit>
                                     </FieldBody>
@@ -80,7 +80,7 @@
                                     <FieldBody>
                                         <TextEdit ElementId="email_register" Placeholder="Enter your e-mail" Role="TextRole.Email" @bind-Text="_registerModel.Email">
                                             <Feedback>
-                                                <ValidationError />
+                                                <ValidationError ElementId="required_email" />
                                             </Feedback>
                                         </TextEdit>
                                     </FieldBody>
@@ -94,7 +94,7 @@
                                     <FieldBody>
                                         <TextEdit ElementId="phone_register" Placeholder="Enter your phone number" Role="TextRole.Telephone" @bind-Text="_registerModel.PhoneNumber">
                                             <Feedback>
-                                                <ValidationError />
+                                                <ValidationError ElementId="required_phone" />
                                             </Feedback>
                                         </TextEdit>
                                     </FieldBody>
@@ -108,7 +108,7 @@
                                     <FieldBody>
                                         <TextEdit ElementId="password_register" Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.Password" autocomplete="new-password">
                                             <Feedback>
-                                                <ValidationError />
+                                                <ValidationError  ElementId="password_error_message"/>
                                             </Feedback>
                                         </TextEdit>
                                     </FieldBody>
@@ -122,7 +122,7 @@
                                     <FieldBody>
                                         <TextEdit ElementId="password_confirm_register" Placeholder="********" Role="TextRole.Password" @bind-Text="_registerModel.ConfirmPassword" autocomplete="confirm-password">
                                             <Feedback>
-                                                <ValidationError />
+                                                <ValidationError ElementId="confirmation" />
                                             </Feedback>
                                         </TextEdit>
                                     </FieldBody>

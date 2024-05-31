@@ -29,6 +29,7 @@ public partial class Register : ComponentBase, IDisposable
 
     private Form form;
 
+    private Validations validations;
     public void Dispose()
     {
         SnackbarState.OnStateChange -= StateHasChanged;
@@ -43,33 +44,37 @@ public partial class Register : ComponentBase, IDisposable
 
     private async Task RegisterAsync()
     {
-        await LoadingState.ShowAsync();
-        var result = await AirFlightsApiClient.RegisterUserAsync(
-            new UserRegister()
-            {
-                Password = _registerModel.Password,
-                User = new User()
-                {
-                    CNP = _registerModel.CNP,
-                    Email = _registerModel.Email,
-                    FirstName = _registerModel.FirstName,
-                    LastName = _registerModel.LastName,
-                    PhoneNumber = _registerModel.PhoneNumber,
-                    UserName = _registerModel.UserName,
-                    Document = Convert.ToBase64String(_registerModel.Document),
-                    ProfileImage = Convert.ToBase64String(_registerModel.ProfileImage),
-                }
-            });
-
-        await LoadingState.HideAsync();
-
-        await SnackbarState.PushAsync(
-            result.Success ? "User created!" : result.ResponseMessage,
-            !result.Success);
-
-        if (result.Success)
+        if (await validations.ValidateAll())
         {
-            NavigationManager.NavigateTo("/login");
+            await LoadingState.ShowAsync();
+
+            var result = await AirFlightsApiClient.RegisterUserAsync(
+                new UserRegister()
+                {
+                    Password = _registerModel.Password,
+                    User = new User()
+                    {
+                        CNP = _registerModel.CNP,
+                        Email = _registerModel.Email,
+                        FirstName = _registerModel.FirstName,
+                        LastName = _registerModel.LastName,
+                        PhoneNumber = _registerModel.PhoneNumber,
+                        UserName = _registerModel.UserName,
+                        Document = Convert.ToBase64String(_registerModel.Document),
+                        ProfileImage = Convert.ToBase64String(_registerModel.ProfileImage),
+                    }
+                });
+
+            await LoadingState.HideAsync();
+
+            await SnackbarState.PushAsync(
+                result.Success ? "User created!" : result.ResponseMessage,
+                !result.Success);
+
+            if (result.Success)
+            {
+                NavigationManager.NavigateTo("/login");
+            }
         }
     }
 

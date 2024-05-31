@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using AirFlightsDashboard.Models;
 using AirFlightsDashboard.States;
+using Blazorise;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Models.Request;
@@ -26,6 +27,10 @@ public partial class Login : ComponentBase, IDisposable
     [Inject]
     private IAirFlightsApiClient AirFlightsApiClient { get; set; }
 
+    private Form form;
+
+    private Validations validations;
+
     private LoginModel _loginModel = new LoginModel();
 
     public void Dispose()
@@ -42,26 +47,31 @@ public partial class Login : ComponentBase, IDisposable
 
     private async Task SignInAsync()
     {
-        await LoadingState.ShowAsync();
-        var result = await AirFlightsApiClient.LoginUserAsync(
-            new UserLogin
-            {
-                Password = _loginModel.Password,
-                Email = _loginModel.Username
-            });
 
-        await LoadingState.HideAsync();
-
-        await SnackbarState.PushAsync(
-            result.Success ? "User logged!" : result.ResponseMessage,
-            !result.Success);
-
-        if (result.Success)
+        if (await validations.ValidateAll())
         {
-            var customProvider = (AirFLightsAuthenticationStateProvider)AuthenticationStateProvider;
-            await customProvider.AuthenticateUserAsync(result.Response.AccessToken, result.Response.RefreshToken);
+            await LoadingState.ShowAsync();
 
-            NavigationManager.NavigateTo("/");
+            var result = await AirFlightsApiClient.LoginUserAsync(
+                new UserLogin
+                {
+                    Password = _loginModel.Password,
+                    Email = _loginModel.Username
+                });
+
+            await LoadingState.HideAsync();
+
+            await SnackbarState.PushAsync(
+                result.Success ? "User logged!" : result.ResponseMessage,
+                !result.Success);
+
+            if (result.Success)
+            {
+                var customProvider = (AirFLightsAuthenticationStateProvider)AuthenticationStateProvider;
+                await customProvider.AuthenticateUserAsync(result.Response.AccessToken, result.Response.RefreshToken);
+
+                NavigationManager.NavigateTo("/");
+            }
         }
     }
 }

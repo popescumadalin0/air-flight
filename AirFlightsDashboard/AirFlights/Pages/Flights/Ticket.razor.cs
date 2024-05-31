@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using AirFlightsDashboard.Models;
 using AirFlightsDashboard.States;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
 using SDK.Interfaces;
 
 namespace AirFlightsDashboard.Pages.Flights;
